@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class CandleLighting : MonoBehaviour
 {
-    
-    public List<GameObject> lights = new List<GameObject>();
-    private float turnOffDelay = 8f;
+
+    public List<GameObject> lights;
+    //= new List<GameObject>();
+    public float turnOffDelay = 0f;
     public bool isTurningOff = false;
+    public SanityScore sanity;
 
 
     //To change this make it a light when score is above a certain amount and everytime the player messes up the score gose up...
@@ -17,7 +19,10 @@ public class CandleLighting : MonoBehaviour
     void Update()
     {
 
-            startlight();
+        startlight();
+
+        lights = new List<GameObject>(Resources.LoadAll<GameObject>("lights"));
+
     }
 
     public void startlight()
@@ -32,7 +37,7 @@ public class CandleLighting : MonoBehaviour
      IEnumerator LightTurnOffRoutine()
     {
         isTurningOff = true;
-
+        Debug.Log("Lights number" + (lights.Count));
         if (isTurningOff == true)
         {
             if (lights.Count > 0)
@@ -45,9 +50,12 @@ public class CandleLighting : MonoBehaviour
                     {
                         
                         TurnOffCandle(lightRand);
+                        lights.Remove(lightRand);
                         Debug.Log("Randomly chosen candle: " + lightRand);
 
+
                     }
+                    
 
 
                 
@@ -57,10 +65,16 @@ public class CandleLighting : MonoBehaviour
 
             
 
-            if (lights.Count == 0)
+            if (lights.Count < 4)
             {
                 Debug.Log("Game Over");
-               
+                sanity.sanityDecrease = true;
+
+
+            }
+            else
+            {
+                sanity.sanityDecrease = false;
             }
 
 
@@ -96,15 +110,8 @@ public class CandleLighting : MonoBehaviour
     {
 
         light.SetActive(false);
-
-        //int LightIndex = Random.Range(0, lights.Count);
-
-        //if (lights != null) // Check if the object exists and is currently active
-        //{
-        //    // Deactivate the object
-        //    Debug.Log(lights.Count + "was active and has been turned off.");
-        //    lights[lights.Count].SetActive(false);
-        //}
+        
+       
 
     }
 }
