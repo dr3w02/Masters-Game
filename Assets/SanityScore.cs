@@ -9,7 +9,7 @@ public class SanityScore : MonoBehaviour
     public float decreaseSpeed = 1f;
 
     public bool sanityDecrease;
-    public AudioSource breathing;
+  
 
     public void setMaxSanity(float maxSanity)
     {
@@ -47,12 +47,14 @@ public class SanityScore : MonoBehaviour
         //SetSanity(+20f);
         if (Sanity < 20)
         {
-            breathing.Play();
+            AudioManager.instance.PlaySFX("Breathing");
         }
 
         if (Sanity > 20)
         {
-            breathing.Pause();
+           
+
+
         }
 
 
