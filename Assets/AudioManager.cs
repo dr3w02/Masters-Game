@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static Unity.VisualScripting.Member;
 
 public class AudioManager : MonoBehaviour
 {
@@ -61,6 +62,24 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void StopSFX(string name)
+    {
+        Sound s = Array.Find(sfxLibary, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogError("npSound Found Of That Name");
+
+        }
+
+        if (!s.source.isPlaying)
+        {
+            return;
+        }
+
+        s.source.Stop();
+    }
+
+
 
 
     [System.Serializable]
@@ -78,5 +97,5 @@ public class AudioManager : MonoBehaviour
         [HideInInspector] public AudioSource source;
     }
 
-    //20min17seconds
+
 }

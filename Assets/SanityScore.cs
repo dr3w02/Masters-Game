@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class SanityScore : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class SanityScore : MonoBehaviour
         if (Sanity < 20)
         {
             AudioManager.instance.PlaySFX("Breathing");
+        }
+        else
+        {
+            AudioManager.instance.StopSFX("Breathing");
         }
 
         if (Sanity > 20)
