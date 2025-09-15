@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.meta.xr.sdk.all": "72.0.0",
+    "com.meta.xr.sdk.movement": "file:C:/Users/drewa/Downloads/Unity-Movement-main/Unity-Movement-main",
     "com.unity.ai.navigation": "2.0.4",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.ide.rider": "3.0.31",

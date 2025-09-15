@@ -3333,6 +3333,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Test",
+            "id": "358380ed-a72d-4c1f-a5df-b90498f6306a",
+            "actions": [
+                {
+                    "name": "TestValue",
+                    "type": "Value",
+                    "id": "93598b43-69a9-40f6-9123-51f25cd65508",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TestPassThrough",
+                    "type": "PassThrough",
+                    "id": "774d16b0-7029-4e22-9c52-ab22cfec56d6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "27395296-9959-4681-a9f8-e5d17622cf7d",
+                    "path": "*/{Trigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestValue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6874a56c-19e6-4442-8033-4046b1a9e58b",
+                    "path": "<XRController>{RightHand}/{Trigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestPassThrough",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
