@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 using WorldTime;
 
 namespace WorldTime
@@ -17,20 +17,34 @@ namespace WorldTime
         [SerializeField]
         private WorldTime _worldTime;
 
-       
-        //Checks if game is playing and then updates the lights based on the number its at(TimeOfDay);
-        private void Update()
+        private void Awake()
         {
-            if (Preset == null)
-                return;
+          
+            _worldTime.WorldTimeChanged += WorldTimeSky;
 
 
+        }
+        private void OnDestroy()
+        {
+           _worldTime.WorldTimeChanged -= WorldTimeSky;
+        }
+
+        public void WorldTimeSky(object sender, TimeSpan newTime)
+        {
             if (Application.isPlaying)
             {
-                TimeOfDay += Time.deltaTime;
-                TimeOfDay %= 24; //Clamp Between 0 -24
-                
-                UpdateLighting(TimeOfDay / 24f);
+
+
+                float hours = newTime.Hours + (newTime.Minutes / 60f);
+                float timePercent = hours / 24f;
+
+
+
+                UpdateLighting(timePercent);
+                print($"SkyTimer{timePercent}");
+                print(newTime);
+              
+
             }
             else
             {
@@ -38,9 +52,20 @@ namespace WorldTime
             }
         }
 
+        //Checks if game is playing and then updates the lights based on the number its at(TimeOfDay);
+        private void Update()
+        {
+            if (Preset == null)
+                return;
+
+
+           
+        }
+
         //Checks if directional Light is assigned and changes colour and rotation
         private void UpdateLighting(float timePercent)
         {
+            print("Lighting Updated");
             RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
             RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
 
