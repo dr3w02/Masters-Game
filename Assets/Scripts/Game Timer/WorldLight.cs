@@ -8,6 +8,7 @@ namespace WorldTime
 
     public class WorldLight : MonoBehaviour
     {
+        [SerializeField]
         private Light _light;
         
         [SerializeField]

@@ -1,73 +1,83 @@
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using WorldTime;
 
-public class LightingManager : MonoBehaviour
+namespace WorldTime
 {
-    //References
-    [SerializeField] private Light DirectionalLight;
-    [SerializeField] private LightingPreset Preset;
 
-    //Varibles
-    [SerializeField, Range(0, 24)] private float TimeOfDay;
-
-    //Checks if game is playing and then updates the lights based on the number its at(TimeOfDay);
-    private void Update()
+    public class LightingManager : MonoBehaviour
     {
-        if(Preset == null)
-            return;
+        //References
+        [SerializeField] private Light DirectionalLight;
+        [SerializeField] private LightingPreset Preset;
 
+        //Varibles
+        [SerializeField, Range(0, 24)] private float TimeOfDay;
 
-        if (Application.isPlaying)
+        [SerializeField]
+        private WorldTime _worldTime;
+
+       
+        //Checks if game is playing and then updates the lights based on the number its at(TimeOfDay);
+        private void Update()
         {
-            TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24; //Clamp Between 0 -24
-            UpdateLighting(TimeOfDay / 24f);
-        }
-        else
-        {
-            UpdateLighting(TimeOfDay / 24f);
-        }
-    }
-
-    //Checks if directional Light is assigned and changes colour and rotation
-    private void UpdateLighting(float timePercent)
-    {
-        RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
-        RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
-
-        if(DirectionalLight != null)
-        {
-            DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
-            DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
-        }
-
-    }
+            if (Preset == null)
+                return;
 
 
-    //If directional Light is not set it will find the light object with the name of sun in the scene
-    //If thats not set then it finds the first directional light ands takes that. 
-    private void OnValidate()
-    {
-        if (DirectionalLight != null)
-            return;
-
-        if(RenderSettings.sun != null)
-        {
-            DirectionalLight = RenderSettings.sun;
-        }
-        else
-        {
-            Light[] lights = GameObject.FindObjectsOfType<Light>();
-            
-            foreach (Light light in lights)
+            if (Application.isPlaying)
             {
-                if (light.type == LightType.Directional)
+                TimeOfDay += Time.deltaTime;
+                TimeOfDay %= 24; //Clamp Between 0 -24
+                
+                UpdateLighting(TimeOfDay / 24f);
+            }
+            else
+            {
+                UpdateLighting(TimeOfDay / 24f);
+            }
+        }
+
+        //Checks if directional Light is assigned and changes colour and rotation
+        private void UpdateLighting(float timePercent)
+        {
+            RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
+            RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
+
+            if (DirectionalLight != null)
+            {
+                DirectionalLight.color = Preset.DirectionalColor.Evaluate(timePercent);
+                DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
+            }
+
+        }
+
+
+        //If directional Light is not set it will find the light object with the name of sun in the scene
+        //If thats not set then it finds the first directional light ands takes that. 
+        private void OnValidate()
+        {
+            if (DirectionalLight != null)
+                return;
+
+            if (RenderSettings.sun != null)
+            {
+                DirectionalLight = RenderSettings.sun;
+            }
+            else
+            {
+                Light[] lights = GameObject.FindObjectsOfType<Light>();
+
+                foreach (Light light in lights)
                 {
-                    DirectionalLight = light;
-                    return;
+                    if (light.type == LightType.Directional)
+                    {
+                        DirectionalLight = light;
+                        return;
+                    }
                 }
             }
         }
-    }
 
+    }
 }

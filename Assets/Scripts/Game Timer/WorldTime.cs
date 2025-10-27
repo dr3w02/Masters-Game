@@ -13,7 +13,9 @@ namespace WorldTime
 
         private TimeSpan _currentTime;
 
-        private float _minuteLength => _dayLength / WorldTimeConstants.MinutesInDay;
+        
+
+        public float _minuteLength => _dayLength / WorldTimeConstants.MinutesInDay;
 
 
         //Starts Coroutine Move this if we want the day cycle timer to start later on 
