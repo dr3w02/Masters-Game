@@ -30703,7 +30703,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006c3536a9dcdb145b9d539ea99bf34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  H_NPC: {fileID: 0}
   NPCOptions: []
+  PathesHallway: []
+  H_pathes: {fileID: 0}
+  Zones: {fileID: 0}
 --- !u!1 &382839783
 GameObject:
   m_ObjectHideFlags: 0
@@ -30750,7 +30754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a570711139c748944321a20d9fdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointSize: 1
+  waypointSize: 0.111
 --- !u!1 &388263413
 GameObject:
   m_ObjectHideFlags: 0
@@ -42198,7 +42202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a570711139c748944321a20d9fdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointSize: 1
+  waypointSize: 0.111
 --- !u!1 &747512452
 GameObject:
   m_ObjectHideFlags: 0
@@ -47957,13 +47961,13 @@ Transform:
   m_GameObject: {fileID: 814528886}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5154641, y: 1.1984941, z: 2.335779}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1885854633}
   - {fileID: 963414488}
-  m_Father: {fileID: 1116544453}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &814528888
 MonoBehaviour:
@@ -47977,7 +47981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a570711139c748944321a20d9fdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointSize: 1
+  waypointSize: 0.111
 --- !u!1001 &819897664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50367,7 +50371,6 @@ Transform:
   - {fileID: 2120044799}
   - {fileID: 742141208}
   - {fileID: 382839784}
-  - {fileID: 814528887}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1128523586
@@ -74127,7 +74130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a570711139c748944321a20d9fdbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointSize: 1
+  waypointSize: 0.111
 --- !u!1 &2142737949
 GameObject:
   m_ObjectHideFlags: 0
@@ -75103,4 +75106,5 @@ SceneRoots:
   - {fileID: 747512453}
   - {fileID: 812643308}
   - {fileID: 1881684527}
+  - {fileID: 814528887}
   - {fileID: 1116544453}
