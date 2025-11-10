@@ -30703,11 +30703,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006c3536a9dcdb145b9d539ea99bf34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  H_NPC: {fileID: 0}
-  NPCOptions: []
-  PathesHallway: []
+  H_NPC: {fileID: 346157407}
+  NPCOptions:
+  - {fileID: 1308679146}
+  - {fileID: 1835190549}
+  - {fileID: 388263413}
+  - {fileID: 1436119258}
+  Pathes: []
+  wayPointMover: {fileID: 0}
   H_pathes: {fileID: 0}
   Zones: {fileID: 0}
+  npcAssigned: 0
 --- !u!1 &382839783
 GameObject:
   m_ObjectHideFlags: 0
@@ -30720,7 +30726,7 @@ GameObject:
   - component: {fileID: 382839785}
   m_Layer: 0
   m_Name: Path 3
-  m_TagString: Untagged
+  m_TagString: Pathes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30755,6 +30761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointSize: 0.111
+  npcPicker: {fileID: 0}
 --- !u!1 &388263413
 GameObject:
   m_ObjectHideFlags: 0
@@ -30764,7 +30771,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 388263414}
-  - component: {fileID: 388263415}
   m_Layer: 0
   m_Name: GhostGirl Hallway (2)
   m_TagString: Untagged
@@ -30788,21 +30794,6 @@ Transform:
   - {fileID: 444766455}
   m_Father: {fileID: 346157407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &388263415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388263413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoints: {fileID: 742141209}
-  moveSpeed: 5
-  distanceThreshold: 0.1
 --- !u!1001 &406778874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37013,7 +37004,7 @@ Transform:
   m_GameObject: {fileID: 587698204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.014742419, y: -0.074503064, z: 1.3218682}
+  m_LocalPosition: {x: -0.014742419, y: -0.074503064, z: 5.349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42168,7 +42159,7 @@ GameObject:
   - component: {fileID: 742141209}
   m_Layer: 0
   m_Name: Path 2
-  m_TagString: Untagged
+  m_TagString: Pathes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42203,6 +42194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointSize: 0.111
+  npcPicker: {fileID: 0}
 --- !u!1 &747512452
 GameObject:
   m_ObjectHideFlags: 0
@@ -47982,6 +47974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointSize: 0.111
+  npcPicker: {fileID: 0}
 --- !u!1001 &819897664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48750,7 +48743,7 @@ Transform:
   m_GameObject: {fileID: 858053663}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.014742419, y: -0.074503064, z: 1.3218682}
+  m_LocalPosition: {x: -0.014742419, y: -0.074503064, z: 5.3490005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56634,7 +56627,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1308679147}
-  - component: {fileID: 1308679148}
   m_Layer: 0
   m_Name: GhostGirl Hallway
   m_TagString: Untagged
@@ -56658,21 +56650,6 @@ Transform:
   - {fileID: 1858542115}
   m_Father: {fileID: 346157407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1308679148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308679146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoints: {fileID: 814528888}
-  moveSpeed: 5
-  distanceThreshold: 0.1
 --- !u!4 &1327924902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8259524632637961923, guid: 27024f5809f4a4347b9cd7f26a1bdf93, type: 3}
@@ -57095,7 +57072,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436119259}
-  - component: {fileID: 1436119260}
   m_Layer: 0
   m_Name: GhostGirl Hallway (3)
   m_TagString: Untagged
@@ -57119,21 +57095,6 @@ Transform:
   - {fileID: 912764277}
   m_Father: {fileID: 346157407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1436119260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436119258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoints: {fileID: 382839785}
-  moveSpeed: 5
-  distanceThreshold: 0.1
 --- !u!1 &1438251654
 GameObject:
   m_ObjectHideFlags: 0
@@ -68077,7 +68038,7 @@ Transform:
   m_GameObject: {fileID: 1804381620}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.014742419, y: -0.074503064, z: 1.3218682}
+  m_LocalPosition: {x: -0.014742419, y: -0.074503064, z: 5.3490005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68092,7 +68053,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1835190550}
-  - component: {fileID: 1835190551}
   m_Layer: 0
   m_Name: GhostGirl Hallway (1)
   m_TagString: Untagged
@@ -68116,21 +68076,6 @@ Transform:
   - {fileID: 319197489}
   m_Father: {fileID: 346157407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1835190551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835190549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoints: {fileID: 2120044800}
-  moveSpeed: 5
-  distanceThreshold: 0.1
 --- !u!1 &1836301441
 GameObject:
   m_ObjectHideFlags: 0
@@ -74096,7 +74041,7 @@ GameObject:
   - component: {fileID: 2120044800}
   m_Layer: 0
   m_Name: 'Path 1 '
-  m_TagString: Untagged
+  m_TagString: Pathes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74131,6 +74076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointSize: 0.111
+  npcPicker: {fileID: 0}
 --- !u!1 &2142737949
 GameObject:
   m_ObjectHideFlags: 0

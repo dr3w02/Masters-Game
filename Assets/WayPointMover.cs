@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
 public class WayPointMover : MonoBehaviour
 {
-    [SerializeField] private WayPoints wayPoints;
+    [SerializeField] public WayPoints wayPoints;
 
     [Range(0f, 10f)]
     [SerializeField] private float moveSpeed = 5f;
@@ -13,9 +14,45 @@ public class WayPointMover : MonoBehaviour
 
     [SerializeField] private float distanceThreshold = 0.1f;
 
+
+ 
+
+    public string targetTag = "Pathes"; // The tag you want to search for
+    public List<GameObject> H_Pathes;
+
+    private void Awake()
+    {
+        
+        H_Pathes = new List<GameObject>();
+
+        // Find all objects with the target tag
+        GameObject[] allPathes = GameObject.FindGameObjectsWithTag(targetTag);
+        H_Pathes.AddRange(allPathes);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+      
+
+        Picked();
+
+  
+    }
+
+    public void Picked()
+    {
+        if (H_Pathes == null || H_Pathes.Count == 0)
+        {
+            Debug.LogWarning("No paths found with tag: " + targetTag);
+            return;
+        }
+
+        //picking a random path point for it 
+
+        int randomPath = Random.Range(0, H_Pathes.Count);
+
+        wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
+
         //set inital postion to the first waypoint
         currentWaypoint = wayPoints.GetNextWaypoint(currentWaypoint);
         transform.position = currentWaypoint.position;
@@ -24,8 +61,8 @@ public class WayPointMover : MonoBehaviour
         currentWaypoint = wayPoints.GetNextWaypoint(currentWaypoint);
 
         transform.LookAt(currentWaypoint);
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {

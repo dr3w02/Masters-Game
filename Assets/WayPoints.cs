@@ -1,4 +1,4 @@
-using Oculus.Interaction.Editor;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WayPoints : MonoBehaviour
@@ -6,6 +6,10 @@ public class WayPoints : MonoBehaviour
     [Range(0f,2f)]
     [SerializeField]
     private float waypointSize = 1f;
+
+    [SerializeField]
+    private NPCPicker npcPicker;
+
     private void OnDrawGizmos()
     {
        
@@ -27,6 +31,7 @@ public class WayPoints : MonoBehaviour
 
     }
 
+ 
     public Transform GetNextWaypoint(Transform currentWaypoint)
     {
         if(currentWaypoint == null)
@@ -38,6 +43,17 @@ public class WayPoints : MonoBehaviour
         {
             return transform.GetChild(currentWaypoint.GetSiblingIndex() + 1);
         }
+
+        if (currentWaypoint.GetSiblingIndex() >= transform.childCount - 1)
+        {
+            NPCPicker npcPicker = GetComponent<NPCPicker>();
+            Destroy(npcPicker);
+            Debug.Log("Reached the last waypoint!");
+
+            return null;
+        }
+
+
         else
         {
             return transform.GetChild(0); // Change this to if in box collider then disapear and lose points
