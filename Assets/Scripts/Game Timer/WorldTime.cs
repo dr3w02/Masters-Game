@@ -11,6 +11,9 @@ namespace WorldTime
         [SerializeField]
         private float _dayLength; // in seconds
 
+
+
+        [SerializeField]
         private TimeSpan _currentTime;
 
        

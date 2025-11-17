@@ -5,7 +5,7 @@ using WorldTime;
 namespace WorldTime
 {
 
-    public class LightingManager : MonoBehaviour
+    public class WorldTimeLightingManager : MonoBehaviour
     {
         //References
         [SerializeField] private Light DirectionalLight;

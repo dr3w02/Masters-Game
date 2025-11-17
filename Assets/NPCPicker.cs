@@ -50,7 +50,7 @@ public class NPCPicker : MonoBehaviour
     }
     public void Update()
     {
-        Pick();
+       // Pick();
     }
 
     public void Pick()
