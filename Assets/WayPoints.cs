@@ -57,6 +57,10 @@ public class WayPoints : MonoBehaviour
         else
         {
             return transform.GetChild(0); // Change this to if in box collider then disapear and lose points
+
+            //if door closed = true turn off the game object after randdomized time 
+
+            // made it to the last checkpoint decrease sanity by 5 
         }
     }
 }

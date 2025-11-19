@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Selectable
   - Pathes
+  - H_NPC
+  - W_NPC
   layers:
   - Default
   - TransparentFX
