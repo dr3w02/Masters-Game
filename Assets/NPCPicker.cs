@@ -1,4 +1,5 @@
 using Oculus.Interaction;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,9 +25,11 @@ public class NPCPicker : MonoBehaviour
     [SerializeField]
     private bool picked;
 
+    public float intensity;
+
     void Awake()
     {
-       //INTITIALISE HALLWAY GHOSTS INTO LIST
+        //INTITIALISE HALLWAY GHOSTS INTO LIST
         H_NPC = new List<GameObject>();
 
         // Find all objects with the target tag
@@ -45,31 +48,42 @@ public class NPCPicker : MonoBehaviour
 
     }
 
+    public void Start()
+    {
+        //StartCoroutine(PickNpc());
+    }
+    
+
     public void Update()
     {
-        if (!picked)
-        {
-            Pick();
-        }
-        else
-        {
-            return;
-        }
+        StartCoroutine(PickNpc());
     }
 
-    public void Pick()
+    
+    public IEnumerator PickNpc()
     {
-        Debug.Log("NPCPicked");
-        int randomIndex = Random.Range(0, H_NPC.Count);
-        GameObject clone = Instantiate(H_NPC[randomIndex], transform.position, Quaternion.identity);
-        clone.SetActive(true);
-        clone.AddComponent<WayPointMover>();
-        picked = true;
+        if (H_NPC.Count > 0)
+        {
+            Debug.Log("NPCPicked");
+            int randomIndex = Random.Range(0, H_NPC.Count);
+            GameObject clone = Instantiate(H_NPC[randomIndex], transform.position, Quaternion.identity);
+            clone.SetActive(true);
+            clone.AddComponent<WayPointMover>();
+
+        }
+        if (H_NPC.Count == 0)
+        {
+
+        }
+
+
+            yield return new WaitForSeconds(intensity);
+        }
+
 
     }
- 
 }
 
 
-    
+
 

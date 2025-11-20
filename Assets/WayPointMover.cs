@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class WayPointMover : MonoBehaviour
     //The Current waypoint target that the object is moving towards
     public Transform currentWaypoint;
 
+    public float intensity;
+
     private void Awake()
     {
         
@@ -37,13 +40,22 @@ public class WayPointMover : MonoBehaviour
 
     public void Start()
     {
-        if (!isInUse)
-        {
-            getPath();
-        }
+        StartCoroutine(PathSelector());
         
     }
 
+    public IEnumerator PathSelector()
+    {
+        while (true) 
+        {
+            getPath();
+
+            yield return new WaitForSeconds(intensity);
+
+            
+        }
+        
+    }
     public void getPath()
     {
 
