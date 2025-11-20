@@ -7,8 +7,7 @@ public class WayPoints : MonoBehaviour
     [SerializeField]
     private float waypointSize = 1f;
 
-    [SerializeField]
-    private NPCPicker npcPicker;
+  
 
     private void OnDrawGizmos()
     {

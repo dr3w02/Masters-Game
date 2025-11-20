@@ -5,44 +5,39 @@ using UnityEngine;
 
 public class NPCPicker : MonoBehaviour
 {
-    [Header("Hallway NPCS")]
-    //Collecting all the npcs for the hallway
-    [SerializeField]
-    private string H_targetTag = "H_NPC";
-
-    [SerializeField]
-    private List<GameObject> H_NPC;
-
-
-    //Collecting all the npcs for the Window
-    [Header("Window NPCS")]
-    [SerializeField]
-    private string W_targetTag = "W_NPC";
-
-    [SerializeField]
-    private List<GameObject> W_NPC;
+    public NPCSTATS npcStatsSource;
 
     [SerializeField]
     private bool picked;
 
     public float intensity;
 
-    void Awake()
+    public List<npcStatistics> list = new List<npcStatistics>();
+
+    private void PickHallwayGhost()
     {
-        //INTITIALISE HALLWAY GHOSTS INTO LIST
-        H_NPC = new List<GameObject>();
+        List<npcStatistics> list = npcStatsSource.hallwayGhosts;
 
-        // Find all objects with the target tag
-        GameObject[] HallNPCS = GameObject.FindGameObjectsWithTag(H_targetTag);
-        H_NPC.AddRange(HallNPCS);
+        if(list.Count == 0)
+        {
+            Debug.Log("ERROR: No NPCS!");
+
+            return;
+        }
 
 
-        //INTITIALISE WINDOW GHOSTS INTO LIST
-        W_NPC = new List<GameObject>();
+        int randomIndex = Random.Range(0, list.Count);
+        npcStatistics chosen = list[randomIndex];
 
-        // Find all objects with the target tag
-        GameObject[] WINDNPCS = GameObject.FindGameObjectsWithTag(W_targetTag);
-        W_NPC.AddRange(WINDNPCS);
+        GameObject prefab = chosen.ghostPrefab;
+
+        GameObject clone = Instantiate(prefab, transform.position, Quaternion.identity);
+        clone.SetActive(true);
+        clone.AddComponent<WayPointMover>();
+
+
+        list.RemoveAt(randomIndex);
+
 
 
 
@@ -50,39 +45,30 @@ public class NPCPicker : MonoBehaviour
 
     public void Start()
     {
-        //StartCoroutine(PickNpc());
-    }
-    
 
-    public void Update()
-    {
-        StartCoroutine(PickNpc());
+       StartCoroutine(PickNpc());
     }
 
+
     
+
+
     public IEnumerator PickNpc()
     {
-        if (H_NPC.Count > 0)
-        {
+       
+      
             Debug.Log("NPCPicked");
-            int randomIndex = Random.Range(0, H_NPC.Count);
-            GameObject clone = Instantiate(H_NPC[randomIndex], transform.position, Quaternion.identity);
-            clone.SetActive(true);
-            clone.AddComponent<WayPointMover>();
-
-        }
-        if (H_NPC.Count == 0)
-        {
-
-        }
-
+            PickHallwayGhost();
 
             yield return new WaitForSeconds(intensity);
-        }
+
 
 
     }
 }
+
+
+
 
 
 

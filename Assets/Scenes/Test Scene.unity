@@ -30665,6 +30665,8 @@ GameObject:
   m_Component:
   - component: {fileID: 346157407}
   - component: {fileID: 346157408}
+  - component: {fileID: 346157410}
+  - component: {fileID: 346157409}
   m_Layer: 0
   m_Name: ------GhostManager------
   m_TagString: Untagged
@@ -30703,11 +30705,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006c3536a9dcdb145b9d539ea99bf34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  H_targetTag: H_NPC
-  H_NPC: []
-  W_targetTag: W_NPC
-  W_NPC: []
-  picked: 0
+  npcStatsSource: {fileID: 346157409}
+  picked: 1
+  intensity: 0
+--- !u!114 &346157409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346157406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02342e888cbabec4490de39135819d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Poltergeist: {fileID: 1835190549}
+  Residual: {fileID: 388263413}
+  Spirit: {fileID: 388263413}
+  H_Sister: {fileID: 1835190549}
+  Mimic: {fileID: 1436119258}
+  Demon: {fileID: 388263413}
+  W_Sister: {fileID: 1436119258}
+--- !u!114 &346157410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346157406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf6c03362f0b1548bfee777671845a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInUse: 0
+  targetTag: Pathes
+  H_Pathes: []
+  intensity: 0
+  wayPoints: {fileID: 0}
+  wayPointMover: {fileID: 0}
 --- !u!1 &382839783
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ namespace WorldTime
     public class WorldTimeLightingManager : MonoBehaviour
     {
         //References
-        [SerializeField] private Light DirectionalLight;
+        [SerializeField] public Light DirectionalLight;
         [SerializeField] private LightingPreset Preset;
 
         //Varibles
@@ -91,16 +91,8 @@ namespace WorldTime
             }
             else
             {
-                Light[] lights = GameObject.FindObjectsOfType<Light>();
-
-                foreach (Light light in lights)
-                {
-                    if (light.type == LightType.Directional)
-                    {
-                        DirectionalLight = light;
-                        return;
-                    }
-                }
+                
+           
             }
         }
 
