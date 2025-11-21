@@ -58,6 +58,8 @@ public class NPCSTATS : MonoBehaviour
  
 }
 
+
+[System.Serializable]
 public class npcStatistics
 {
  

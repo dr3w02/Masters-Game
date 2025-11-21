@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PathPicker : MonoBehaviour
@@ -10,24 +11,28 @@ public class PathPicker : MonoBehaviour
 
     public string targetTag = "Pathes";
     public List<GameObject> H_Pathes;
+    [SerializeField]
+    private List<GameObject> recentlyUsedPathes; 
 
- 
 
     public float intensity = 1;
 
-
-    public WayPoints wayPoints; // fIX THIS 
-    public WayPointMover wayPointMover;
+    [SerializeField]
+    private WayPoints wayPoints; // fIX THIS 
+    public NPCPicker npcPicker;
 
     private void Awake()
     {
-        wayPointMover = GetComponent<WayPointMover>();
+       
 
         H_Pathes = new List<GameObject>();
+        recentlyUsedPathes = new List<GameObject>();
 
         // Find all objects with the target tag
         GameObject[] allPathes = GameObject.FindGameObjectsWithTag(targetTag);
         H_Pathes.AddRange(allPathes);
+
+
 
 
     }
@@ -35,12 +40,25 @@ public class PathPicker : MonoBehaviour
 
     public void Start()
     {
-        
 
-        StartCoroutine(PathSelector());
+        if (wayPoints == null)
+        {
+            
+            Debug.Log("NotAcessable"); // Access a public variable
+        }
 
     }
 
+    public void Update()
+    {
+        if (npcPicker.picked)
+        {
+
+            wayPoints = GetComponent<WayPoints>();
+            StartCoroutine(PathSelector());
+            npcPicker.picked = false;
+        }
+    }
     private IEnumerator PathSelector()
     {
         while (true)
@@ -48,7 +66,7 @@ public class PathPicker : MonoBehaviour
             getPath();
 
             yield return new WaitForSeconds(intensity);
-
+            Debug.Log("LOPPPOJGN");
 
         }
         
@@ -68,22 +86,25 @@ public class PathPicker : MonoBehaviour
 
         int randomPath = Random.Range(0, H_Pathes.Count);
 
-            wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
+        wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
+        Debug.Log("pickinh path");
+        //set inital postion to the first waypoint
+        wayPoints.currentWaypoint = wayPoints.GetNextWaypoint(wayPoints.currentWaypoint);
+        transform.position = wayPoints.currentWaypoint.position;
 
-            //set inital postion to the first waypoint
-            wayPointMover.currentWaypoint = wayPoints.GetNextWaypoint(wayPointMover.currentWaypoint);
-            transform.position = wayPointMover.currentWaypoint.position;
+        //Set the next waypoint target
+        wayPoints.currentWaypoint = wayPoints.GetNextWaypoint(wayPoints.currentWaypoint);
 
-            //Set the next waypoint target
-            wayPointMover.currentWaypoint = wayPoints.GetNextWaypoint(wayPointMover.currentWaypoint);
+        transform.LookAt(wayPoints.currentWaypoint);
 
-            transform.LookAt(wayPointMover.currentWaypoint);
-         
-            H_Pathes.RemoveAt(randomPath);
-           
-           
-          
-        
+        recentlyUsedPathes.Add(H_Pathes[randomPath]); //when the path is over put pack on list
+
+
+
+
 
     }
+
+
+    
 }

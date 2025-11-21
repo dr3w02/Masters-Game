@@ -41,8 +41,8 @@ namespace WorldTime
 
 
                 UpdateLighting(timePercent);
-                print($"SkyTimer{timePercent}");
-                print(newTime);
+               // print($"SkyTimer{timePercent}");
+               // print(newTime);
               
 
             }

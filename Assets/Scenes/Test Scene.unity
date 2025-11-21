@@ -30706,8 +30706,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcStatsSource: {fileID: 346157409}
-  picked: 1
-  intensity: 0
+  picked: 0
+  intensity: 5
+  chosen:
+    ghostType: 
+    ghostSpeed: 0
+    sanityAmount: 0
+    ghostPrefab: {fileID: 0}
+  randomIndex: -1
+  isPickingActive: 1
+  Once: 0
 --- !u!114 &346157409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30727,6 +30735,8 @@ MonoBehaviour:
   Mimic: {fileID: 1436119258}
   Demon: {fileID: 388263413}
   W_Sister: {fileID: 1436119258}
+  hallwayGhosts: []
+  windowGhosts: []
 --- !u!114 &346157410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30742,9 +30752,10 @@ MonoBehaviour:
   isInUse: 0
   targetTag: Pathes
   H_Pathes: []
+  recentlyUsedPathes: []
   intensity: 0
   wayPoints: {fileID: 0}
-  wayPointMover: {fileID: 0}
+  npcPicker: {fileID: 346157408}
 --- !u!1 &382839783
 GameObject:
   m_ObjectHideFlags: 0
@@ -30793,7 +30804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &388263414
 Transform:
   m_ObjectHideFlags: 0
@@ -56619,7 +56630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1308679147
 Transform:
   m_ObjectHideFlags: 0
@@ -57064,7 +57075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1436119259
 Transform:
   m_ObjectHideFlags: 0
@@ -68040,7 +68051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1835190550
 Transform:
   m_ObjectHideFlags: 0

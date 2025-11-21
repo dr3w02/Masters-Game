@@ -3,11 +3,39 @@ using UnityEngine;
 
 public class WayPoints : MonoBehaviour
 {
+    [SerializeField]
+    private NPCSTATS _npcStatsSource;
+    [SerializeField]
+    private NPCPicker _picked;
+
+
     [Range(0f,2f)]
     [SerializeField]
     private float waypointSize = 1f;
 
-  
+    public Transform currentWaypoint;
+
+    [SerializeField] private float moveSpeed;
+
+    [SerializeField] private float distanceThreshold = 0.1f;
+
+
+    private void Start()
+    {
+
+
+        _npcStatsSource = FindFirstObjectByType<NPCSTATS>();
+
+        _picked = FindFirstObjectByType<NPCPicker>();
+
+
+        int moveSpeed = _picked.chosen.ghostSpeed;
+
+    }
+    public void Update()
+    {
+        Movement();
+    }
 
     private void OnDrawGizmos()
     {
@@ -27,7 +55,7 @@ public class WayPoints : MonoBehaviour
             Gizmos.DrawLine(transform.GetChild(i).position, transform.GetChild(i +1).position);
         }
 
-
+        
     }
 
  
@@ -62,4 +90,47 @@ public class WayPoints : MonoBehaviour
             // made it to the last checkpoint decrease sanity by 5 
         }
     }
+
+
+    private void Movement()
+    {
+        if (currentWaypoint == null)
+        {
+            Debug.LogWarning("Nothing here :(");
+            return;
+        }
+
+
+        this.transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
+
+        // if the emeny is close to the way point it goes to the next one 
+        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
+        {
+            Transform next = GetNextWaypoint(currentWaypoint);
+
+
+            if (next == null)
+            {
+                Destroy(gameObject);
+
+                //make path free again
+            }
+
+            currentWaypoint = next;
+            transform.LookAt(currentWaypoint);
+        }
+
+        else
+        {
+            Debug.Log("Last Checkpoint Reached");
+            return;
+        }
+    }
+
+
+
+
+
 }
+
+
