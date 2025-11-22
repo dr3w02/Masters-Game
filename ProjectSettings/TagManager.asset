@@ -8,6 +8,7 @@ TagManager:
   - Pathes
   - H_NPC
   - W_NPC
+  - EndZone
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,8 @@ public class PathPicker : MonoBehaviour
     public float intensity = 1;
 
     [SerializeField]
-    private WayPoints wayPoints; // fIX THIS 
+    private WayPoints wayPoints;
+    [SerializeField]
     public NPCPicker npcPicker;
 
     private void Awake()
@@ -51,31 +52,17 @@ public class PathPicker : MonoBehaviour
 
     public void Update()
     {
+        wayPoints = FindFirstObjectByType<WayPoints>();
         if (npcPicker.picked)
         {
-
-            wayPoints = GetComponent<WayPoints>();
-            StartCoroutine(PathSelector());
+            PathChosen();
+          
             npcPicker.picked = false;
         }
     }
-    private IEnumerator PathSelector()
+
+    public void PathChosen()
     {
-        while (true)
-        {
-            getPath();
-
-            yield return new WaitForSeconds(intensity);
-            Debug.Log("LOPPPOJGN");
-
-        }
-        
-
-    }
- 
-    public void getPath()
-    {
-
         if (H_Pathes.Count == 0)
         {
             Debug.LogWarning("No paths left to choose from.");
@@ -100,11 +87,10 @@ public class PathPicker : MonoBehaviour
         recentlyUsedPathes.Add(H_Pathes[randomPath]); //when the path is over put pack on list
 
 
-
-
-
     }
+ 
 
 
-    
+
+   
 }

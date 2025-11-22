@@ -5,7 +5,7 @@ using static Unity.VisualScripting.Member;
 
 public class SanityScore : MonoBehaviour
 {
-    public float Sanity, MaxSanity;
+    public float sanity, MaxSanity;
 
     public float decreaseSpeed = 1f;
 
@@ -33,8 +33,8 @@ public class SanityScore : MonoBehaviour
     }
     public void SetSanity( float sanityChange)
     {
-        Sanity += sanityChange; 
-        Sanity = Mathf.Clamp(Sanity, 0, MaxSanity);
+        sanity += sanityChange; 
+        sanity = Mathf.Clamp(sanity, 0, MaxSanity);
 
         //Sanity += sanityChange; means I can change sanity though +20 -20 if it was sanity = amount would make +20 set sanity to 20 
 
@@ -46,7 +46,7 @@ public class SanityScore : MonoBehaviour
         //SetSanity(-20f);
         //To Add Sanity
         //SetSanity(+20f);
-        if (Sanity < 20)
+        if (sanity < 20)
         {
             AudioManager.instance.PlaySFX("Breathing");
         }
@@ -55,7 +55,7 @@ public class SanityScore : MonoBehaviour
             AudioManager.instance.StopSFX("Breathing");
         }
 
-        if (Sanity > 20)
+        if (sanity > 20)
         {
            
 
@@ -63,7 +63,7 @@ public class SanityScore : MonoBehaviour
         }
 
 
-        if (Sanity == 0)
+        if (sanity == 0)
         {
            //DIE!
         }
@@ -73,7 +73,7 @@ public class SanityScore : MonoBehaviour
 
     public void DecreaseSanity()
     {
-        SetSanity(Sanity -= decreaseSpeed * Time.deltaTime);
-        Debug.Log("Current Sanity: " + Sanity);
+        SetSanity(sanity -= decreaseSpeed * Time.deltaTime);
+        Debug.Log("Current Sanity: " + sanity);
     }
 }
