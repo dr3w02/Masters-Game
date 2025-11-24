@@ -3,49 +3,62 @@ using UnityEngine;
 public class MainDoor : MonoBehaviour
 {
     
-    public bool Closed;
-    public SanityScore sanityscript;
+    public bool open = true;
+    public SanityScore _sanity;
     public float decreaseSpeed = 1f; // lose one sanity every second 
 
     public Animator anim;
 
     public NPCPicker _npcPicker;
-    public void Update()
+    public void Awake()
     {
-        sanity();
+        anim.SetBool("Open", true);
+        anim.SetBool("Close", false);
     }
 
     public void OpenDoor()
     {
-        if (!Closed)
+        if (open)
         {
-            anim.SetBool("Open", false);
-            anim.SetBool("Close", true);
-            Closed = true;
-            
+
+            anim.SetBool("Open", true);
+            anim.SetBool("Close", false);
+            open = false;
+            _npcPicker.doorClosed = false;
+
+  
+
         }
         else
         {
-            anim.SetBool("Open", true);
-            anim.SetBool("Close", false);
-            Closed = false;
 
-         
+            _npcPicker.DoorClosed();
+
+            anim.SetBool("Open", false);
+            anim.SetBool("Close", true);
+            open = true;
+            // sanity();
+
+            
+
         }
-   
+
+
+
     }
 
 
     public void sanity()
     {
-        if (!Closed)
+        if (open)
         {
-            sanityscript.sanityDecrease = false;
+            _sanity.DecreaseSanity();
         }
 
         else
         {
-            sanityscript.sanityDecrease = true;
+            return;
+
         }
 
     }

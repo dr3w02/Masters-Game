@@ -9,13 +9,13 @@ public class GazeRayCast : MonoBehaviour
 
     RaycastHit hit;
 
-    float maxDistance = 3000;
+    public float maxDistance = 3000;
     public LayerMask layersToHit;
 
-
-    
-
-    public string DontLook = "Looking";
+    [SerializeField]
+    private string DontLook = "SanityDecrease";
+    [SerializeField]
+    private string DoLook = "SanityIncrease";
 
     public void Start()
     {
@@ -25,18 +25,14 @@ public class GazeRayCast : MonoBehaviour
     public void Update()
     {
         ray = new Ray(transform.position, transform.forward );
+        Debug.DrawRay(transform.position, transform.forward * maxDistance, Color.cyan);
+
         CheckForColliders();
     }
 
     public void CheckForColliders()
     {
-        Debug.DrawRay(transform.position, transform.forward, Color.cyan);
-
-        if (_sanity == null)
-        {
-            
-            return;
-        }
+        
     
         if (Physics.Raycast(ray, out hit, maxDistance, layersToHit))
         {
@@ -54,11 +50,15 @@ public class GazeRayCast : MonoBehaviour
             }
 
 
+            if (hitObj.CompareTag(DoLook))
+            {
+                _sanity.IncreaseSanity();
+            }
+            else
+            {
+                return;
+            }
 
-            // if (hitObj.CompareTag(DoLook))
-            //{
-            //    _sanity.IncreaseSanity();
-            //}
             Debug.Log("hit" + hit.collider.gameObject.name);
         }
     }

@@ -12,10 +12,22 @@ public class CandleManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> Candles = new List<GameObject>();
 
+   
+
     void Start()
     {
         StartCandles();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Lighter"))
+        {
+            
+        }
+    }
+   
 
     public void StartCandles()
     {

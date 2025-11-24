@@ -97,23 +97,12 @@ public class NPCPicker : MonoBehaviour
      
     }
     
-
-    IEnumerator Waiting()
-    {
-        doorClosed = true;
-        float randomDelay = Random.Range(1f, 5f);
-
-        yield return new WaitForSeconds(randomDelay);
-        DoorClosed();
-
-    }
+    
     public void DoorClosed()
     {
-        chosen.ghostPrefab.SetActive(false);
 
-        Debug.Log("Removed");
+        chosen.ghostPrefab.SetActive(false);
         _pathPicker.isInUse = false;
-        doorClosed = false;
     }
 
 }

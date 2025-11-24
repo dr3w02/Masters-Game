@@ -32,14 +32,14 @@ public class NPCSTATS : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 3, 15, Poltergeist);
-        _npcHallwayGhost2 = new npcStatistics("Residual", 3,  5, Residual);
-        _npcHallwayGhost3 = new npcStatistics("Spirit", 3, 10, Spirit);
+        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 1, 15, Poltergeist);
+        _npcHallwayGhost2 = new npcStatistics("Residual", 2,  5, Residual);
+        _npcHallwayGhost3 = new npcStatistics("Spirit", 1, 10, Spirit);
         _npcHallwaySister = new npcStatistics("H_Sister", 2, +5, H_Sister);
 
         // Window
         _npcWindowGhost1 = new npcStatistics("Mimic", 3, 5, Mimic);
-        _npcWindowGhost2 = new npcStatistics("Demon", 3, 20, Demon);
+        _npcWindowGhost2 = new npcStatistics("Demon", 1, 20, Demon);
         _npcWindowSister = new npcStatistics("W_Sister", 2, +2, W_Sister); // make this gradiual the longer they look 
 
 

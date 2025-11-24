@@ -9,7 +9,9 @@ TagManager:
   - H_NPC
   - W_NPC
   - EndZone
-  - Looking
+  - SanityDecrease
+  - SanityIncrease
+  - Lighter
   layers:
   - Default
   - TransparentFX
