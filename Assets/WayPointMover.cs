@@ -1,77 +1,131 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WayPointMover : MonoBehaviour
 {
-    [SerializeField]
-    public WayPoints _wayPoints;
-    [SerializeField]
-    private NPCSTATS _npcStatsSource;
-
-    [SerializeField] private float moveSpeed ;
-
+    [SerializeField] public WayPoints _wayPoints;
+    [SerializeField] private NPCSTATS _npcStatsSource;
+    [SerializeField] private PathPicker _pathPicker;
+    [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float distanceThreshold = 0.1f;
+    [SerializeField] private NPCPicker _npcPicker;
 
-    [SerializeField]
-    private NPCPicker _npcPicker;
+    private bool initialized = false;
 
-
-    public void Start()
+    public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
+        _wayPoints = wayPoints;
+        _npcPicker = npcPicker;
+        _pathPicker = pathPicker;
+        moveSpeed = ghostSpeed;
+        initialized = true;
+    }
 
-        _npcPicker = FindFirstObjectByType<NPCPicker>();
+    private void OnEnable()
+    {
+        _wayPoints = null;
+
+        if (!initialized)
+        {
+            _npcPicker = FindFirstObjectByType<NPCPicker>();
+            _pathPicker = FindFirstObjectByType<PathPicker>();
+        }
+
         _wayPoints = FindFirstObjectByType<WayPoints>();
 
-        transform.position = _wayPoints.currentWaypoint.position;
-        transform.LookAt(_wayPoints.currentWaypoint);
-
-        int moveSpeed = _npcPicker.chosen.ghostSpeed;
-
-        Debug.Log(_wayPoints.currentWaypoint);
-        _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-       
-
-        //setnextwaypoint target 
-        _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-
-
-    }
-    public void Update()
-    {
-        Movement();
+        ResetToStart();
     }
 
-
-   
-    private void Movement()
+    private void OnDisable()
     {
-        if (_wayPoints.currentWaypoint == null)
+
+        initialized = false;
+    }
+
+    
+    private void ResetToStart()
+    {
+
+        // reset transform
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        transform.localScale = Vector3.one;
+
+        if (_wayPoints == null)
         {
-            Debug.LogWarning("Nothing here :(");
+            Debug.LogWarning($"{name}: _wayPoints is null in ResetToStart(). Did you call Initialize()?");
             return;
         }
+
+
+        _wayPoints.currentWaypoint = _wayPoints.transform.GetChild(0);
+
+        transform.position = _wayPoints.currentWaypoint.position;
+
+
+        Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+        if (next != null)
+        {
+            transform.LookAt(next.position);
+            Debug.Log($"{name}: Looking at next waypoint {next.name}");
+        }
+    }
+
+    private void Update()
+    {
+        Movement();
+
+        if(_npcPicker.resetwayPointMover)
+        {
+            _wayPoints = null;
+            _npcPicker.resetwayPointMover = false;
+        }
+     
+    }
+
+    private void Movement()
+    {
+
+        if (_wayPoints == null)
+        {
+            return;
+        }
+
+        if (_wayPoints.currentWaypoint == null)
+        {
+            Debug.LogWarning($"{name}: WayPoints.currentWaypoint is null.");
+            return;
+        }
+
 
         transform.position = Vector3.MoveTowards(transform.position, _wayPoints.currentWaypoint.position, moveSpeed * Time.deltaTime);
 
-        // if the emeny is close to the way point it goes to the next one 
+
         if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) < distanceThreshold)
         {
-           
-            _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-            
-            transform.LookAt(_wayPoints.currentWaypoint);
-        }
-    
-        else
-        {
+            Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
 
-            return;
+            if (next == null)
+            {
+
+                return;
+            }
+
+
+            _wayPoints.currentWaypoint = next;
+
+            Transform upcoming = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+            if (upcoming != null)
+            {
+                transform.LookAt(upcoming.position);
+            }
+            else
+            {
+                transform.LookAt(_wayPoints.currentWaypoint.position);
+            }
         }
     }
-
-}   
-
+}
 
 

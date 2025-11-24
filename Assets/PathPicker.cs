@@ -8,11 +8,10 @@ public class PathPicker : MonoBehaviour
 
     public bool isInUse = false;
 
-
     public string targetTag = "Pathes";
     public List<GameObject> H_Pathes;
     [SerializeField]
-    private List<GameObject> recentlyUsedPathes; 
+    private List<GameObject> recentlyUsedPathes;
 
 
     public float intensity = 1;
@@ -20,11 +19,12 @@ public class PathPicker : MonoBehaviour
     [SerializeField]
     private WayPoints wayPoints;
     [SerializeField]
-    public NPCPicker npcPicker;
+    public NPCPicker _npcPicker;
+
 
     private void Awake()
     {
-       
+        _npcPicker = FindFirstObjectByType<NPCPicker>();
 
         H_Pathes = new List<GameObject>();
         recentlyUsedPathes = new List<GameObject>();
@@ -41,10 +41,10 @@ public class PathPicker : MonoBehaviour
 
     public void Start()
     {
-
+        PathChosen();
         if (wayPoints == null)
         {
-            
+
             Debug.Log("NotAcessable"); // Access a public variable
         }
 
@@ -52,22 +52,38 @@ public class PathPicker : MonoBehaviour
 
     public void Update()
     {
-        wayPoints = FindFirstObjectByType<WayPoints>();
-        if (npcPicker.picked)
+       
+
+        if (!isInUse)
         {
+            wayPoints = null;
             PathChosen();
-          
-            npcPicker.picked = false;
+
         }
+
+        if (H_Pathes.Count == 0)
+        {
+
+            H_Pathes.Clear();
+
+            H_Pathes.AddRange(recentlyUsedPathes);
+
+            recentlyUsedPathes.Clear();
+
+        }
+
     }
 
     public void PathChosen()
     {
+        
         if (H_Pathes.Count == 0)
         {
             Debug.LogWarning("No paths left to choose from.");
             return;
         }
+        
+        wayPoints = FindFirstObjectByType<WayPoints>();
 
         //picking a random path point for it 
 
@@ -75,6 +91,7 @@ public class PathPicker : MonoBehaviour
 
         wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
         Debug.Log("pickinh path");
+
         //set inital postion to the first waypoint
         wayPoints.currentWaypoint = wayPoints.GetNextWaypoint(wayPoints.currentWaypoint);
         transform.position = wayPoints.currentWaypoint.position;
@@ -85,7 +102,10 @@ public class PathPicker : MonoBehaviour
         transform.LookAt(wayPoints.currentWaypoint);
 
         recentlyUsedPathes.Add(H_Pathes[randomPath]); //when the path is over put pack on list
+        H_Pathes.Remove(H_Pathes[randomPath]);
 
+        isInUse = true;
+        _npcPicker.StartNPCPicker();
 
     }
  

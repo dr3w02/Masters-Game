@@ -10,8 +10,15 @@ public class SanityScore : MonoBehaviour
     public float decreaseSpeed = 1f;
 
     public bool sanityDecrease;
-  
 
+
+    public GameObject gameOver;
+
+    public void Start()
+    {
+        gameOver.SetActive(false);
+        Time.timeScale = 1;
+    }
     public void setMaxSanity(float maxSanity)
     {
         MaxSanity = maxSanity;
@@ -40,6 +47,7 @@ public class SanityScore : MonoBehaviour
 
     }
 
+    
     public void SanityHealth()
     {
         //To Lower Sanity 
@@ -62,12 +70,14 @@ public class SanityScore : MonoBehaviour
 
         }
 
-
-        if (sanity == 0)
+        if(sanity == 0)
         {
-           //DIE!
+            gameOver.SetActive(true);
+            Time.timeScale = 0;
         }
 
+
+      
       
     }
 

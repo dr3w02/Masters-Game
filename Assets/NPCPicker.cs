@@ -1,17 +1,15 @@
-using JetBrains.Annotations;
-using Oculus.Interaction;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using System.Numerics;
 using UnityEngine;
+
 
 public class NPCPicker : MonoBehaviour
 {
     public NPCSTATS _npcStatsSource;
     public SanityScore _sanityScore;
+    public PathPicker _pathPicker;
 
-
-    public bool picked;
+    public bool resetwayPointMover;
 
     public float intensity;
 
@@ -29,10 +27,18 @@ public class NPCPicker : MonoBehaviour
     {
         _npcStatsSource = FindFirstObjectByType<NPCSTATS>();
         _sanityScore = FindFirstObjectByType<SanityScore>();
+        _pathPicker = FindFirstObjectByType<PathPicker>();
+  
+
+
     }
     private void Start()
     {
         // Start delayed picking
+      
+    }
+    public void StartNPCPicker()
+    {
         StartCoroutine(DelayedPick());
     }
 
@@ -48,7 +54,7 @@ public class NPCPicker : MonoBehaviour
     public void PickHallwayGhost()
     {
         NPCSTATS stats = FindFirstObjectByType<NPCSTATS>();
-
+     
 
         var hallwayGhosts = _npcStatsSource.hallwayGhosts;
 
@@ -62,9 +68,17 @@ public class NPCPicker : MonoBehaviour
         int index = Random.Range(0, hallwayGhosts.Count);
         chosen = hallwayGhosts[index];
         Debug.Log("Picked hallway ghost: " + chosen.ghostType);
-        chosen.ghostPrefab.SetActive(true);
-       
-        picked = true;
+
+        if (!chosen.ghostPrefab.activeInHierarchy)
+        {
+            chosen.ghostPrefab.SetActive(true);
+        }
+        else
+        {
+            PickHallwayGhost();
+        }
+ 
+      _pathPicker.isInUse = false;
         Debug.Log("NPCPicked");
         //Spawn ghost and move along path 
 
@@ -74,11 +88,14 @@ public class NPCPicker : MonoBehaviour
 
     public void EndOfPath()
     {
-
+        
         _sanityScore.sanity -= chosen.sanityAmount;
         Debug.Log("Sanity score" + _sanityScore.sanity);
         chosen.ghostPrefab.SetActive(false);
         Debug.Log("Removed");
+        _pathPicker.isInUse = false;
+
+
     }
 }
 

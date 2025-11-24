@@ -13,14 +13,10 @@ public class WayPoints : MonoBehaviour
     public Transform currentWaypoint;
 
 
-    [SerializeField]
-    private NPCPicker _npcPicker;
 
 
     public void Start()
     {
-
-        _npcPicker = FindFirstObjectByType<NPCPicker>();
 
      
     }
