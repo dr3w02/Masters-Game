@@ -8,8 +8,8 @@ public class MainDoor : MonoBehaviour
     public float decreaseSpeed = 1f; // lose one sanity every second 
 
     public Animator anim;
- 
-   
+
+    public NPCPicker _npcPicker;
     public void Update()
     {
         sanity();
@@ -29,6 +29,8 @@ public class MainDoor : MonoBehaviour
             anim.SetBool("Open", true);
             anim.SetBool("Close", false);
             Closed = false;
+
+         
         }
    
     }

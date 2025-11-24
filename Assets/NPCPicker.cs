@@ -20,6 +20,7 @@ public class NPCPicker : MonoBehaviour
 
     public bool isPickingActive = true;
 
+    public bool doorClosed;
 
     [SerializeField] private float delayBeforePick = 1.5f;
 
@@ -78,7 +79,7 @@ public class NPCPicker : MonoBehaviour
             PickHallwayGhost();
         }
  
-      _pathPicker.isInUse = false;
+      
         Debug.Log("NPCPicked");
         //Spawn ghost and move along path 
 
@@ -88,15 +89,33 @@ public class NPCPicker : MonoBehaviour
 
     public void EndOfPath()
     {
-        
-        _sanityScore.sanity -= chosen.sanityAmount;
-        Debug.Log("Sanity score" + _sanityScore.sanity);
-        chosen.ghostPrefab.SetActive(false);
-        Debug.Log("Removed");
-        _pathPicker.isInUse = false;
+            _sanityScore.sanity -= chosen.sanityAmount;
+            Debug.Log("Sanity score" + _sanityScore.sanity);
+            chosen.ghostPrefab.SetActive(false);
+            Debug.Log("Removed");
+            _pathPicker.isInUse = false;
+     
+    }
+    
 
+    IEnumerator Waiting()
+    {
+        doorClosed = true;
+        float randomDelay = Random.Range(1f, 5f);
+
+        yield return new WaitForSeconds(randomDelay);
+        DoorClosed();
 
     }
+    public void DoorClosed()
+    {
+        chosen.ghostPrefab.SetActive(false);
+
+        Debug.Log("Removed");
+        _pathPicker.isInUse = false;
+        doorClosed = false;
+    }
+
 }
 
 

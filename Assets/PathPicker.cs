@@ -16,8 +16,8 @@ public class PathPicker : MonoBehaviour
 
     public float intensity = 1;
 
-    [SerializeField]
-    private WayPoints wayPoints;
+  
+    public WayPoints wayPoints;
     [SerializeField]
     public NPCPicker _npcPicker;
 
@@ -74,8 +74,10 @@ public class PathPicker : MonoBehaviour
 
     }
 
+    // picks the path out of the allowed pathes to pick and move it to another list where it cant be picked twice ALL WORKS 
     public void PathChosen()
     {
+       
         
         if (H_Pathes.Count == 0)
         {
@@ -90,7 +92,7 @@ public class PathPicker : MonoBehaviour
         int randomPath = Random.Range(0, H_Pathes.Count);
 
         wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
-        Debug.Log("pickinh path");
+ 
 
         //set inital postion to the first waypoint
         wayPoints.currentWaypoint = wayPoints.GetNextWaypoint(wayPoints.currentWaypoint);

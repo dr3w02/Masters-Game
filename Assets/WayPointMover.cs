@@ -24,7 +24,8 @@ public class WayPointMover : MonoBehaviour
 
     private void OnEnable()
     {
-        _wayPoints = null;
+
+        Debug.Log("zz." + _wayPoints);
 
         if (!initialized)
         {
@@ -32,18 +33,20 @@ public class WayPointMover : MonoBehaviour
             _pathPicker = FindFirstObjectByType<PathPicker>();
         }
 
-        _wayPoints = FindFirstObjectByType<WayPoints>();
+        _wayPoints = _pathPicker.wayPoints;
 
         ResetToStart();
+
+        Debug.Log("gv.currentwaypoint" );
     }
 
     private void OnDisable()
     {
-
+        _wayPoints = null;
         initialized = false;
     }
 
-    
+
     private void ResetToStart()
     {
 
@@ -51,16 +54,16 @@ public class WayPointMover : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;
-
+        
         if (_wayPoints == null)
         {
-            Debug.LogWarning($"{name}: _wayPoints is null in ResetToStart(). Did you call Initialize()?");
+        
             return;
         }
 
 
         _wayPoints.currentWaypoint = _wayPoints.transform.GetChild(0);
-
+        Debug.Log("zz.checking paypoints" + _wayPoints.currentWaypoint);
         transform.position = _wayPoints.currentWaypoint.position;
 
 
@@ -68,7 +71,7 @@ public class WayPointMover : MonoBehaviour
         if (next != null)
         {
             transform.LookAt(next.position);
-            Debug.Log($"{name}: Looking at next waypoint {next.name}");
+          
         }
     }
 
@@ -76,12 +79,9 @@ public class WayPointMover : MonoBehaviour
     {
         Movement();
 
-        if(_npcPicker.resetwayPointMover)
-        {
-            _wayPoints = null;
-            _npcPicker.resetwayPointMover = false;
-        }
-     
+      
+
+      
     }
 
     private void Movement()
@@ -94,7 +94,7 @@ public class WayPointMover : MonoBehaviour
 
         if (_wayPoints.currentWaypoint == null)
         {
-            Debug.LogWarning($"{name}: WayPoints.currentWaypoint is null.");
+           
             return;
         }
 
@@ -114,6 +114,7 @@ public class WayPointMover : MonoBehaviour
 
 
             _wayPoints.currentWaypoint = next;
+            Debug.Log("zz.checking paypoints" + next);
 
             Transform upcoming = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
             if (upcoming != null)

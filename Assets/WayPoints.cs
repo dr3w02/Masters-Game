@@ -14,13 +14,6 @@ public class WayPoints : MonoBehaviour
 
 
 
-
-    public void Start()
-    {
-
-     
-    }
-
     private void OnDrawGizmos()
     {
        
@@ -43,10 +36,7 @@ public class WayPoints : MonoBehaviour
     }
 
 
-    public void Update()
-    {
-       
-    }
+
     public Transform GetNextWaypoint(Transform currentWaypoint)
     {
         if(currentWaypoint == null)
@@ -54,7 +44,7 @@ public class WayPoints : MonoBehaviour
             return transform.GetChild(0);
         }
 
-       
+        
 
         if (currentWaypoint.GetSiblingIndex() < transform.childCount - 1)
         {
