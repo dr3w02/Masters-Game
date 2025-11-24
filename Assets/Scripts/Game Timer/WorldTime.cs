@@ -33,8 +33,7 @@ namespace WorldTime
             _currentTime += TimeSpan.FromMinutes(1);
             WorldTimeChanged?.Invoke(this,_currentTime);
             yield return new WaitForSeconds(_minuteLength);
-            Debug.Log("Z.minute length" + _minuteLength);
-            Debug.Log("Z.current time" + _currentTime);
+            
             StartCoroutine(AddMinute());
         }
         

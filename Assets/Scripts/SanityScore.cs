@@ -30,11 +30,11 @@ public class SanityScore : MonoBehaviour
 
         if (sanityDecrease)
         {
-            DecreaseSanity();
+           DecreaseSanity();
         }
         else
         {
-           
+            return;
         }
 
     }
@@ -83,7 +83,13 @@ public class SanityScore : MonoBehaviour
 
     public void DecreaseSanity()
     {
-        SetSanity(sanity -= decreaseSpeed * Time.deltaTime);
+        SetSanity(-decreaseSpeed * Time.deltaTime);
+        Debug.Log("Current Sanityy: " + sanity);
+    }
+
+    public void IncreaseSanity()
+    {
+        SetSanity(+decreaseSpeed * Time.deltaTime);
         Debug.Log("Current Sanity: " + sanity);
     }
 }

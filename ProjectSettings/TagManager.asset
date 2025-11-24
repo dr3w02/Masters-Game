@@ -9,6 +9,7 @@ TagManager:
   - H_NPC
   - W_NPC
   - EndZone
+  - Looking
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Interactables
   - Water
   - UI
-  - 
+  - EyeInteractables
   - 
   - 
   - 

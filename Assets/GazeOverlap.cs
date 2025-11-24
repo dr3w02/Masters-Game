@@ -2,15 +2,29 @@ using UnityEngine;
 
 public class GazeOverlap : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //public SanityScore _sanity;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
+
+    //public void Start()
+    //{
+    //    _sanity = FindAnyObjectByType<SanityScore>();
+    //}
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Looking"))
+    //    {
+    //        _sanity.IncreaseSanity();
+    //    }
+    //    if (other.CompareTag("Looking"))
+    //    {
+    //       // _sanity.DecreaseSanity();
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    return;
+    //}
+
+ 
 }
