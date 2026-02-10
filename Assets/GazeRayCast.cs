@@ -42,6 +42,7 @@ public class GazeRayCast : MonoBehaviour
             if (hitObj.CompareTag(DontLook))
             {
                 _sanity.DecreaseSanity();
+                Debug.Log("hit D" + hit.collider.gameObject.name);
 
             }
             else
@@ -53,6 +54,7 @@ public class GazeRayCast : MonoBehaviour
             if (hitObj.CompareTag(DoLook))
             {
                 _sanity.IncreaseSanity();
+                Debug.Log("hit I" + hit.collider.gameObject.name);
             }
             else
             {
