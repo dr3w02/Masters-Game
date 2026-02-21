@@ -31,60 +31,41 @@ public class NPCPicker : MonoBehaviour
         _pathPicker = FindFirstObjectByType<PathPicker>();
   
 
-
     }
     private void Start()
     {
-        // Start delayed picking
-      
-    }
-    public void StartNPCPicker()
-    {
-        StartCoroutine(DelayedPick());
+        NPCSTATS stats = FindFirstObjectByType<NPCSTATS>();
+
     }
 
-    private IEnumerator DelayedPick()
+   
+
+    public IEnumerator StartNPCPicker()
     {
-        // Wait for ghosts to finish spawning
         yield return new WaitForSeconds(delayBeforePick);
 
-        PickHallwayGhost();
-    }
-
-
-    public void PickHallwayGhost()
-    {
-        NPCSTATS stats = FindFirstObjectByType<NPCSTATS>();
-     
 
         var hallwayGhosts = _npcStatsSource.hallwayGhosts;
 
-        if (hallwayGhosts == null || hallwayGhosts.Count == 0)
-        {
-            Debug.LogWarning("No hallway ghosts found to pick!");
-            isPickingActive = false;
-            return;
-        }
+        if (hallwayGhosts == null || hallwayGhosts.Count == 0) yield break;
 
-        int index = Random.Range(0, hallwayGhosts.Count);
-        chosen = hallwayGhosts[index];
-        Debug.Log("Picked hallway ghost: " + chosen.ghostType);
+        npcStatistics chosen = null;
 
-        if (!chosen.ghostPrefab.activeInHierarchy)
+        if (chosen == null)
         {
+            int index = Random.Range(0, hallwayGhosts.Count);
+            chosen = hallwayGhosts[index];
+            Debug.Log("Picked hallway ghost: " + chosen.ghostType);
+
             chosen.ghostPrefab.SetActive(true);
+
         }
-        else
-        {
-            PickHallwayGhost();
-        }
- 
-      
+       
+
         Debug.Log("NPCPicked");
         //Spawn ghost and move along path 
-
-
     }
+
 
 
     public void EndOfPath()
@@ -93,7 +74,7 @@ public class NPCPicker : MonoBehaviour
             Debug.Log("Sanity score" + _sanityScore.sanity);
             chosen.ghostPrefab.SetActive(false);
             Debug.Log("Removed");
-            _pathPicker.isInUse = false;
+          
      
     }
     
@@ -102,7 +83,7 @@ public class NPCPicker : MonoBehaviour
     {
 
         chosen.ghostPrefab.SetActive(false);
-        _pathPicker.isInUse = false;
+       
     }
 
 }

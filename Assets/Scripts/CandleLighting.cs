@@ -21,7 +21,6 @@ public class CandleLighting : MonoBehaviour
 
         startlight();
 
-        lights = new List<GameObject>(Resources.LoadAll<GameObject>("lights"));
 
     }
 

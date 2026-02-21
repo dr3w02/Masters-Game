@@ -6,20 +6,20 @@ using UnityEngine;
 public class PathPicker : MonoBehaviour
 {
 
-    public bool isInUse = false;
+    [Header("ScriptReference")]
+    private SpawnManager _manager;
+    public WayPoints _wayPoints;
+    [SerializeField]
+    public NPCPicker _npcPicker;
+
+    [Header("List")]
+    public GameObject PathObject { get; private set; }
 
     public string targetTag = "Pathes";
     public List<GameObject> H_Pathes;
     [SerializeField]
     private List<GameObject> recentlyUsedPathes;
 
-
-    public float intensity = 1;
-
-  
-    public WayPoints wayPoints;
-    [SerializeField]
-    public NPCPicker _npcPicker;
 
 
     private void Awake()
@@ -34,15 +34,13 @@ public class PathPicker : MonoBehaviour
         H_Pathes.AddRange(allPathes);
 
 
-
-
     }
 
-
+  
     public void Start()
     {
-        PathChosen();
-        if (wayPoints == null)
+        ///PathChosen();
+        if (_wayPoints == null)
         {
 
             Debug.Log("NotAcessable"); // Access a public variable
@@ -50,29 +48,7 @@ public class PathPicker : MonoBehaviour
 
     }
 
-    public void Update()
-    {
-       
-
-        if (!isInUse)
-        {
-            wayPoints = null;
-            PathChosen();
-
-        }
-
-        if (H_Pathes.Count == 0)
-        {
-
-            H_Pathes.Clear();
-
-            H_Pathes.AddRange(recentlyUsedPathes);
-
-            recentlyUsedPathes.Clear();
-
-        }
-
-    }
+  
 
     // picks the path out of the allowed pathes to pick and move it to another list where it cant be picked twice ALL WORKS 
     public void PathChosen()
@@ -85,29 +61,30 @@ public class PathPicker : MonoBehaviour
             return;
         }
         
-        wayPoints = FindFirstObjectByType<WayPoints>();
+        _wayPoints = FindFirstObjectByType<WayPoints>();
 
         //picking a random path point for it 
 
         int randomPath = Random.Range(0, H_Pathes.Count);
 
-        wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
+        _wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
  
 
         //set inital postion to the first waypoint
-        wayPoints.currentWaypoint = wayPoints.GetNextWaypoint(wayPoints.currentWaypoint);
-        transform.position = wayPoints.currentWaypoint.position;
+        _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+        transform.position = _wayPoints.currentWaypoint.position;
 
         //Set the next waypoint target
-        wayPoints.currentWaypoint = wayPoints.GetNextWaypoint(wayPoints.currentWaypoint);
+        _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
 
-        transform.LookAt(wayPoints.currentWaypoint);
+        transform.LookAt(_wayPoints.currentWaypoint);
 
         recentlyUsedPathes.Add(H_Pathes[randomPath]); //when the path is over put pack on list
         H_Pathes.Remove(H_Pathes[randomPath]);
 
-        isInUse = true;
-        _npcPicker.StartNPCPicker();
+
+
+        _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker());
 
     }
  

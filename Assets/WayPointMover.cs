@@ -33,7 +33,7 @@ public class WayPointMover : MonoBehaviour
             _pathPicker = FindFirstObjectByType<PathPicker>();
         }
 
-        _wayPoints = _pathPicker.wayPoints;
+        _wayPoints = _pathPicker._wayPoints;
 
         ResetToStart();
 
