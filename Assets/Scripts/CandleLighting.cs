@@ -6,111 +6,39 @@ using UnityEngine.UI;
 
 public class CandleLighting : MonoBehaviour
 {
+    CandleManager candleManager;
 
-    public List<GameObject> lights;
-    //= new List<GameObject>();
-    public float turnOffDelay = 0f;
-    public bool isTurningOff = false;
-    public SanityScore sanity;
+    [SerializeField] private GameObject flame;
+
+    public bool isLit;
 
 
-    //To change this make it a light when score is above a certain amount and everytime the player messes up the score gose up...
-
-    void Update()
+    public void Start()
     {
-
-        startlight();
-
+        candleManager = FindAnyObjectByType<CandleManager>();
 
     }
-
-    public void startlight()
+    private void OnTriggerEnter(Collider other)
     {
-        if (!isTurningOff)
+        if (other.CompareTag("Lighter")&& !isLit)
         {
-            StartCoroutine(LightTurnOffRoutine());
-        }
-    }
 
-
-     IEnumerator LightTurnOffRoutine()
-    {
-        isTurningOff = true;
-        Debug.Log("Lights number" + (lights.Count));
-        if (isTurningOff == true)
-        {
-            if (lights.Count > 0)
-            {
-                int Lightsinlist = lights.Count;
-
-                GameObject lightRand = lights[Random.Range(0, Lightsinlist)];
-
-                    if (lightRand.activeSelf)
-                    {
-                        
-                        TurnOffCandle(lightRand);
-                        lights.Remove(lightRand);
-                        Debug.Log("Randomly chosen candle: " + lightRand);
-
-
-                    }
-                    
-
-
-                
-
-
-            }
-
-            
-
-            if (lights.Count < 4)
-            {
-                Debug.Log("Game Over");
-                sanity.sanityDecrease = true;
-
-
-            }
-            else
-            {
-                sanity.sanityDecrease = false;
-            }
-
-
-            
-
-            yield return new WaitForSeconds(turnOffDelay);
-
-            
-
-            Stop();
-
-
+            LightCandle();
         }
 
-     
 
     }
-    public void Stop()
+
+    public void LightCandle()
     {
-        Debug.Log("TurnOff");
-
-        isTurningOff = false;
-
-        if (isTurningOff == false)
-        {
-            StopCoroutine(LightTurnOffRoutine());
-
-        }
-  
-    }
-
-    public void TurnOffCandle(GameObject light)
-    {
-
-        light.SetActive(false);
+        isLit = true;
+        flame.SetActive(true);
         
-       
+    }
 
+    public void ExtinguishCandle()
+    {
+        isLit = false;
+        flame.SetActive(false);
     }
 }

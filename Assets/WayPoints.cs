@@ -11,8 +11,12 @@ public class WayPoints : MonoBehaviour
     private float waypointSize = 1f;
 
     public Transform currentWaypoint;
+    public NPCPicker _npcPicker;
 
-
+    public void Start()
+    {
+        _npcPicker = FindFirstObjectByType<NPCPicker>();
+    }
 
     private void OnDrawGizmos()
     {
@@ -53,20 +57,14 @@ public class WayPoints : MonoBehaviour
         }
 
         
-        else
+        else 
         {
-
            
             return transform.GetChild(0);
-          
-           
-            // Change this to if in box collider then disapear and lose points
-
-            //if door closed = true turn off the game object after randdomized time 
-
-            // made it to the last checkpoint decrease sanity by 5 
         }
-        
+
+
+
     }
 
 

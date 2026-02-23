@@ -9,7 +9,7 @@ public class GazeRayCast : MonoBehaviour
 
     RaycastHit hit;
 
-    public float maxDistance = 3000;
+    public float maxDistance = 300;
     public LayerMask layersToHit;
 
     [SerializeField]

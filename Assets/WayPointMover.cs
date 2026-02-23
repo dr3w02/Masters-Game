@@ -112,6 +112,13 @@ public class WayPointMover : MonoBehaviour
                 return;
             }
 
+            if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
+            {
+                // reached the end!
+                gameObject.SetActive(false);
+                _npcPicker.EndOfPath();
+                return;
+            }
 
             _wayPoints.currentWaypoint = next;
             Debug.Log("zz.checking paypoints" + next);

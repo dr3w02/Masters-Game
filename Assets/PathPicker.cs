@@ -39,12 +39,15 @@ public class PathPicker : MonoBehaviour
   
     public void Start()
     {
-        ///PathChosen();
+     
+
         if (_wayPoints == null)
         {
 
             Debug.Log("NotAcessable"); // Access a public variable
         }
+      
+        //PathChosen();
 
     }
 
@@ -87,9 +90,10 @@ public class PathPicker : MonoBehaviour
         _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker());
 
     }
- 
-
-
 
    
+
+
+
+
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GoBackToPosition : MonoBehaviour
 {
-    private Vector3 _startPosition;
+    public Vector3 _startPosition;
 
 
     void Start()

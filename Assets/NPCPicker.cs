@@ -11,7 +11,6 @@ public class NPCPicker : MonoBehaviour
 
     public bool resetwayPointMover;
 
-    public float intensity;
 
 
 
@@ -68,11 +67,11 @@ public class NPCPicker : MonoBehaviour
 
 
 
-    public void EndOfPath()
+    public void EndOfPath() //maybe this should be here 
     {
             _sanityScore.sanity -= chosen.sanityAmount;
+            //_pathPicker.PathChosen();
             Debug.Log("Sanity score" + _sanityScore.sanity);
-            chosen.ghostPrefab.SetActive(false);
             Debug.Log("Removed");
           
      

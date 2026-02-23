@@ -26,9 +26,18 @@ public class SanityScore : MonoBehaviour
 
     public void Update()
     {
-        SanityHealth();
+     
 
-       
+        if (sanityDecrease)
+        {
+            DecreaseSanity();
+        }
+        else
+        {
+            IncreaseSanity();
+        }
+
+        SanityHealth();
 
     }
     public void SetSanity( float sanityChange)

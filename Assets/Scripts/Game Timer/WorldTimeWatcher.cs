@@ -11,7 +11,7 @@ namespace WorldTime
     public class WorldTimeWatcher : MonoBehaviour
     {
         [SerializeField]
-        private WorldTime _worldTime;
+        private TimeController _timeController;
 
 
         //List to store all the scheduled events
@@ -20,12 +20,12 @@ namespace WorldTime
 
         private void Start()
         {
-            _worldTime.WorldTimeChanged += CheckSchedule;
+            _timeController.WorldTimeChanged += CheckSchedule;
         }
 
         private void OnDestory()
         {
-            _worldTime.WorldTimeChanged -= CheckSchedule;
+            _timeController.WorldTimeChanged -= CheckSchedule;
         }
 
         //Losts inside of the schedual list and checks if any of the listed events is set for the time of the day that is now

@@ -7,8 +7,19 @@ public class SpawnManager : MonoBehaviour
 {
     [Header("References")]
     public WorldTime.WorldTime worldTime;
-    public NPCPicker npcPicker;
+   
 
+    public PathPicker _pathPicker;
+
+    public bool intensity;
+
+    public void Awake()
+    {
+       
+        _pathPicker = FindFirstObjectByType<PathPicker>();
+
+
+    }
 
 } 
    

@@ -26,27 +26,6 @@ public class CandleManager : MonoBehaviour
     }
 
   
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Lighter"))
-        {
-            GameObject hitCandle = other.gameObject;
-
-            if (!hitCandle.activeSelf)
-            {
-                hitCandle.SetActive(true);
-
-
-                if (!lights.Contains(hitCandle))
-                {
-                    lights.Add(hitCandle);
-                }
-
-                Debug.Log("Candle is Back: " + hitCandle.name);
-            }
-        }
-    }
-
     public void StartCandles()
     {
         Candles.Clear();
@@ -80,8 +59,7 @@ public class CandleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(turnOffDelay);
 
-        if (lights.Count > 0)
-        { 
+      
             Debug.Log("Lights number" + lights.Count);
 
             int lightsInList = lights.Count;
@@ -109,13 +87,11 @@ public class CandleManager : MonoBehaviour
             StartCoroutine(LightTurnOffRoutine());
 
 
-            
-        }
-        else
-        {
-            Debug.Log("No More Candles");
-        }
+
+
     }
+
+
 
   
     public void TurnOffCandleLight(GameObject light)
