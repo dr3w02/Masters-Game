@@ -14,6 +14,7 @@ public class SanityScore : MonoBehaviour
 
     public GameObject gameOver;
 
+   
     public void Start()
     {
         gameOver.SetActive(false);
@@ -94,4 +95,5 @@ public class SanityScore : MonoBehaviour
         SetSanity(+decreaseSpeed * Time.deltaTime);
         Debug.Log("Current Sanity: " + sanity);
     }
+  
 }

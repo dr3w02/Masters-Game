@@ -47,7 +47,7 @@ public class PathPicker : MonoBehaviour
             Debug.Log("NotAcessable"); // Access a public variable
         }
       
-        //PathChosen();
+    
 
     }
 
@@ -56,14 +56,14 @@ public class PathPicker : MonoBehaviour
     // picks the path out of the allowed pathes to pick and move it to another list where it cant be picked twice ALL WORKS 
     public void PathChosen()
     {
-       
-        
+
+
         if (H_Pathes.Count == 0)
         {
-            Debug.LogWarning("No paths left to choose from.");
-            return;
+            H_Pathes.AddRange(recentlyUsedPathes);
+            recentlyUsedPathes.Clear();
         }
-        
+
         _wayPoints = FindFirstObjectByType<WayPoints>();
 
         //picking a random path point for it 

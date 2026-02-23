@@ -18,6 +18,8 @@ namespace WorldTime
         [SerializeField]
         private List<Schedule> _schedule;
 
+
+
         private void Start()
         {
             _timeController.WorldTimeChanged += CheckSchedule;
@@ -32,9 +34,14 @@ namespace WorldTime
         //if there is then invoke the action listed in the unity event 
         private void CheckSchedule(object sender, TimeSpan newTime)
         {
-            var schedule = _schedule.FirstOrDefault( s => s.Hour == newTime.Hours && s.Minute == newTime.Minutes);
-
-            schedule?._action?.Invoke();
+            foreach (var schedule in _schedule)
+            {
+                if (!schedule.hasTriggered && newTime.Hours >= schedule.Hour && newTime.Minutes >= schedule.Minute)
+                {
+                    schedule._action?.Invoke();
+                    schedule.hasTriggered = true;
+                }
+            }
         }
 
 
@@ -46,6 +53,9 @@ namespace WorldTime
             public int Minute;
 
             public UnityEvent _action;
+
+            [SerializeField]
+            public bool hasTriggered = false;
         }
 
 
