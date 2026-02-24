@@ -17,11 +17,17 @@ public class CandleManager : MonoBehaviour
     public bool isTurningOff = false;
     public SanityScore sanity;
 
+
+    CandleLighting candleLighting;
+
+
     void Start()
     {
         //move this
         StartCandles();
         StartCoroutine(LightTurnOffRoutine());
+
+        candleLighting = FindAnyObjectByType<CandleLighting>();
 
     }
 
@@ -68,6 +74,7 @@ public class CandleManager : MonoBehaviour
             if (lightRand.activeSelf)
             {
                 TurnOffCandleLight(lightRand);
+                candleLighting.ExtinguishCandle();
                 lights.Remove(lightRand);
                 Debug.Log("Randomly chosen candle: " + lightRand);
             }

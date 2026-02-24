@@ -12,6 +12,7 @@ TagManager:
   - SanityDecrease
   - SanityIncrease
   - Lighter
+  - W_Pathes
   layers:
   - Default
   - TransparentFX

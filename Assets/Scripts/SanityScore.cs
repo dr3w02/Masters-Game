@@ -35,7 +35,7 @@ public class SanityScore : MonoBehaviour
         }
         else
         {
-            IncreaseSanity();
+            return;
         }
 
         SanityHealth();

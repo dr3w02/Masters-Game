@@ -12,6 +12,8 @@ public class CandleLighting : MonoBehaviour
 
     public bool isLit;
 
+   
+
 
     public void Start()
     {
@@ -22,7 +24,8 @@ public class CandleLighting : MonoBehaviour
     {
         if (other.CompareTag("Lighter")&& !isLit)
         {
-
+          
+            
             LightCandle();
         }
 
@@ -33,7 +36,8 @@ public class CandleLighting : MonoBehaviour
     {
         isLit = true;
         flame.SetActive(true);
-        
+        candleManager.lights.Add(flame);
+
     }
 
     public void ExtinguishCandle()
