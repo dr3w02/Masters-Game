@@ -2,34 +2,37 @@ using UnityEngine;
 
 public class OpenCloseDoor : MonoBehaviour
 {
-    private Animator animatorDoor;
-    private bool isOpen = false;
-    private bool isClosed = false;
+    public Animator animatorDoor;
+    public bool doorOpen = true;
+  
 
     void Start()
     {
-        animatorDoor = GetComponent<Animator>();
+        
     }
 
     public void ToggleDoor()
     {
+        Debug.Log("Door Activated");
 
-        if (!isOpen)
+        if (doorOpen == false)
         {
-            animatorDoor.SetBool("isOpen", isOpen);
-            animatorDoor.SetBool("isClosed", !isClosed);
-            isOpen = true;
+
+            animatorDoor.SetBool("isOpen", true);
+            animatorDoor.SetBool("isClosed", false);
+            doorOpen = true;
         }
-        else
+        if (doorOpen == true)
         {
-            isOpen = false;
-            animatorDoor.SetBool("isClosed", isClosed);
-            animatorDoor.SetBool("isOpen", !isOpen);
+            doorOpen = false;
+            animatorDoor.SetBool("isOpen", false);
+            animatorDoor.SetBool("isClosed", true);
         }
-     
+
+    }
         
       
-    }
+    
 
    
        
