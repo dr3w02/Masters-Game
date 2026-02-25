@@ -79,8 +79,16 @@ public class NPCPicker : MonoBehaviour
     public void DoorClosed()
     {
 
-        chosen.ghostPrefab.SetActive(false); // all active ghosts off 
-       
+        var hallwayGhosts = _npcStatsSource.hallwayGhosts;
+
+        foreach (var ghost in hallwayGhosts)
+        {
+            if (ghost.ghostPrefab != null)
+            {
+                ghost.ghostPrefab.SetActive(false);
+            }
+        }
+
     }
 
 }

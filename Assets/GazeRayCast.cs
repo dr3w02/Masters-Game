@@ -46,8 +46,7 @@ public class GazeRayCast : MonoBehaviour
 
             }
            
-
-            else
+            if (hitObj.CompareTag(DoLook))
             {
                 _sanity.IncreaseSanity();
                 Debug.Log("hit I" + hit.collider.gameObject.name);

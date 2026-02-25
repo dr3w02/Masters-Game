@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
@@ -11,12 +12,13 @@ public class SanityScore : MonoBehaviour
 
     public bool sanityDecrease;
 
-
+    
     public GameObject gameOver;
 
    
     public void Start()
     {
+
         gameOver.SetActive(false);
         Time.timeScale = 1;
     }
@@ -27,7 +29,7 @@ public class SanityScore : MonoBehaviour
 
     public void Update()
     {
-     
+
 
         if (sanityDecrease)
         {

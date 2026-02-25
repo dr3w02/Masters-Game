@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 10651, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.077
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -435,17 +435,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23041635}
-  m_LocalRotation: {x: -0, y: -0.76442915, z: -0, w: 0.64470774}
-  m_LocalPosition: {x: 0, y: 0, z: -1.1235857}
-  m_LocalScale: {x: 0.00077624526, y: 0.0007762453, z: 0.00077624526}
+  m_LocalRotation: {x: -0, y: -0.7704727, z: -0, w: 0.63747305}
+  m_LocalPosition: {x: 0, y: 0, z: -1.0272}
+  m_LocalScale: {x: 0.0004731378, y: 0.00047313786, z: 0.0004731378}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 407338929}
   m_Father: {fileID: 1648863045}
-  m_LocalEulerAnglesHint: {x: 0, y: -99.712, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -100.793, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.4313569, y: -0.49130678}
+  m_AnchoredPosition: {x: -0.9637, y: -0.5386}
   m_SizeDelta: {x: 855, y: 481}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &29105982
@@ -31051,6 +31051,7 @@ GameObject:
   - component: {fileID: 292378713}
   - component: {fileID: 292378712}
   - component: {fileID: 292378714}
+  - component: {fileID: 292378715}
   m_Layer: 0
   m_Name: ----------Sanity----------
   m_TagString: Untagged
@@ -31074,7 +31075,7 @@ MonoBehaviour:
   MaxSanity: 100
   decreaseSpeed: 1
   sanityDecrease: 0
-  gameOver: {fileID: 0}
+  gameOver: {fileID: 32604651}
 --- !u!4 &292378713
 Transform:
   m_ObjectHideFlags: 0
@@ -31187,6 +31188,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &292378715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292378711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e0c231762a74b4091c24fa6574f6ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sanityScore: {fileID: 292378712}
+  sanityText: {fileID: 2144867622}
 --- !u!1001 &297542219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43255,6 +43270,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 32604652}
+  - {fileID: 2144867621}
   m_Father: {fileID: 668868999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -48513,7 +48529,7 @@ Transform:
   m_GameObject: {fileID: 587698204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.059999987, y: 1.379, z: 5.5140004}
+  m_LocalPosition: {x: -0.044, y: 1.234, z: 5.5140004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65423,7 +65439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &852122147
 Transform:
   m_ObjectHideFlags: 0
@@ -65806,7 +65822,7 @@ GameObject:
   - component: {fileID: 864237793}
   m_Layer: 6
   m_Name: SisterGhostGirl Hallway
-  m_TagString: W_NPC
+  m_TagString: SanityIncrease
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66873,7 +66889,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.3039783, g: 0.49587128, b: 0.9339623, a: 1}
+  m_Color: {r: 0.13576896, g: 0.19524297, b: 0.254717, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -84236,11 +84252,11 @@ MonoBehaviour:
   timeMultiplier: 60
   startHour: 3
   timeText: {fileID: 407338930}
-  sunlight: {fileID: 410087040}
-  sunriseHour: 8
-  sunsetHour: 3
-  dayAmbientLight: {r: 0.54027236, g: 0.5848014, b: 0.6698113, a: 0}
-  nightAmbientLight: {r: 0.05918477, g: 0.10777861, b: 0.13207549, a: 0}
+  sunlight: {fileID: 961930041}
+  sunriseHour: 2.2
+  sunsetHour: 8
+  dayAmbientLight: {r: 0.14391243, g: 0.18394074, b: 0.20754719, a: 0.2627451}
+  nightAmbientLight: {r: 0.55869526, g: 0.75785977, b: 0.8773585, a: 0.09411765}
   lightChangeCurve:
     serializedVersion: 2
     m_Curve:
@@ -84254,15 +84270,6 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9048761
-      value: 0.90222603
-      inSlope: 0.77919215
-      outSlope: 0.77919215
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.9251839
-      outWeight: 0.10301971
-    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 0
@@ -84275,7 +84282,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxSunLightIntensity: 0.5
-  moonLight: {fileID: 961930041}
+  moonLight: {fileID: 410087040}
   maxMoonLightIntensity: 1
 --- !u!4 &1241086953
 Transform:
@@ -84603,7 +84610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorDoor: {fileID: 2112263134}
   _sanity: {fileID: 292378712}
-  _npcPicker: {fileID: 0}
+  _npcPicker: {fileID: 346157408}
   doorOpen: 1
   doorClosedAllowed: 3
 --- !u!54 &1264290669
@@ -84652,8 +84659,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.0770254, y: 8.885901, z: 7.9242206}
-  m_Center: {x: -0.010236922, y: -1.3929505, z: 0.09307821}
+  m_Size: {x: 3.7817338, y: 8.885901, z: 7.9242206}
+  m_Center: {x: 0.6374088, y: -1.3929505, z: 0.09307822}
 --- !u!114 &1264290671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85231,7 +85238,7 @@ GameObject:
   - component: {fileID: 1308679151}
   m_Layer: 6
   m_Name: GhostGirl Hallway
-  m_TagString: H_NPC
+  m_TagString: SanityIncrease
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90948,7 +90955,7 @@ MonoBehaviour:
   - {fileID: 806495272}
   - {fileID: 579476439}
   - {fileID: 1013612540}
-  turnOffDelay: 10
+  turnOffDelay: 15
   isTurningOff: 0
   sanity: {fileID: 292378712}
 --- !u!114 &1497182514 stripped
@@ -91255,7 +91262,7 @@ Transform:
   m_GameObject: {fileID: 1557874927}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17294693, y: 0.21105862, z: -0.306696}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98214,7 +98221,7 @@ GameObject:
   - component: {fileID: 1829607162}
   m_Layer: 0
   m_Name: Paper
-  m_TagString: Lighter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98793,7 +98800,7 @@ Transform:
   m_GameObject: {fileID: 1836301441}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.043, y: 1.379, z: 1.335}
+  m_LocalPosition: {x: -0.02700001, y: 1.234, z: 1.335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99095,7 +99102,7 @@ GameObject:
   - component: {fileID: 1898502436}
   m_Layer: 0
   m_Name: BadGhostGirl Hallway (1)
-  m_TagString: W_NPC
+  m_TagString: SanityDecrease
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99301,6 +99308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1912757898}
   - component: {fileID: 1912757897}
+  - component: {fileID: 1912757899}
   m_Layer: 0
   m_Name: Slection Manager
   m_TagString: Untagged
@@ -99341,6 +99349,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1676131933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912757899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912757896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e0c231762a74b4091c24fa6574f6ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sanityScore: {fileID: 292378712}
+  sanityText: {fileID: 2144867622}
 --- !u!4 &1926091275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f6294520e6f8da34795bab3158544134, type: 3}
@@ -100685,7 +100707,7 @@ GameObject:
   - component: {fileID: 2139508831}
   m_Layer: 0
   m_Name: BadGhostGirl Hallway
-  m_TagString: W_NPC
+  m_TagString: SanityDecrease
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100777,6 +100799,142 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 126af5fa70c7c4a4b94f29fead8dee3d, type: 3}
   m_PrefabInstance: {fileID: 211052633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2144867620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144867621}
+  - component: {fileID: 2144867623}
+  - component: {fileID: 2144867622}
+  m_Layer: 5
+  m_Name: Sanity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2144867621
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144867620}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.774}
+  m_LocalScale: {x: -0.00081999996, y: -0.00081999996, z: -0.00081999996}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560581057}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -343.84384, y: -192.51245}
+  m_SizeDelta: {x: 561.5977, y: 109.45709}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2144867622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144867620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Sanity: 100'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 68.1
+  m_fontSizeBase: 68.1
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 118.636475, y: 0, z: 129.31532, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2144867623
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144867620}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2146061396
 PrefabInstance:
   m_ObjectHideFlags: 0

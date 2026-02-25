@@ -65,7 +65,7 @@ public class OpenCloseDoor : MonoBehaviour
       
 
 
-        if (!doorOpen)
+        if (doorOpen == false)
         {
             _sanity.sanityDecrease = true;
             StartCoroutine(SpawnRate());
