@@ -19,7 +19,7 @@ public class WindowSpawnManager : MonoBehaviour
     }
     public void Start()
     {
-        windowspawnDelay = 5;
+        windowspawnDelay = 30;
 
         StartSpawning();
     }

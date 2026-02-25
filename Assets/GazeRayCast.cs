@@ -34,7 +34,7 @@ public class GazeRayCast : MonoBehaviour
     {
         
     
-        if (Physics.Raycast(ray, out hit, maxDistance, layersToHit))
+        if (Physics.Raycast(ray, out hit, maxDistance))
         {
 
             var hitObj = hit.collider.gameObject;
@@ -45,21 +45,14 @@ public class GazeRayCast : MonoBehaviour
                 Debug.Log("hit D" + hit.collider.gameObject.name);
 
             }
+           
+
             else
-            {
-                return;
-            }
-
-
-            if (hitObj.CompareTag(DoLook))
             {
                 _sanity.IncreaseSanity();
                 Debug.Log("hit I" + hit.collider.gameObject.name);
             }
-            else
-            {
-                return;
-            }
+            
 
             Debug.Log("hit" + hit.collider.gameObject.name);
         }

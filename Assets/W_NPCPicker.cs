@@ -25,15 +25,15 @@ public class W_NPCPicker : MonoBehaviour
 
     public void Awake()
     {
-        _npcStatsSource = FindFirstObjectByType<NPCSTATS>();
+        _npcStatsSource = GetComponent<NPCSTATS>();
         _sanityScore = FindFirstObjectByType<SanityScore>();
         
-        
+
 
     }
     private void Start()
     {
-        NPCSTATS stats = FindFirstObjectByType<NPCSTATS>();
+      
 
     }
 

@@ -25,6 +25,7 @@ public class PathPicker : MonoBehaviour
     {
         _npcPicker = FindFirstObjectByType<NPCPicker>();
         _npcWindow = FindFirstObjectByType<W_NPCPicker>();
+       
 
         H_Pathes = new List<GameObject>();
         recentlyUsedPathes = new List<GameObject>();

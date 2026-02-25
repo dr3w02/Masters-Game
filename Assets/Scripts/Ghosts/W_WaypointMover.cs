@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class W_WaypointMover : MonoBehaviour
@@ -113,8 +114,7 @@ public class W_WaypointMover : MonoBehaviour
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
                 // reached the end!
-                gameObject.SetActive(false);
-                _npcPicker.EndOfPath();
+                StartCoroutine(Delay());
                 return;
             }
 
@@ -131,6 +131,14 @@ public class W_WaypointMover : MonoBehaviour
                 transform.LookAt(_wayPoints.currentWaypoint.position);
             }
         }
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(15f);
+        gameObject.SetActive(false);
+        _npcPicker.EndOfPath();
+
     }
 }
 
