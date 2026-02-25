@@ -11,11 +11,11 @@ public class WayPoints : MonoBehaviour
     private float waypointSize = 1f;
 
     public Transform currentWaypoint;
-    public NPCPicker _npcPicker;
+    
 
     public void Start()
     {
-        _npcPicker = FindFirstObjectByType<NPCPicker>();
+        
     }
 
     private void OnDrawGizmos()

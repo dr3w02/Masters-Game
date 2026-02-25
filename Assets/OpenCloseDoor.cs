@@ -5,6 +5,7 @@ public class OpenCloseDoor : MonoBehaviour
 {
     public Animator animatorDoor;
     public SanityScore _sanity;
+    public NPCPicker _npcPicker;
     public bool doorOpen = true;
 
     public float doorClosedAllowed;
@@ -56,6 +57,8 @@ public class OpenCloseDoor : MonoBehaviour
         AudioManager.instance.PlaySFX("DoorBang");
 
         yield return new WaitForSeconds(doorClosedAllowed);
+
+        _npcPicker.DoorClosed();
 
         AudioManager.instance.StopSFX("DoorBang");
         AudioManager.instance.StopSFX("Breathing");

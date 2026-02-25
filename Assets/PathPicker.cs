@@ -11,11 +11,10 @@ public class PathPicker : MonoBehaviour
     public WayPoints _wayPoints;
     [SerializeField]
     public NPCPicker _npcPicker;
+    public W_NPCPicker _npcWindow;
+   
 
-    [Header("List")]
-    public GameObject PathObject { get; private set; }
-
-    public string targetTag = "Pathes";
+    public string targetTag;
     public List<GameObject> H_Pathes;
     [SerializeField]
     private List<GameObject> recentlyUsedPathes;
@@ -25,6 +24,7 @@ public class PathPicker : MonoBehaviour
     private void Awake()
     {
         _npcPicker = FindFirstObjectByType<NPCPicker>();
+        _npcWindow = FindFirstObjectByType<W_NPCPicker>();
 
         H_Pathes = new List<GameObject>();
         recentlyUsedPathes = new List<GameObject>();
@@ -64,14 +64,19 @@ public class PathPicker : MonoBehaviour
             recentlyUsedPathes.Clear();
         }
 
-        _wayPoints = FindFirstObjectByType<WayPoints>();
+        
 
         //picking a random path point for it 
 
         int randomPath = Random.Range(0, H_Pathes.Count);
 
         _wayPoints = H_Pathes[randomPath].GetComponent<WayPoints>();
- 
+
+        if (_wayPoints == null)
+        {
+            Debug.LogError("No WayPoints on: " + H_Pathes[randomPath].name);
+            return;
+        }
 
         //set inital postion to the first waypoint
         _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
@@ -85,9 +90,17 @@ public class PathPicker : MonoBehaviour
         recentlyUsedPathes.Add(H_Pathes[randomPath]); //when the path is over put pack on list
         H_Pathes.Remove(H_Pathes[randomPath]);
 
+        if(targetTag == "Pathes")
+        {
+            _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
+        }
+
+        if (targetTag == "W_Pathes")
+        {
+            _npcWindow.StartCoroutine(_npcWindow.StartNPCPicker(this)); 
+        }
 
 
-        _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker());
 
     }
 

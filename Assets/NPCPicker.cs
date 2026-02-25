@@ -9,9 +9,6 @@ public class NPCPicker : MonoBehaviour
     public SanityScore _sanityScore;
     public PathPicker _pathPicker;
 
-    public bool resetwayPointMover;
-
-
 
 
     public npcStatistics chosen;
@@ -25,9 +22,9 @@ public class NPCPicker : MonoBehaviour
 
     public void Awake()
     {
-        _npcStatsSource = FindFirstObjectByType<NPCSTATS>();
+        _npcStatsSource = GetComponent<NPCSTATS>();
         _sanityScore = FindFirstObjectByType<SanityScore>();
-        _pathPicker = FindFirstObjectByType<PathPicker>();
+        
   
 
     }
@@ -39,7 +36,7 @@ public class NPCPicker : MonoBehaviour
 
    
 
-    public IEnumerator StartNPCPicker()
+    public IEnumerator StartNPCPicker(PathPicker pathPicker)
     {
         yield return new WaitForSeconds(delayBeforePick);
 
@@ -48,7 +45,7 @@ public class NPCPicker : MonoBehaviour
 
         if (hallwayGhosts == null || hallwayGhosts.Count == 0) yield break;
 
-        npcStatistics chosen = null;
+        chosen = null;
 
         if (chosen == null)
         {
@@ -56,12 +53,13 @@ public class NPCPicker : MonoBehaviour
             chosen = hallwayGhosts[index];
             Debug.Log("Picked hallway ghost: " + chosen.ghostType);
 
+            
             chosen.ghostPrefab.SetActive(true);
 
         }
        
 
-        Debug.Log("NPCPicked");
+        Debug.Log("NPCpICKED");
         //Spawn ghost and move along path 
     }
 
@@ -81,7 +79,7 @@ public class NPCPicker : MonoBehaviour
     public void DoorClosed()
     {
 
-        chosen.ghostPrefab.SetActive(false);
+        chosen.ghostPrefab.SetActive(false); // all active ghosts off 
        
     }
 

@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WayPointMover : MonoBehaviour
-{
+public class W_WaypointMover : MonoBehaviour
+{ 
     [SerializeField] public WayPoints _wayPoints;
     [SerializeField] private NPCSTATS _npcStatsSource;
     [SerializeField] private PathPicker _pathPicker;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float distanceThreshold = 0.1f;
-    [SerializeField] private NPCPicker _npcPicker;
+    [SerializeField] private W_NPCPicker _npcPicker;
 
     private bool initialized = false;
 
-    public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
+    public void Initialize(WayPoints wayPoints, W_NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
         _npcPicker = npcPicker;
@@ -29,15 +27,15 @@ public class WayPointMover : MonoBehaviour
 
         if (!initialized)
         {
-           
+
             _wayPoints = _pathPicker._wayPoints;
         }
 
-       
+
 
         ResetToStart();
 
-        Debug.Log("gv.currentwaypoint" );
+        Debug.Log("gv.currentwaypoint");
     }
 
     private void OnDisable()
@@ -54,10 +52,10 @@ public class WayPointMover : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;
-        
+
         if (_wayPoints == null)
         {
-        
+
             return;
         }
 
@@ -71,7 +69,7 @@ public class WayPointMover : MonoBehaviour
         if (next != null)
         {
             transform.LookAt(next.position);
-          
+
         }
     }
 
@@ -79,9 +77,9 @@ public class WayPointMover : MonoBehaviour
     {
         Movement();
 
-      
 
-      
+
+
     }
 
     private void Movement()
@@ -94,7 +92,7 @@ public class WayPointMover : MonoBehaviour
 
         if (_wayPoints.currentWaypoint == null)
         {
-           
+
             return;
         }
 
@@ -135,5 +133,6 @@ public class WayPointMover : MonoBehaviour
         }
     }
 }
+
 
 
