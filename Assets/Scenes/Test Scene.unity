@@ -714,7 +714,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35850066}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -59526,7 +59526,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787765600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -84385,7 +84385,7 @@ MonoBehaviour:
   - name: DoorCreak
     clip: {fileID: 8300000, guid: 78552834e12798b46b5c532ee83f30c3, type: 3}
     maxVolume: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: DoorBang
     clip: {fileID: 8300000, guid: 04c740a969aab2d46a7db5fbe3e67bcb, type: 3}
@@ -90946,7 +90946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Candles: []
-  lights:
+  litCandles:
   - {fileID: 1154353411}
   - {fileID: 1195205675}
   - {fileID: 1592017825}

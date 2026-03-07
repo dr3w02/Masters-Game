@@ -12,7 +12,7 @@ public class CandleManager : MonoBehaviour
     private List<GameObject> Candles = new List<GameObject>();
 
     // From CandleLighting
-    public List<GameObject> lights;
+    public List<GameObject> litCandles = new List<GameObject>();
     public float turnOffDelay;
     public bool isTurningOff = false;
     public SanityScore sanity;
@@ -65,33 +65,32 @@ public class CandleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(turnOffDelay);
 
-      
-            Debug.Log("Lights number" + lights.Count);
+        if (litCandles.Count > 0)
+        {
+            GameObject randFlame = litCandles[Random.Range(0, litCandles.Count)];
 
-            int lightsInList = lights.Count;
-            GameObject lightRand = lights[Random.Range(0, lightsInList)];
+            // Reset the isLit flag on the owning candle
+            CandleLighting owningCandle = randFlame.GetComponentInParent<CandleLighting>();
+            if (owningCandle != null)
+                owningCandle.isLit = false;
 
-            if (lightRand.activeSelf)
-            {
-                TurnOffCandleLight(lightRand);
-                candleLighting.ExtinguishCandle();
-                lights.Remove(lightRand);
-                Debug.Log("Randomly chosen candle: " + lightRand);
-            }
+            randFlame.SetActive(false);
+            litCandles.Remove(randFlame);
 
-
-            if (lights.Count < 4)
+            if (litCandles.Count < 4)
             {
                 Debug.Log("Game Over");
                 sanity.sanityDecrease = true;
             }
-            
             else
             {
-               sanity.sanityDecrease = false;
+                sanity.sanityDecrease = false;
             }
+        }
 
-            StartCoroutine(LightTurnOffRoutine());
+
+
+        StartCoroutine(LightTurnOffRoutine());
 
 
 

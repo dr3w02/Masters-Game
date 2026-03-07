@@ -27,6 +27,7 @@ public class OpenCloseDoor : MonoBehaviour
         {
             
             AudioManager.instance.PlaySFX("DoorCreak");
+           
             animatorDoor.SetBool("isOpen", true);
             animatorDoor.SetBool("isClosed", false);
             doorOpen = true;
@@ -56,12 +57,13 @@ public class OpenCloseDoor : MonoBehaviour
 
         AudioManager.instance.PlaySFX("DoorBang");
 
+
         yield return new WaitForSeconds(doorClosedAllowed);
 
         _npcPicker.DoorClosed();
 
         AudioManager.instance.StopSFX("DoorBang");
-        AudioManager.instance.StopSFX("Breathing");
+       
       
 
 

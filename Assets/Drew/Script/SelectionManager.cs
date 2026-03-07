@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
-using static UnityEditor.Rendering.InspectorCurveEditor;
+
 
 public class SelectionManager : MonoBehaviour
 {
