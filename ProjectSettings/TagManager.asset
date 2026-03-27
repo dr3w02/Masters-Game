@@ -13,6 +13,7 @@ TagManager:
   - SanityIncrease
   - Lighter
   - W_Pathes
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Water
   - UI
   - EyeInteractables
-  - 
+  - PostProcessing
   - 
   - 
   - 
