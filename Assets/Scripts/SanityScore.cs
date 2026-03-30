@@ -15,9 +15,10 @@ public class SanityScore : MonoBehaviour
     
     public GameObject gameOver;
 
-   
+    public EffectIntensity effects;
     public void Start()
     {
+        
 
         gameOver.SetActive(false);
         Time.timeScale = 1;
@@ -34,10 +35,6 @@ public class SanityScore : MonoBehaviour
         if (sanityDecrease)
         {
             DecreaseSanity();
-        }
-        else
-        {
-            return;
         }
 
         SanityHealth();
@@ -59,18 +56,35 @@ public class SanityScore : MonoBehaviour
         //SetSanity(-20f);
         //To Add Sanity
         //SetSanity(+20f);
+
+
+        if(sanity < 50)
+        {
+            float normalisedSanity = sanity / MaxSanity;
+            float effectWeight = 1f - normalisedSanity;
+            effects.SetIntensity(effectWeight);
+        }
+        else
+        {
+            float effectWeight = 0f;
+            effects.SetIntensity(effectWeight);
+        }
+       
+
+
         if (sanity < 20)
         {
             AudioManager.instance.PlaySFX("Breathing");
+       
         }
         else
         {
             AudioManager.instance.StopSFX("Breathing");
+           
         }
 
         if (sanity > 20)
         {
-           
 
 
         }

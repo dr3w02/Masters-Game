@@ -21,18 +21,5 @@ public class PaperController : MonoBehaviour
     }
 
    
-    void Update()
-    {
-        //if (paperFall)
-        //{
-        //    paperAnim.SetBool("PlayAnim", true);
-        //    paperFall = true;
-        //}
-        //else
-        //{
-        //    paperAnim.SetBool("PlayAnim", false);
-        //    paperFall = true;
-        //}
-
-    }
+  
 }
