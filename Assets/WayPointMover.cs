@@ -29,15 +29,15 @@ public class WayPointMover : MonoBehaviour
 
         if (!initialized)
         {
-           
+
             _wayPoints = _pathPicker._wayPoints;
         }
 
-       
+
 
         ResetToStart();
 
-        Debug.Log("gv.currentwaypoint" );
+        Debug.Log("gv.currentwaypoint");
     }
 
     private void OnDisable()
@@ -54,10 +54,12 @@ public class WayPointMover : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;
-        
+
+        transform.rotation = _wayPoints.currentWaypoint.rotation;
+
         if (_wayPoints == null)
         {
-        
+
             return;
         }
 
@@ -71,7 +73,7 @@ public class WayPointMover : MonoBehaviour
         if (next != null)
         {
             transform.LookAt(next.position);
-          
+
         }
     }
 
@@ -79,9 +81,9 @@ public class WayPointMover : MonoBehaviour
     {
         Movement();
 
-      
 
-      
+
+
     }
 
     private void Movement()
@@ -94,24 +96,19 @@ public class WayPointMover : MonoBehaviour
 
         if (_wayPoints.currentWaypoint == null)
         {
-           
+
             return;
         }
 
 
         transform.position = Vector3.MoveTowards(transform.position, _wayPoints.currentWaypoint.position, moveSpeed * Time.deltaTime);
-
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, _wayPoints.currentWaypoint.rotation, 50f * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) < distanceThreshold)
         {
             Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
 
-            if (next == null)
-            {
-
-                return;
-            }
-
+            
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
                 // reached the end!
@@ -128,12 +125,7 @@ public class WayPointMover : MonoBehaviour
             {
                 transform.LookAt(upcoming.position);
             }
-            else
-            {
-                transform.LookAt(_wayPoints.currentWaypoint.position);
-            }
+
         }
     }
 }
-
-
