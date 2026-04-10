@@ -19,8 +19,7 @@ public class PathPicker : MonoBehaviour
     [SerializeField]
     private List<GameObject> recentlyUsedPathes;
 
-
-
+ 
     private void Awake()
     {
         _npcPicker = FindFirstObjectByType<NPCPicker>();

@@ -15,7 +15,8 @@ public class SanityScore : MonoBehaviour
     
     public GameObject gameOver;
 
-    public EffectIntensity effects;
+
+    public FadingObject effects;
     public void Start()
     {
         
