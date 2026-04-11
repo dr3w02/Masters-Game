@@ -58,20 +58,10 @@ public class SanityScore : MonoBehaviour
         //To Add Sanity
         //SetSanity(+20f);
 
+        float normalisedSanity = sanity / MaxSanity;
+        effects.SetIntensity(normalisedSanity);
 
-        if(sanity < 50)
-        {
-            float normalisedSanity = sanity / MaxSanity;
-            float effectWeight = 1f - normalisedSanity;
-            effects.SetIntensity(effectWeight);
-        }
-        else
-        {
-            float effectWeight = 0f;
-            effects.SetIntensity(effectWeight);
-        }
        
-
 
         if (sanity < 20)
         {
@@ -90,7 +80,7 @@ public class SanityScore : MonoBehaviour
 
         }
 
-        if(sanity == 0)
+        if(sanity <= 0)
         {
             gameOver.SetActive(true);
             Time.timeScale = 0;

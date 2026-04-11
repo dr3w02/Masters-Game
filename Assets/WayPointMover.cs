@@ -111,9 +111,11 @@ public class WayPointMover : MonoBehaviour
             
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
-                // reached the end!
+                Debug.Log("EndOfPath");
+                // reached the end!!
                 gameObject.SetActive(false);
                 _npcPicker.EndOfPath();
+              
                 return;
             }
 
@@ -125,6 +127,8 @@ public class WayPointMover : MonoBehaviour
             {
                 transform.LookAt(upcoming.position);
             }
+         
+
 
         }
     }

@@ -10,12 +10,17 @@ public class OpenCloseDoor : MonoBehaviour
 
     public float doorClosedAllowed;
 
+    public NPCSTATS _npcStatsSource;
+
     public void Start()
     {
         if (_sanity == null)
         {
             Debug.LogError("no sanity script");
         }
+
+        
+
     }
     public void ToggleDoor()
     {
@@ -60,7 +65,7 @@ public class OpenCloseDoor : MonoBehaviour
 
         yield return new WaitForSeconds(doorClosedAllowed);
 
-        _npcPicker.DoorClosed();
+        DoorClosed();
 
         AudioManager.instance.StopSFX("DoorBang");
        
@@ -91,5 +96,19 @@ public class OpenCloseDoor : MonoBehaviour
 
 
 
+    public void DoorClosed()
+    {
+
+        var hallwayGhosts = _npcStatsSource.hallwayGhosts;
+
+        foreach (var ghost in hallwayGhosts)
+        {
+            if (ghost.ghostPrefab != null)
+            {
+                ghost.ghostPrefab.SetActive(false);
+            }
+        }
+
+    }
 
 }

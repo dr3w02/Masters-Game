@@ -16,15 +16,13 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     {
         _position = transform.position;
 
-        if(Renderers.Count == 0)
-        {
-            Renderers.AddRange(GetComponentsInChildren<Renderer>());
-        }
+        Materials.Clear();
 
-        //foreach(Renderer renderer in Renderers)
-        //{
-        //    Materials.AddRange(renderer.materials);
-        //}
+        foreach (Renderer renderer in Renderers)
+        {
+            Materials.AddRange(renderer.materials);
+        }
+            
 
         InitialAlpha = Materials[0].color.a;
     }
@@ -35,14 +33,14 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     }
     public void SetIntensity(float value)
     {
-        InitialAlpha = Mathf.Clamp01(value);
+        float targetAlpha = Mathf.Clamp01(value);
 
         foreach (Material mat in Materials)
         {
 
-            Color colour = Materials[0].color;
-            colour.a = InitialAlpha;
-            Materials[0].color = colour;
+            Color colour = mat.color;
+            colour.a = targetAlpha;
+            mat.color = colour;
         }
     }
 

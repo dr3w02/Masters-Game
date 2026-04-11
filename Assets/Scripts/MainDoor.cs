@@ -32,7 +32,7 @@ public class MainDoor : MonoBehaviour
         else
         {
 
-            _npcPicker.DoorClosed();
+          //  _npcPicker.DoorClosed();
 
             anim.SetBool("Open", false);
             anim.SetBool("Close", true);
