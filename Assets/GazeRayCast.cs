@@ -2,11 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Runtime.CompilerServices;
 
 public class GazeRayCast : MonoBehaviour
 {
     public SanityScore _sanity;
     public W_NPCPicker _wNpcPicker;
+    public Laptop laptop;
 
     Ray ray;
 
@@ -25,6 +27,9 @@ public class GazeRayCast : MonoBehaviour
 
     [SerializeField]
     private string WindowGhosts = "WindowGhosts";
+
+    [SerializeField]
+    private string Laptop = "Laptop";
 
 
     public int waittime;
@@ -132,12 +137,29 @@ public class GazeRayCast : MonoBehaviour
                 select = true;
                 Debug.Log("HitUI");
             }
+            else
+            {
+                _currentButton = hitObj.GetComponent<Button>();
+                select = false;
+                Debug.Log("HitUI");
+            }
 
 
             if (hitObj.CompareTag(WindowGhosts))
             {
                 _wNpcPicker.LookedAt();
                 Debug.Log("HitWindowGhosts");
+            }
+
+
+            if (hitObj.CompareTag(Laptop))
+            {
+                StartCoroutine(LatopTrans());
+                
+            }
+            else
+            {
+                StopCoroutine(LatopTrans());
             }
 
             Debug.Log("hit" + hit.collider.gameObject.name);
@@ -147,7 +169,13 @@ public class GazeRayCast : MonoBehaviour
     }
 
 
+    public IEnumerator LatopTrans()
+    {
+        yield return new WaitForSeconds(5);
 
+        //Go To Laptop
+        laptop.
+    }
 
 
 }

@@ -15,6 +15,7 @@ TagManager:
   - W_Pathes
   - UI
   - WindowGhosts
+  - Laptop
   layers:
   - Default
   - TransparentFX
