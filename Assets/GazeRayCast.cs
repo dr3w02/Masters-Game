@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class GazeRayCast : MonoBehaviour
 {
     public SanityScore _sanity;
-
+    public W_NPCPicker _wNpcPicker;
 
     Ray ray;
 
@@ -23,7 +23,8 @@ public class GazeRayCast : MonoBehaviour
     [SerializeField]
     private string UI = "UI";
 
-
+    [SerializeField]
+    private string WindowGhosts = "WindowGhosts";
 
 
     public int waittime;
@@ -47,6 +48,7 @@ public class GazeRayCast : MonoBehaviour
     public void Start()
     {
         _sanity = FindAnyObjectByType<SanityScore>();
+        _wNpcPicker = FindAnyObjectByType<W_NPCPicker>();
         indicatorTimer = waittime;
         maxIndicatorTimer = waittime;
 
@@ -130,10 +132,15 @@ public class GazeRayCast : MonoBehaviour
                 select = true;
                 Debug.Log("HitUI");
             }
-          
+
+
+            if (hitObj.CompareTag(WindowGhosts))
+            {
+                _wNpcPicker.LookedAt();
+                Debug.Log("HitWindowGhosts");
+            }
 
             Debug.Log("hit" + hit.collider.gameObject.name);
-
 
 
         }

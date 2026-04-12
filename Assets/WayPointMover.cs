@@ -106,23 +106,26 @@ public class WayPointMover : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) < distanceThreshold)
         {
-            Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-
+            
             
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
                 Debug.Log("EndOfPath");
-                // reached the end!!
-                gameObject.SetActive(false);
+                
                 _npcPicker.EndOfPath();
-              
+                gameObject.SetActive(false);
                 return;
             }
+
+
+            Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+            
 
             _wayPoints.currentWaypoint = next;
             Debug.Log("zz.checking paypoints" + next);
 
             Transform upcoming = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+           
             if (upcoming != null)
             {
                 transform.LookAt(upcoming.position);

@@ -12,6 +12,8 @@ public class W_WaypointMover : MonoBehaviour
 
     private bool initialized = false;
 
+    public bool sister;
+
     public void Initialize(WayPoints wayPoints, W_NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
@@ -103,25 +105,39 @@ public class W_WaypointMover : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) < distanceThreshold)
         {
-            Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+           
 
+            if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
+            {
+                // reached the end!
+
+                if (sister)
+                {
+                    _npcPicker.SisterEndOfPath();
+                }
+                else
+                {
+                    _npcPicker.EndOfPath();
+                }
+
+                gameObject.SetActive(false);
+                return;
+            }
+
+            Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+           
             if (next == null)
             {
 
                 return;
             }
 
-            if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
-            {
-                // reached the end!
-                StartCoroutine(Delay());
-                return;
-            }
 
             _wayPoints.currentWaypoint = next;
-            Debug.Log("zz.checking paypoints" + next);
 
             Transform upcoming = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+            Debug.Log("zz.checking paypoints" + next);
+
             if (upcoming != null)
             {
                 transform.LookAt(upcoming.position);
@@ -130,16 +146,17 @@ public class W_WaypointMover : MonoBehaviour
             {
                 transform.LookAt(_wayPoints.currentWaypoint.position);
             }
+
+           
+
+           
+
+
+           
         }
     }
 
-    private IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(15f);
-        gameObject.SetActive(false);
-        _npcPicker.EndOfPath();
-
-    }
+  
 }
 
 

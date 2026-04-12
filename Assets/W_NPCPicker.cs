@@ -11,7 +11,7 @@ public class W_NPCPicker : MonoBehaviour
 
     public bool resetwayPointMover;
 
-
+  
 
 
     public npcStatistics chosen;
@@ -67,10 +67,42 @@ public class W_NPCPicker : MonoBehaviour
         //Spawn ghost and move along path 
 
     }
+  
 
     public void EndOfPath()
     {
-        Debug.Log("wait and then go ");
+
+        if(chosen == null)
+        {
+            return;
+        }
+
+        chosen.ghostPrefab.SetActive(false);
+        Debug.Log("End Of Path");
+        _sanityScore.sanity -= 5;
+
+    }
+    public void SisterEndOfPath()
+    {
+
+        if (chosen == null)
+        {
+            return;
+        }
+        chosen.ghostPrefab.SetActive(false);
+        Debug.Log("End Of Path");
+        _sanityScore.sanity += 5;
+
+    }
+
+    public void LookedAt()
+    {
+        if (chosen == null)
+        {
+            return;
+        }
+
+        chosen.ghostPrefab.SetActive(false);
     }
 
 }

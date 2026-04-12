@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 86486fbe2e3aedb4c9d3f6ef7e46b21d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 321045
+  packageName: Ghost Shaders 3D(22+, Animated)
+  packageVersion: 1.0
+  assetPath: Assets/Ghost Shader/Materials/Ghost/Ghost 8.mat
+  uploadId: 758627

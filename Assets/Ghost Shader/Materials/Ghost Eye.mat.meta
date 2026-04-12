@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a786fddcd7a52b44e85a73c2c8629ef4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 321045
+  packageName: Ghost Shaders 3D(22+, Animated)
+  packageVersion: 1.0
+  assetPath: Assets/Ghost Shader/Materials/Ghost Eye.mat
+  uploadId: 758627
