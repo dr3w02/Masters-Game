@@ -19,14 +19,15 @@ public class OpenCloseDoor : MonoBehaviour
             Debug.LogError("no sanity script");
         }
 
-        
+        if (animatorDoor == null)
+            Debug.LogError("animatorDoor is null!");
 
     }
     public void ToggleDoor()
     {
         Debug.Log("Door Activated");
 
-       
+    
 
         if (!doorOpen)
         {
