@@ -1,0 +1,11 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class NextScene : MonoBehaviour
+{
+
+   public void GoToNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+}

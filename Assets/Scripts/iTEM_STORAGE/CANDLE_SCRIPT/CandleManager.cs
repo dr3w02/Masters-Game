@@ -17,21 +17,38 @@ public class CandleManager : MonoBehaviour
     public bool isTurningOff = false;
     public SanityScore sanity;
 
+    public FadingObject fading;
 
     CandleLighting candleLighting;
 
+    public bool gameStarted;
+   
 
     void Start()
     {
+         candleLighting = FindAnyObjectByType<CandleLighting>();
         //move this
         StartCandles();
-        StartCoroutine(LightTurnOffRoutine());
 
-        candleLighting = FindAnyObjectByType<CandleLighting>();
 
     }
 
-  
+    public void CheckAllLit()
+    {
+
+        if (gameStarted) return;
+
+
+        if (litCandles.Count >= Candles.Count)
+        {
+            fading.FadeOut();
+
+            gameStarted = true;
+            StartCoroutine(LightTurnOffRoutine());
+            Debug.Log("all candles lit!");
+        }
+    }
+
     public void StartCandles()
     {
         Candles.Clear();

@@ -45,9 +45,13 @@ public class GazeRayCast : MonoBehaviour
     [Header("UI Indicator")]
     [SerializeField] private Image radialIndicatorUI = null;
 
- 
 
-    
+    [Header("StartLaptop")]
+    public bool lookingAtLaptop;
+
+
+
+
 
 
     public void Start()
@@ -139,8 +143,12 @@ public class GazeRayCast : MonoBehaviour
             }
             else
             {
-                _currentButton = hitObj.GetComponent<Button>();
                 select = false;
+                _currentButton = null;
+                indicatorTimer = maxIndicatorTimer;
+                radialIndicatorUI.fillAmount = maxIndicatorTimer;
+                radialIndicatorUI.enabled = false;
+
                 Debug.Log("HitUI");
             }
 
@@ -154,28 +162,43 @@ public class GazeRayCast : MonoBehaviour
 
             if (hitObj.CompareTag(Laptop))
             {
-                StartCoroutine(LatopTrans());
-                
+                Debug.Log("Look at Laptop!");
+                if (!lookingAtLaptop)
+                {
+                    laptop.LockCamera();
+                    lookingAtLaptop = true;
+                }
+                else
+                {
+                    laptop.Play();
+                }
+           
+
             }
+            
             else
             {
-                StopCoroutine(LatopTrans());
+                laptop.Pause();
             }
 
             Debug.Log("hit" + hit.collider.gameObject.name);
 
 
         }
+
+        else
+        {
+            // only care about cancelling UI here
+            select = false;
+            _currentButton = null;
+            indicatorTimer = maxIndicatorTimer;
+            radialIndicatorUI.fillAmount = maxIndicatorTimer;
+            radialIndicatorUI.enabled = false;
+        }
     }
 
 
-    public IEnumerator LatopTrans()
-    {
-        yield return new WaitForSeconds(5);
-
-        //Go To Laptop
-        laptop.
-    }
 
 
+ 
 }

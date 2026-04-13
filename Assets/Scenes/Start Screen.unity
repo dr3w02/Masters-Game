@@ -2543,6 +2543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sanity: {fileID: 0}
   _wNpcPicker: {fileID: 0}
+  laptop: {fileID: 0}
   maxDistance: 300
   layersToHit:
     serializedVersion: 2
@@ -2551,10 +2552,12 @@ MonoBehaviour:
   DoLook: SanityIncrease
   UI: UI
   WindowGhosts: WindowGhosts
+  Laptop: Laptop
   waittime: 5
   indicatorTimer: 0
   maxIndicatorTimer: 0
   radialIndicatorUI: {fileID: 1373712155}
+  lookingAtLaptop: 0
 --- !u!114 &878218925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2886,6 +2889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sanity: {fileID: 0}
   _wNpcPicker: {fileID: 0}
+  laptop: {fileID: 0}
   maxDistance: 300
   layersToHit:
     serializedVersion: 2
@@ -2894,10 +2898,12 @@ MonoBehaviour:
   DoLook: SanityIncrease
   UI: UI
   WindowGhosts: WindowGhosts
+  Laptop: Laptop
   waittime: 5
   indicatorTimer: 0
   maxIndicatorTimer: 0
   radialIndicatorUI: {fileID: 1373712155}
+  lookingAtLaptop: 0
 --- !u!114 &983209919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4943,6 +4949,7 @@ GameObject:
   - component: {fileID: 1224646309}
   - component: {fileID: 1224646308}
   - component: {fileID: 1224646311}
+  - component: {fileID: 1224646312}
   m_Layer: 5
   m_Name: Start
   m_TagString: UI
@@ -5014,9 +5021,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1565326981}
-        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
-        m_MethodName: StartScreen
+      - m_Target: {fileID: 1224646312}
+        m_TargetAssemblyTypeName: NextScene, Assembly-CSharp
+        m_MethodName: GoToNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5085,6 +5092,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 160.15, y: 30.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1224646312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224646306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2d4d2321f3c324d97ac1e4756792b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1246195072
 GameObject:
   m_ObjectHideFlags: 0

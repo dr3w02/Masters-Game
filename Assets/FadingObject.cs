@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 {
@@ -11,6 +12,12 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 
   
     public float InitialAlpha = 1;
+
+    public float fadeDuration = 1f;
+
+
+    public Animator nextSceneAnim;
+
 
     private void Awake()
     {
@@ -47,5 +54,25 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     public override int GetHashCode()
     {
         return _position.GetHashCode();
+    }
+
+
+    public void FadeOut()
+    {
+        StartCoroutine(FadeOutRoutine());
+    }
+
+    private IEnumerator FadeOutRoutine()
+    {
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            SetIntensity(Mathf.Lerp(InitialAlpha, 0f, elapsed / fadeDuration));
+            yield return null;
+        }
+        SetIntensity(0f);
+
+        nextSceneAnim.Play("GhostAnim");
     }
 }

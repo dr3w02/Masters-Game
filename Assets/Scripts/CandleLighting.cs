@@ -38,6 +38,8 @@ public class CandleLighting : MonoBehaviour
         flame.SetActive(true);
         if (!candleManager.litCandles.Contains(flame))
             candleManager.litCandles.Add(flame);
+
+        candleManager.CheckAllLit();
     }
 
     public void ExtinguishCandle()
