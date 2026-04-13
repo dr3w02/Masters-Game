@@ -36,15 +36,24 @@ public class CandleManager : MonoBehaviour
     public void CheckAllLit()
     {
 
-        if (gameStarted) return;
+      
 
 
         if (litCandles.Count >= Candles.Count)
         {
-            fading.FadeOut();
+            if (!gameStarted)
+            {
+                fading.FadeOut();
+                gameStarted = true;
+            }
+            else
+            {
+                StartCoroutine(LightTurnOffRoutine());
+            }
+           
 
-            gameStarted = true;
-            StartCoroutine(LightTurnOffRoutine());
+           
+           
             Debug.Log("all candles lit!");
         }
     }

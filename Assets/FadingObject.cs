@@ -13,10 +13,12 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
   
     public float InitialAlpha = 1;
 
-    public float fadeDuration = 1f;
+    public float fadeDuration = 5f;
 
 
-    public Animator nextSceneAnim;
+  
+    public GameObject ghostAnim;
+    public GameObject whiteChalk;
 
 
     private void Awake()
@@ -29,9 +31,10 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
         {
             Materials.AddRange(renderer.materials);
         }
-            
 
-        InitialAlpha = Materials[0].color.a;
+        ghostAnim.SetActive(false);
+
+       
     }
 
     public bool Equals(FadingObject other)
@@ -65,14 +68,30 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     private IEnumerator FadeOutRoutine()
     {
         float elapsed = 0f;
+        SetIntensity(0f); 
+
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            SetIntensity(Mathf.Lerp(InitialAlpha, 0f, elapsed / fadeDuration));
+            float intensity = Mathf.Lerp(0f, 1f, elapsed / fadeDuration);
+            SetIntensity(intensity);
+
+            if (intensity >= 1f)
+            {
+                whiteChalk.SetActive(false);
+                ghostAnim.SetActive(true);
+            }
+
+
             yield return null;
         }
-        SetIntensity(0f);
 
-        nextSceneAnim.Play("GhostAnim");
+       
+        
+        SetIntensity(1f);
+        whiteChalk.SetActive(false);
+        ghostAnim.SetActive(true);
+
+
     }
 }

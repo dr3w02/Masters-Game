@@ -6,7 +6,7 @@ public class EndAnim : MonoBehaviour
 
     public void Start()
     {
-        laptop = GetComponent<Laptop>();
+       
     }
 
     public void Stop()

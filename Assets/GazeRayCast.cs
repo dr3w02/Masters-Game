@@ -143,11 +143,11 @@ public class GazeRayCast : MonoBehaviour
             }
             else
             {
-                select = false;
-                _currentButton = null;
-                indicatorTimer = maxIndicatorTimer;
-                radialIndicatorUI.fillAmount = maxIndicatorTimer;
-                radialIndicatorUI.enabled = false;
+                //select = false;
+                //_currentButton = null;
+                //indicatorTimer = maxIndicatorTimer;
+                //radialIndicatorUI.fillAmount = maxIndicatorTimer;
+                //radialIndicatorUI.enabled = false;
 
                 Debug.Log("HitUI");
             }
@@ -186,15 +186,7 @@ public class GazeRayCast : MonoBehaviour
 
         }
 
-        else
-        {
-            // only care about cancelling UI here
-            select = false;
-            _currentButton = null;
-            indicatorTimer = maxIndicatorTimer;
-            radialIndicatorUI.fillAmount = maxIndicatorTimer;
-            radialIndicatorUI.enabled = false;
-        }
+        
     }
 
 

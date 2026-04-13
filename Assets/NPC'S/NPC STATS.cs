@@ -33,14 +33,14 @@ public class NPCSTATS : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 1, 15, Poltergeist);
-        _npcHallwayGhost2 = new npcStatistics("Residual", 1,  5, Residual);
-        _npcHallwayGhost3 = new npcStatistics("Spirit", 1, 10, Spirit);
+        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 0.5f, 15, Poltergeist);
+        _npcHallwayGhost2 = new npcStatistics("Residual", 0.5f,  5, Residual);
+        _npcHallwayGhost3 = new npcStatistics("Spirit", 0.5f, 10, Spirit);
         _npcHallwaySister = new npcStatistics("H_Sister", 1, +5, H_Sister);
 
         // Window
-        _npcWindowGhost1 = new npcStatistics("Mimic", 1, 5, Mimic);
-        _npcWindowGhost2 = new npcStatistics("Demon", 1, 20, Demon);
+        _npcWindowGhost1 = new npcStatistics("Mimic", 0.5f, 5, Mimic);
+        _npcWindowGhost2 = new npcStatistics("Demon", 0.5f, 20, Demon);
         _npcWindowSister = new npcStatistics("W_Sister", 1, +2, W_Sister); // make this gradiual the longer they look 
 
 
@@ -69,14 +69,14 @@ public class npcStatistics
     public string ghostType;
 
     //Ghost speed
-    public int ghostSpeed;
+    public float ghostSpeed;
 
     //Ghost Damage
     public int sanityAmount;
 
     public GameObject ghostPrefab;
 
-    public npcStatistics(string type, int speed, int sanity, GameObject objGhost)
+    public npcStatistics(string type, float speed, int sanity, GameObject objGhost)
     {
         this.ghostType = type;
 
