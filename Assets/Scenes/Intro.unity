@@ -72529,6 +72529,10 @@ PrefabInstance:
       value: String Lights (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a3b269057f983cc4d897ba20612e7b6f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a3b269057f983cc4d897ba20612e7b6f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
