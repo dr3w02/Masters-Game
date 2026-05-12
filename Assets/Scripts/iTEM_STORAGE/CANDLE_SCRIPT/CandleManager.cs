@@ -95,7 +95,7 @@ public class CandleManager : MonoBehaviour
         {
             GameObject randFlame = litCandles[Random.Range(0, litCandles.Count)];
 
-            // Reset the isLit flag on the owning candle
+            
             CandleLighting owningCandle = randFlame.GetComponentInParent<CandleLighting>();
             if (owningCandle != null)
                 owningCandle.isLit = false;
