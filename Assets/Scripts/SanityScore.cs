@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static Unity.VisualScripting.Member;
 
 public class SanityScore : MonoBehaviour
@@ -14,6 +15,7 @@ public class SanityScore : MonoBehaviour
 
     
     public GameObject gameOver;
+    public string sceneName;
 
 
     public FadingObject effects;
@@ -82,7 +84,7 @@ public class SanityScore : MonoBehaviour
 
         if(sanity <= 0)
         {
-            gameOver.SetActive(true);
+            SceneManager.LoadScene(sceneName);
             Time.timeScale = 0;
         }
 

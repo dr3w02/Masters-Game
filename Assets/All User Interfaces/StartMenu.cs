@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class StartMenu : MonoBehaviour
     public GameObject back;
 
 
-    public void StartScreen()
+    public void Back()
     {
         start.SetActive(true);
         controls.SetActive(true);
@@ -41,7 +42,11 @@ public class StartMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Game Quit");
     }
+    public void GoToNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
-    
+
 
 }
