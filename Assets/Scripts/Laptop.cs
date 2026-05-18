@@ -31,6 +31,6 @@ public class Laptop : MonoBehaviour
         anim.SetBool("PlayAnim", false);
         lighter.SetActive(true);
         //lockedHead = false;
-        gaze.lookingAtLaptop = false;
+        
     }
 }

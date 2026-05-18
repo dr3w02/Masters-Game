@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Oculus.Interaction.Locomotion;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,9 +36,10 @@ public class CandleManager : MonoBehaviour
         //move this
         StartCandles();
         prompted = false;
-
+        CheckAllLit();
 
     }
+ 
 
     public void CheckAllLit()
     {
@@ -48,22 +50,23 @@ public class CandleManager : MonoBehaviour
             if (!gameStarted)
             {
                 fading.FadeOut();
-                gameStarted = true;
-            }
-            else
-            {
-                StartCoroutine(LightTurnOffRoutine());
-            }
-           
 
-           
-           
+                gameStarted = true;
+
+            }
+         
             Debug.Log("all candles lit!");
+        }
+
+        if (gameStarted)
+        {
+            StartCoroutine(LightTurnOffRoutine());
         }
     }
 
     public void StartCandles()
     {
+      
         Candles.Clear();
 
         foreach (Transform child in transform)

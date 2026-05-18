@@ -22,9 +22,18 @@ public class PathPicker : MonoBehaviour
  
     private void Awake()
     {
-        _npcPicker = FindFirstObjectByType<NPCPicker>();
-        _npcWindow = FindFirstObjectByType<W_NPCPicker>();
-       
+        _npcPicker = GetComponent<NPCPicker>();
+        if (_npcPicker == null)
+        {
+            _npcPicker = FindFirstObjectByType<NPCPicker>();
+        }
+
+        _npcWindow = GetComponent<W_NPCPicker>();
+        if (_npcWindow == null)
+        {
+            _npcWindow = FindFirstObjectByType<W_NPCPicker>();
+        }
+
 
         H_Pathes = new List<GameObject>();
         recentlyUsedPathes = new List<GameObject>();
@@ -64,7 +73,16 @@ public class PathPicker : MonoBehaviour
             recentlyUsedPathes.Clear();
         }
 
-        
+        if (targetTag == "Pathes" && _npcPicker != null)
+        {
+            _npcPicker.chosen = null;
+        }
+        if (targetTag == "W_Pathes" && _npcWindow != null)
+        {
+            _npcWindow.chosen = null;
+        }
+
+
 
         //picking a random path point for it 
 
@@ -94,9 +112,17 @@ public class PathPicker : MonoBehaviour
         {
             _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
         }
+        else
+        {
+            Debug.LogWarning("NULLPATHES");
+            _npcPicker = FindFirstObjectByType<NPCPicker>();
+            if (_npcPicker != null) _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
+        }
 
         if (targetTag == "W_Pathes")
         {
+            Debug.LogWarning("NULLPATHESWINDOW");
+            _npcPicker = FindFirstObjectByType<NPCPicker>();
             _npcWindow.StartCoroutine(_npcWindow.StartNPCPicker(this)); 
         }
 

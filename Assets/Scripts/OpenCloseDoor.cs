@@ -69,8 +69,7 @@ public class OpenCloseDoor : MonoBehaviour
 
         AudioManager.instance.PlaySFX("DoorBang");
 
-
-        yield return new WaitForSeconds(doorClosedAllowed);
+        yield return new WaitForSeconds(0.5f);
 
         var hallwayGhosts = _npcStatsSource.hallwayGhosts;
 
@@ -82,9 +81,16 @@ public class OpenCloseDoor : MonoBehaviour
             }
         }
 
+
+        yield return new WaitForSeconds(doorClosedAllowed);
+
         AudioManager.instance.StopSFX("DoorBang");
 
-        doorWarning.Play();
+        if (!doorOpen)
+        {
+            doorWarning.Play();
+        }
+      
 
 
 

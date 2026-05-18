@@ -7,25 +7,31 @@ using WorldTime;
 public class SpawnManager : MonoBehaviour
 {
     [Header("References")]
-    public PathPicker _pathPicker;
+    public PathPicker hallwayPathPicker;
+    public PathPicker windowPathPicker;
 
 
-    public float spawnDelay;
-    public bool spawning;
+    [Header("Spawn Settings")]
+    public float hallwaySpawnDelay = 15f;
+    public float windowSpawnDelay = 20f;
 
+
+    private bool spawning = false;
+
+    [Header("Sister States")]
     public bool sisterGhostActive;
+ 
+
 
     public void Awake()
     {
        
-        //_pathPicker = FindFirstObjectByType<PathPicker>();
+        
 
 
     }
     public void Start()
     {
-        spawnDelay = 15;
-
         StartSpawning();
     }
 
@@ -34,24 +40,65 @@ public class SpawnManager : MonoBehaviour
     {
         if (!spawning)
         {
-            StartCoroutine(SpawnRate());
-            
+            spawning = true;
+            StartCoroutine(HallwaySpawn());
+            StartCoroutine(WindowSpawn());
+
         }
     }
 
-    private IEnumerator SpawnRate()
+
+    public void StartHallwaySpawnTimer()
+    {
+        StartCoroutine(HallwaySpawn());
+    }
+
+    
+    public void StartWindowSpawnTimer()
+    {
+        StartCoroutine(WindowSpawn());
+    }
+
+    public IEnumerator HallwaySpawn()
     {
         
-            yield return new WaitForSeconds(spawnDelay);
-            _pathPicker.PathChosen();
-            StartCoroutine(SpawnRate());
+        yield return new WaitForSeconds(hallwaySpawnDelay);
+
+        if (hallwayPathPicker != null)
+        {
+            hallwayPathPicker.PathChosen();
+        }
+        else
+        {
+            Debug.Log("CannotPickHallway");
+        }
+
         
        
     }
+    public IEnumerator WindowSpawn()
+    {
+
+        yield return new WaitForSeconds(windowSpawnDelay);
+
+        if (hallwayPathPicker != null)
+        {
+            windowPathPicker.PathChosen();
+        }
+        else
+        {
+            Debug.Log("CannotPickWindow");
+        }
+
+
+
+    }
+
 
     public void SetSpawnDelay(float newDelay)
     {
-        spawnDelay = newDelay;
+        hallwaySpawnDelay = newDelay;
+        windowSpawnDelay = newDelay + 3f;
     }
 } 
    

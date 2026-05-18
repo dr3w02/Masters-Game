@@ -36,7 +36,7 @@ public class W_NPCPicker : MonoBehaviour
     {
         _npcStatsSource = GetComponent<NPCSTATS>();
         _sanityScore = FindFirstObjectByType<SanityScore>();
-        windowWarning = FindAnyObjectByType<AudioSource>();
+        windowWarning = GetComponent<AudioSource>();
 
         sisterSpawnState = FindFirstObjectByType<SpawnManager>();
 
@@ -64,14 +64,19 @@ public class W_NPCPicker : MonoBehaviour
         if (chosen == null)
         {
             int index = Random.Range(0, windowGhosts.Count);
-            chosen = windowGhosts[index];
-            Debug.Log("Picked WINDOW ghost: " + chosen.ghostType);
+            npcStatistics temporaryChosen = windowGhosts[index];
+          
 
-
-            if (chosen.sisterGhost && sisterSpawnState.sisterGhostActive)
+            if (temporaryChosen.sisterGhost && sisterSpawnState.sisterGhostActive)
             {
-                StartCoroutine(StartNPCPicker(pathPicker));
+                sisterSpawnState.sisterGhostActive = false;
+                
+                pathPicker.PathChosen();
+                yield break;
             }
+
+            chosen = temporaryChosen;
+            Debug.Log("Picked WINDOW ghost: " + chosen.ghostType);
 
             if (chosen.sisterGhost)
             {
@@ -99,7 +104,12 @@ public class W_NPCPicker : MonoBehaviour
             return;
         }
 
-        chosen.ghostPrefab.SetActive(false);
+        if (chosen.ghostPrefab != null)
+        {
+            chosen.ghostPrefab.SetActive(false);
+        }
+
+     
         Debug.Log("End Of Path");
         _sanityScore.sanity -= 5;
 
@@ -121,6 +131,12 @@ public class W_NPCPicker : MonoBehaviour
             sisterSpawnState.sisterGhostActive = false;
         }
 
+        if (sisterSpawnState != null)
+        {
+            sisterSpawnState.StartWindowSpawnTimer();
+        }
+
+
 
 
     }
@@ -131,7 +147,11 @@ public class W_NPCPicker : MonoBehaviour
         {
             return;
         }
-        chosen.ghostPrefab.SetActive(false);
+        if (chosen.ghostPrefab != null)
+        {
+            chosen.ghostPrefab.SetActive(false);
+        }
+
         Debug.Log("End Of Path");
         _sanityScore.sanity += 5;
 
@@ -139,6 +159,13 @@ public class W_NPCPicker : MonoBehaviour
         {
             sisterSpawnState.sisterGhostActive = false;
         }
+
+        if (sisterSpawnState != null)
+        {
+            sisterSpawnState.StartWindowSpawnTimer();
+        }
+
+
 
     }
 
@@ -150,6 +177,13 @@ public class W_NPCPicker : MonoBehaviour
         }
 
         chosen.ghostPrefab.SetActive(false);
+
+        if (chosen.sisterGhost)
+        {
+            sisterSpawnState.sisterGhostActive = false;
+        }
+
+        chosen = null;
     }
 
 }

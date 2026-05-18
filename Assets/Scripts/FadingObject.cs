@@ -20,6 +20,7 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     public GameObject ghostAnim;
     public GameObject whiteChalk;
 
+    public Animator GhostFade;
 
     private void Awake()
     {
@@ -62,11 +63,13 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 
     public void FadeOut()
     {
+        GhostFade.Play("Fade");
         StartCoroutine(FadeOutRoutine());
     }
 
     private IEnumerator FadeOutRoutine()
     {
+      
         float elapsed = 0f;
         SetIntensity(0f); 
 

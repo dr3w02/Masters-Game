@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Numerics;
 using UnityEngine;
 
 
@@ -53,13 +52,22 @@ public class NPCPicker : MonoBehaviour
         if (chosen == null)
         {
             int index = Random.Range(0, hallwayGhosts.Count);
-            chosen = hallwayGhosts[index];
-            Debug.Log("Picked hallway ghost: " + chosen.ghostType);
+            npcStatistics temporaryChosen = hallwayGhosts[index];
+            
 
-            if (chosen.sisterGhost && sisterSpawnState.sisterGhostActive)
+            if (temporaryChosen.sisterGhost && sisterSpawnState.sisterGhostActive)
             {
-                StartCoroutine(StartNPCPicker(pathPicker));
+
+                sisterSpawnState.sisterGhostActive = false;
+
+                pathPicker.PathChosen();
+
+                yield break;
             }
+
+            chosen = temporaryChosen;
+
+            Debug.Log("Picked ghost: " + chosen.ghostType);
 
             if (chosen.sisterGhost)
             {
@@ -79,16 +87,28 @@ public class NPCPicker : MonoBehaviour
 
     public void EndOfPath() //maybe this should be here 
     {
-            _sanityScore.sanity -= chosen.sanityAmount;
-            //_pathPicker.PathChosen();
-            Debug.Log("Sanity score" + _sanityScore.sanity);
-            Debug.Log("Removed");
+        if (chosen == null)
+        {
+            return;
+        }
 
+        _sanityScore.sanity -= chosen.sanityAmount;
+
+
+        if (chosen.ghostPrefab != null)
+        {
+            chosen.ghostPrefab.SetActive(false);
+        }
 
         if (chosen.sisterGhost)
         {
             sisterSpawnState.sisterGhostActive = false;
         }
+
+        
+
+     
+       
     }
     
 
