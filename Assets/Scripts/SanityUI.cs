@@ -13,6 +13,6 @@ public class SanityUI : MonoBehaviour
 
     void Update()
     {
-        sanityText.text = "Sanity: " + Mathf.RoundToInt(_sanityScore.sanity);
+       // sanityText.text = "Sanity: " + Mathf.RoundToInt(_sanityScore.sanity);
     }
 }

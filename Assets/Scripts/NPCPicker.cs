@@ -20,12 +20,15 @@ public class NPCPicker : MonoBehaviour
 
     [SerializeField] private float delayBeforePick = 1.5f;
 
+    [Header("SisterSpawned")]
+    public SpawnManager sisterSpawnState;
+   
     public void Awake()
     {
         _npcStatsSource = GetComponent<NPCSTATS>();
         _sanityScore = FindFirstObjectByType<SanityScore>();
-        
-  
+
+        sisterSpawnState = FindFirstObjectByType<SpawnManager>();
 
     }
     private void Start()
@@ -53,7 +56,16 @@ public class NPCPicker : MonoBehaviour
             chosen = hallwayGhosts[index];
             Debug.Log("Picked hallway ghost: " + chosen.ghostType);
 
-            
+            if (chosen.sisterGhost && sisterSpawnState.sisterGhostActive)
+            {
+                StartCoroutine(StartNPCPicker(pathPicker));
+            }
+
+            if (chosen.sisterGhost)
+            {
+                sisterSpawnState.sisterGhostActive = true;
+            }
+
             chosen.ghostPrefab.SetActive(true);
 
         }
@@ -71,8 +83,12 @@ public class NPCPicker : MonoBehaviour
             //_pathPicker.PathChosen();
             Debug.Log("Sanity score" + _sanityScore.sanity);
             Debug.Log("Removed");
-          
-     
+
+
+        if (chosen.sisterGhost)
+        {
+            sisterSpawnState.sisterGhostActive = false;
+        }
     }
     
 

@@ -14,7 +14,7 @@ public class SanityScore : MonoBehaviour
     public bool sanityDecrease;
 
     
-    public GameObject gameOver;
+    
     public string sceneName;
 
 
@@ -22,8 +22,6 @@ public class SanityScore : MonoBehaviour
     public void Start()
     {
         
-
-        gameOver.SetActive(false);
         Time.timeScale = 1;
     }
     public void setMaxSanity(float maxSanity)

@@ -13,10 +13,12 @@ public class SpawnManager : MonoBehaviour
     public float spawnDelay;
     public bool spawning;
 
+    public bool sisterGhostActive;
+
     public void Awake()
     {
        
-        _pathPicker = FindFirstObjectByType<PathPicker>();
+        //_pathPicker = FindFirstObjectByType<PathPicker>();
 
 
     }

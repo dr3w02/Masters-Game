@@ -12,8 +12,14 @@ public class OpenCloseDoor : MonoBehaviour
 
     public NPCSTATS _npcStatsSource;
 
+    [Header("Audio")]
+    public AudioSource doorWarning;
+    
+
     public void Start()
     {
+        doorWarning = FindAnyObjectByType<AudioSource>();
+
         if (_sanity == null)
         {
             Debug.LogError("no sanity script");
@@ -66,11 +72,21 @@ public class OpenCloseDoor : MonoBehaviour
 
         yield return new WaitForSeconds(doorClosedAllowed);
 
-        DoorClosed();
+        var hallwayGhosts = _npcStatsSource.hallwayGhosts;
+
+        foreach (var ghost in hallwayGhosts)
+        {
+            if (ghost.ghostPrefab != null)
+            {
+                ghost.ghostPrefab.SetActive(false);
+            }
+        }
 
         AudioManager.instance.StopSFX("DoorBang");
-       
-      
+
+        doorWarning.Play();
+
+
 
 
         if (doorOpen == false)
@@ -97,19 +113,7 @@ public class OpenCloseDoor : MonoBehaviour
 
 
 
-    public void DoorClosed()
-    {
-
-        var hallwayGhosts = _npcStatsSource.hallwayGhosts;
-
-        foreach (var ghost in hallwayGhosts)
-        {
-            if (ghost.ghostPrefab != null)
-            {
-                ghost.ghostPrefab.SetActive(false);
-            }
-        }
-
-    }
+   
+    
 
 }

@@ -44,7 +44,7 @@ public class PathPicker : MonoBehaviour
         if (_wayPoints == null)
         {
 
-            Debug.Log("NotAcessable"); // Access a public variable
+            Debug.Log("NotAcessable"); 
         }
       
     

@@ -19,16 +19,22 @@ public class CandleManager : MonoBehaviour
 
     public FadingObject fading;
 
-    CandleLighting candleLighting;
+   
 
     public bool gameStarted;
-   
+
+    [Header("Audio")]
+    public AudioSource candlesAudio;
+    public bool prompted;
 
     void Start()
     {
-         candleLighting = FindAnyObjectByType<CandleLighting>();
+        
+
+        candlesAudio = FindAnyObjectByType<AudioSource>();
         //move this
         StartCandles();
+        prompted = false;
 
 
     }
@@ -37,8 +43,6 @@ public class CandleManager : MonoBehaviour
     {
 
       
-
-
         if (litCandles.Count >= Candles.Count)
         {
             if (!gameStarted)
@@ -85,8 +89,6 @@ public class CandleManager : MonoBehaviour
         }
     }
 
- 
-   
     public IEnumerator LightTurnOffRoutine()
     {
         yield return new WaitForSeconds(turnOffDelay);
@@ -105,8 +107,16 @@ public class CandleManager : MonoBehaviour
 
             if (litCandles.Count < 4)
             {
-                Debug.Log("Game Over");
+                
                 sanity.sanityDecrease = true;
+
+                if (!prompted)
+                {
+                    candlesAudio.Play();
+                    prompted = true;
+                  
+                }
+               
             }
             else
             {

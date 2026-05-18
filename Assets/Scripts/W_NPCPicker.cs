@@ -23,17 +23,28 @@ public class W_NPCPicker : MonoBehaviour
 
     [SerializeField] private float delayBeforePick = 1.5f;
 
+    [Header("Audio")]
+    public AudioSource windowWarning;
+    public bool prompted;
+    private int promptedtimes;
+
+    [Header("SisterSpawned")]
+    public SpawnManager sisterSpawnState;
+   
+
     public void Awake()
     {
         _npcStatsSource = GetComponent<NPCSTATS>();
         _sanityScore = FindFirstObjectByType<SanityScore>();
-        
+        windowWarning = FindAnyObjectByType<AudioSource>();
 
+        sisterSpawnState = FindFirstObjectByType<SpawnManager>();
 
     }
     private void Start()
     {
-      
+        promptedtimes = 0;
+        prompted = false;
 
     }
 
@@ -57,9 +68,19 @@ public class W_NPCPicker : MonoBehaviour
             Debug.Log("Picked WINDOW ghost: " + chosen.ghostType);
 
 
-         
-            chosen.ghostPrefab.SetActive(true);
+            if (chosen.sisterGhost && sisterSpawnState.sisterGhostActive)
+            {
+                StartCoroutine(StartNPCPicker(pathPicker));
+            }
 
+            if (chosen.sisterGhost)
+            {
+                sisterSpawnState.sisterGhostActive = true;
+            }
+
+
+
+            chosen.ghostPrefab.SetActive(true);
         }
 
 
@@ -67,8 +88,9 @@ public class W_NPCPicker : MonoBehaviour
         //Spawn ghost and move along path 
 
     }
-  
 
+
+   
     public void EndOfPath()
     {
 
@@ -81,6 +103,26 @@ public class W_NPCPicker : MonoBehaviour
         Debug.Log("End Of Path");
         _sanityScore.sanity -= 5;
 
+        promptedtimes += 1;
+
+        if (!prompted)
+        {
+            windowWarning.Play();
+            prompted = true;
+        }
+
+        if(promptedtimes == 2)
+        {
+            prompted = false;
+        }
+
+        if (chosen.sisterGhost)
+        {
+            sisterSpawnState.sisterGhostActive = false;
+        }
+
+
+
     }
     public void SisterEndOfPath()
     {
@@ -92,6 +134,11 @@ public class W_NPCPicker : MonoBehaviour
         chosen.ghostPrefab.SetActive(false);
         Debug.Log("End Of Path");
         _sanityScore.sanity += 5;
+
+        if (chosen.sisterGhost)
+        {
+            sisterSpawnState.sisterGhostActive = false;
+        }
 
     }
 

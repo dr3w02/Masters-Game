@@ -24,24 +24,24 @@ public class NPCSTATS : MonoBehaviour
     public GameObject Mimic;
     public GameObject Demon;
     public GameObject W_Sister;
+   
 
 
     public List<npcStatistics> hallwayGhosts = new List<npcStatistics>();
     public List<npcStatistics> windowGhosts = new List<npcStatistics>();
 
    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 0.5f, 15, Poltergeist);
-        _npcHallwayGhost2 = new npcStatistics("Residual", 0.5f,  5, Residual);
-        _npcHallwayGhost3 = new npcStatistics("Spirit", 0.5f, 10, Spirit);
-        _npcHallwaySister = new npcStatistics("H_Sister", 1, +5, H_Sister);
+        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 0.5f, 15, Poltergeist,false);
+        _npcHallwayGhost2 = new npcStatistics("Residual", 0.5f,  5, Residual, false);
+        _npcHallwayGhost3 = new npcStatistics("Spirit", 0.5f, 10, Spirit, false);
+        _npcHallwaySister = new npcStatistics("H_Sister", 1, +5, H_Sister, true);
 
         // Window
-        _npcWindowGhost1 = new npcStatistics("Mimic", 0.5f, 5, Mimic);
-        _npcWindowGhost2 = new npcStatistics("Demon", 0.5f, 20, Demon);
-        _npcWindowSister = new npcStatistics("W_Sister", 1, +2, W_Sister); // make this gradiual the longer they look 
+        _npcWindowGhost1 = new npcStatistics("Mimic", 0.5f, 5, Mimic, false);
+        _npcWindowGhost2 = new npcStatistics("Demon", 0.5f, 20, Demon, false);
+        _npcWindowSister = new npcStatistics("W_Sister", 1, +2, W_Sister, true); // make this gradiual the longer they look 
 
 
         hallwayGhosts.Add(_npcHallwayGhost1);
@@ -76,7 +76,9 @@ public class npcStatistics
 
     public GameObject ghostPrefab;
 
-    public npcStatistics(string type, float speed, int sanity, GameObject objGhost)
+    public bool sisterGhost;
+
+    public npcStatistics(string type, float speed, int sanity, GameObject objGhost, bool sister)
     {
         this.ghostType = type;
 
@@ -85,6 +87,8 @@ public class npcStatistics
         this.sanityAmount = sanity;
 
         this.ghostPrefab = objGhost;
+
+        this.sisterGhost = sister;
     }
 
    
