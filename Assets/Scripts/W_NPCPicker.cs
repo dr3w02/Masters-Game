@@ -69,9 +69,9 @@ public class W_NPCPicker : MonoBehaviour
 
             if (temporaryChosen.sisterGhost && sisterSpawnState.sisterGhostActive)
             {
-                sisterSpawnState.sisterGhostActive = false;
-                
                 pathPicker.PathChosen();
+                Debug.Log("URDONE");
+
                 yield break;
             }
 

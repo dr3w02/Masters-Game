@@ -7,7 +7,7 @@ public class PathPicker : MonoBehaviour
 {
 
     [Header("ScriptReference")]
-    private SpawnManager _manager;
+    public SpawnManager _manager;
     public WayPoints _wayPoints;
     [SerializeField]
     public NPCPicker _npcPicker;
@@ -66,6 +66,7 @@ public class PathPicker : MonoBehaviour
     public void PathChosen()
     {
 
+       
 
         if (H_Pathes.Count == 0)
         {
@@ -112,19 +113,21 @@ public class PathPicker : MonoBehaviour
         {
             _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
         }
-        else
-        {
-            Debug.LogWarning("NULLPATHES");
-            _npcPicker = FindFirstObjectByType<NPCPicker>();
-            if (_npcPicker != null) _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
-        }
+        //else
+        //{
+        //    Debug.LogWarning("NULLPATHES");
+        //    _npcPicker = GetComponent<NPCPicker>();
+        //    if (_npcPicker != null) _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
+        //}
 
         if (targetTag == "W_Pathes")
         {
-            Debug.LogWarning("NULLPATHESWINDOW");
-            _npcPicker = FindFirstObjectByType<NPCPicker>();
+            //Debug.LogWarning("NULLPATHESWINDOW");
+            //_npcPicker = GetComponent<NPCPicker>();
+
             _npcWindow.StartCoroutine(_npcWindow.StartNPCPicker(this)); 
         }
+      
 
 
 

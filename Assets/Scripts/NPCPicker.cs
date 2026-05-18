@@ -58,9 +58,10 @@ public class NPCPicker : MonoBehaviour
             if (temporaryChosen.sisterGhost && sisterSpawnState.sisterGhostActive)
             {
 
-                sisterSpawnState.sisterGhostActive = false;
+
 
                 pathPicker.PathChosen();
+                Debug.Log("URDONEhallway");
 
                 yield break;
             }
@@ -87,28 +88,34 @@ public class NPCPicker : MonoBehaviour
 
     public void EndOfPath() //maybe this should be here 
     {
+        Debug.Log("eNDoFDpATH");
         if (chosen == null)
         {
             return;
         }
 
-        _sanityScore.sanity -= chosen.sanityAmount;
-
+      
 
         if (chosen.ghostPrefab != null)
         {
             chosen.ghostPrefab.SetActive(false);
         }
 
+        _sanityScore.sanity -= chosen.sanityAmount;
+
         if (chosen.sisterGhost)
         {
             sisterSpawnState.sisterGhostActive = false;
         }
+        if (sisterSpawnState != null)
+        {
+            sisterSpawnState.StartWindowSpawnTimer();
+        }
 
-        
 
-     
-       
+
+
+
     }
     
 

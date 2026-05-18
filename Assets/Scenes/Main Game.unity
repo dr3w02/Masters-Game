@@ -23334,6 +23334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf6c03362f0b1548bfee777671845a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manager: {fileID: 1648857547}
   _wayPoints: {fileID: 0}
   _npcPicker: {fileID: 0}
   _npcWindow: {fileID: 0}
@@ -35671,7 +35672,7 @@ Transform:
   m_GameObject: {fileID: 587698204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.23447767, y: 1.246, z: 10.17168}
+  m_LocalPosition: {x: -0.23447767, y: 0.917, z: 10.17168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80017,7 +80018,7 @@ MonoBehaviour:
   timeText: {fileID: 407338930}
   sunlight: {fileID: 961930041}
   sunriseHour: 2
-  sunsetHour: 5
+  sunsetHour: 7.5
   dayAmbientLight: {r: 0.14391243, g: 0.18394074, b: 0.20754719, a: 0.2627451}
   nightAmbientLight: {r: 0.55869526, g: 0.75785977, b: 0.8773585, a: 0.09411765}
   lightChangeCurve:
@@ -93571,7 +93572,7 @@ MonoBehaviour:
   hallwayPathPicker: {fileID: 346157410}
   windowPathPicker: {fileID: 1937127581}
   hallwaySpawnDelay: 15
-  windowSpawnDelay: 25
+  windowSpawnDelay: 30
   sisterGhostActive: 0
 --- !u!1 &1648863043
 GameObject:
@@ -96207,6 +96208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf6c03362f0b1548bfee777671845a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manager: {fileID: 1648857547}
   _wayPoints: {fileID: 0}
   _npcPicker: {fileID: 0}
   _npcWindow: {fileID: 0}
