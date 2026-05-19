@@ -82121,6 +82121,7 @@ MonoBehaviour:
   gameStarted: 1
   candlesAudio: {fileID: 1475763169}
   prompted: 0
+  mainScene: 1
 --- !u!82 &1475763169
 AudioSource:
   m_ObjectHideFlags: 0
@@ -94050,6 +94051,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2040542448765327740, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750397243111347764, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

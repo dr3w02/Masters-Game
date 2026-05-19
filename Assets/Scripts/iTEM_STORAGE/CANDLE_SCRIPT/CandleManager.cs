@@ -27,24 +27,31 @@ public class CandleManager : MonoBehaviour
     [Header("Audio")]
     public AudioSource candlesAudio;
     public bool prompted;
+    public bool mainScene;
 
     void Start()
     {
-        
+
 
         candlesAudio = FindAnyObjectByType<AudioSource>();
         //move this
         StartCandles();
         prompted = false;
-        CheckAllLit();
+        if (mainScene)
+        {
+            StartCoroutine(LightTurnOffRoutine());
+
+        }
+        else
+        {
+            CheckAllLit();
+        }
 
     }
  
 
     public void CheckAllLit()
     {
-
-      
         if (litCandles.Count >= Candles.Count)
         {
             if (!gameStarted)
@@ -58,10 +65,10 @@ public class CandleManager : MonoBehaviour
             Debug.Log("all candles lit!");
         }
 
-        if (gameStarted)
-        {
-            StartCoroutine(LightTurnOffRoutine());
-        }
+        //if (gameStarted)
+        //{
+        //    StartCoroutine(LightTurnOffRoutine());
+        //}
     }
 
     public void StartCandles()
@@ -79,18 +86,18 @@ public class CandleManager : MonoBehaviour
         }
     }
 
-    public void TurnOffCandle()
-    {
-        Debug.Log("PlaceCandles");
-        InvokeRepeating("TurnOffCandleCycle", 5f, 5f);
+    //public void TurnOffCandle()
+    //{
+    //    Debug.Log("PlaceCandles");
+    //    InvokeRepeating("TurnOffCandleCycle", 5f, 5f);
 
-        bool allCandlesActive = Candles.All(c => c.activeSelf);
+    //    bool allCandlesActive = Candles.All(c => c.activeSelf);
 
-        if (!allCandlesActive)
-        {
-            // Sanity score decrease
-        }
-    }
+    //    if (!allCandlesActive)
+    //    {
+    //        // Sanity score decrease
+    //    }
+    //}
 
     public IEnumerator LightTurnOffRoutine()
     {
@@ -130,9 +137,6 @@ public class CandleManager : MonoBehaviour
 
 
         StartCoroutine(LightTurnOffRoutine());
-
-
-
 
     }
 

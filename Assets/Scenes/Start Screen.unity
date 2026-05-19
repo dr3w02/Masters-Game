@@ -34477,8 +34477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bc72d2ecc8add47b2fe00d40318500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LeftHand: {fileID: 0}
-  m_RightHand: {fileID: 0}
+  m_LeftHand: {fileID: 819513291}
+  m_RightHand: {fileID: 376024962}
   m_LeftController: {fileID: 660309774}
   m_RightController: {fileID: 576174751}
   m_TrackedHandModeStarted:

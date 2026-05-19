@@ -109,17 +109,10 @@ public class NPCPicker : MonoBehaviour
         }
         if (sisterSpawnState != null)
         {
-            sisterSpawnState.StartWindowSpawnTimer();
+            sisterSpawnState.StartHallwaySpawnTimer();
         }
 
-
-
-
-
     }
-    
-
-
 }
 
 

@@ -50,6 +50,7 @@ public class SpawnManager : MonoBehaviour
 
     public void StartHallwaySpawnTimer()
     {
+        Debug.Log("New hallway");
         StartCoroutine(HallwaySpawn());
     }
 
@@ -63,6 +64,9 @@ public class SpawnManager : MonoBehaviour
     {
         
         yield return new WaitForSeconds(hallwaySpawnDelay);
+
+
+        Debug.Log("Spawn");
 
         if (hallwayPathPicker != null)
         {
