@@ -22,11 +22,17 @@ public class OpenCloseDoor : MonoBehaviour
 
         if (_sanity == null)
         {
+            _sanity = FindAnyObjectByType<SanityScore>();
             Debug.LogError("no sanity script");
         }
 
         if (animatorDoor == null)
+        {
+            animatorDoor = GetComponent<Animator>();
             Debug.LogError("animatorDoor is null!");
+
+        }
+            
 
     }
     public void ToggleDoor()
@@ -91,10 +97,6 @@ public class OpenCloseDoor : MonoBehaviour
             doorWarning.Play();
         }
       
-
-
-
-
         if (doorOpen == false)
         {
             _sanity.sanityDecrease = true;
