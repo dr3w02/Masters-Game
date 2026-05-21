@@ -18,7 +18,7 @@ public class MenuGaze : MonoBehaviour
 
     public int waittime;
 
-    private bool select;
+    public bool select;
 
     private Button _currentButton;
 
@@ -32,8 +32,8 @@ public class MenuGaze : MonoBehaviour
 
     public void Start()
     {
-        indicatorTimer = waittime;
-        maxIndicatorTimer = waittime;
+        //indicatorTimer = waittime;
+       // maxIndicatorTimer = waittime;
 
 
     }
@@ -48,17 +48,18 @@ public class MenuGaze : MonoBehaviour
         if (select == true)
         {
 
-            indicatorTimer -= Time.deltaTime;
+            indicatorTimer += Time.deltaTime;
             radialIndicatorUI.enabled = true;
             radialIndicatorUI.fillAmount = indicatorTimer;
 
 
-            if (indicatorTimer <= 0)
+            if (indicatorTimer >= 5)
             {
                 indicatorTimer = maxIndicatorTimer;
                 radialIndicatorUI.fillAmount = maxIndicatorTimer;
 
                 radialIndicatorUI.enabled = false;
+
                 if (_currentButton != null)
                 {
                     _currentButton.onClick.Invoke();
@@ -72,10 +73,10 @@ public class MenuGaze : MonoBehaviour
         {
             if (!select)
             {
-                indicatorTimer += Time.deltaTime;
+                indicatorTimer -= Time.deltaTime;
                 radialIndicatorUI.fillAmount = indicatorTimer;
 
-                if (indicatorTimer >= maxIndicatorTimer)
+                if (indicatorTimer <= maxIndicatorTimer)
                 {
                     indicatorTimer = maxIndicatorTimer;
                     radialIndicatorUI.fillAmount = maxIndicatorTimer;
@@ -86,7 +87,7 @@ public class MenuGaze : MonoBehaviour
 
         }
     }
-
+    public bool alreadySelected;
     public void CheckForColliders()
     {
 
@@ -98,25 +99,27 @@ public class MenuGaze : MonoBehaviour
 
           
 
-            if (hitObj.CompareTag(UI))
+            if (hitObj.CompareTag(UI) && !alreadySelected) // Maybe not 
             {
                 _currentButton = hitObj.GetComponent<Button>();
                 select = true;
+                alreadySelected = true;
                 Debug.Log("HitUI");
             }
             else
             {
-                //if (select)
-                //{
-                //    select = false;
-                //    _currentButton = null;
-                //    indicatorTimer = maxIndicatorTimer;
-                //    radialIndicatorUI.fillAmount = maxIndicatorTimer;
-                //    radialIndicatorUI.enabled = false;
 
-                //    Debug.Log("DontHitUI");
-                //}
-                
+                if (alreadySelected)
+                {
+                    select = false;
+                    _currentButton = null;
+                    indicatorTimer = maxIndicatorTimer;
+                    radialIndicatorUI.fillAmount = maxIndicatorTimer;
+                    radialIndicatorUI.enabled = false;
+                    alreadySelected = false;
+                    Debug.Log("DontHitUI");
+                }
+               
             }
 
 
