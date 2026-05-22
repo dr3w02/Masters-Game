@@ -103071,9 +103071,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8276472669682167204, guid: 63a4b17f09cbc3345bf71cf452f3ce48, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8276472669682167204, guid: 63a4b17f09cbc3345bf71cf452f3ce48, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 61923ce618d57954e8f6af528d6e5fa9, type: 2}
+    - target: {fileID: -8276472669682167204, guid: 63a4b17f09cbc3345bf71cf452f3ce48, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d89f5e3c24548c43a5f604439872cd1, type: 2}
     - target: {fileID: 919132149155446097, guid: 63a4b17f09cbc3345bf71cf452f3ce48, type: 3}
       propertyPath: m_Name
       value: GhostAll@Flying 2
