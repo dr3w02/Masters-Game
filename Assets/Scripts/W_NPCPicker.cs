@@ -67,7 +67,7 @@ public class W_NPCPicker : MonoBehaviour
             npcStatistics temporaryChosen = windowGhosts[index];
           
 
-            if (temporaryChosen.sisterGhost && sisterSpawnState.sisterGhostActive)
+            if (sisterSpawnState.sisterGhostActive)
             {
                 pathPicker.PathChosen();
                 Debug.Log("URDONE");

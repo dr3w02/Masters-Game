@@ -1,9 +1,7 @@
-using JetBrains.Annotations;
-using TMPro;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static Unity.VisualScripting.Member;
+
 
 public class SanityScore : MonoBehaviour
 {
@@ -82,13 +80,24 @@ public class SanityScore : MonoBehaviour
 
         if(sanity <= 0)
         {
-            SceneManager.LoadScene(sceneName);
             Time.timeScale = 0;
+            StartCoroutine(WaitForFade());
+
         }
 
 
       
       
+    }
+
+    public IEnumerator WaitForFade()
+    {
+        Debug.Log("Waiting...");
+
+        yield return new WaitForSeconds(10f);
+
+        SceneManager.LoadScene(sceneName);
+
     }
 
     public void DecreaseSanity()

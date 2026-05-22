@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,15 @@ public class StartMenu : MonoBehaviour
 
     public GameObject creditsText;
     public GameObject controlsText;
+
+    public FadeScreen fade;
+
+
+    public void Start()
+    {
+        fade = FindFirstObjectByType<FadeScreen>();
+  
+    }
     public void Back()
     {
         start.SetActive(true);
@@ -51,7 +61,16 @@ public class StartMenu : MonoBehaviour
     }
     public void GoToNextScene()
     {
+        StartCoroutine(WaitForFade());
+    }
+
+    public IEnumerator WaitForFade()
+    {
+        Debug.Log("Waiting...");
+       
+        yield return new WaitForSeconds(10f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
 

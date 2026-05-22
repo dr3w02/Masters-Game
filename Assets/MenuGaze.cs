@@ -22,6 +22,8 @@ public class MenuGaze : MonoBehaviour
 
     private Button _currentButton;
 
+    public bool alreadySelected;
+
     [Header("Radial Timer")]
     [SerializeField] private float indicatorTimer;
     [SerializeField] private float maxIndicatorTimer;
@@ -33,15 +35,14 @@ public class MenuGaze : MonoBehaviour
     public void Start()
     {
         //indicatorTimer = waittime;
-       // maxIndicatorTimer = waittime;
+       maxIndicatorTimer = waittime;
 
 
     }
 
     public void Update()
     {
-        ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.forward * maxDistance, Color.black);
+   
 
         CheckForColliders();
 
@@ -50,46 +51,55 @@ public class MenuGaze : MonoBehaviour
 
             indicatorTimer += Time.deltaTime;
             radialIndicatorUI.enabled = true;
-            radialIndicatorUI.fillAmount = indicatorTimer;
+            radialIndicatorUI.fillAmount = indicatorTimer / maxIndicatorTimer;
 
 
-            if (indicatorTimer >= 5)
+            if (indicatorTimer >= waittime)
             {
-                indicatorTimer = maxIndicatorTimer;
-                radialIndicatorUI.fillAmount = maxIndicatorTimer;
-
                 radialIndicatorUI.enabled = false;
+
+                //indicatorTimer = maxIndicatorTimer;
+               // radialIndicatorUI.fillAmount = maxIndicatorTimer;
 
                 if (_currentButton != null)
                 {
                     _currentButton.onClick.Invoke();
                 }
 
+                indicatorTimer = 0;
                 select = false;
+                alreadySelected = true;
+
             }
         }
 
         else
         {
-            if (!select)
-            {
-                indicatorTimer -= Time.deltaTime;
-                radialIndicatorUI.fillAmount = indicatorTimer;
+            indicatorTimer = 0;
 
-                if (indicatorTimer <= maxIndicatorTimer)
-                {
-                    indicatorTimer = maxIndicatorTimer;
-                    radialIndicatorUI.fillAmount = maxIndicatorTimer;
-                    radialIndicatorUI.enabled = false;
-                    select = false;
-                }
-            }
+            radialIndicatorUI.fillAmount = 0;
+            radialIndicatorUI.enabled = false;
+            //indicatorTimer -= Time.deltaTime;
+            //    radialIndicatorUI.fillAmount = indicatorTimer;
+
+            //    if (indicatorTimer <= maxIndicatorTimer)
+            //    {
+            //        indicatorTimer = maxIndicatorTimer;
+            //        radialIndicatorUI.fillAmount = maxIndicatorTimer;
+            //        radialIndicatorUI.enabled = false;
+            //        select = false;
+            //    }
+            
 
         }
     }
-    public bool alreadySelected;
+ 
     public void CheckForColliders()
     {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        Debug.DrawRay(transform.position, transform.forward * maxDistance, Color.black);
 
 
         if (Physics.Raycast(ray, out hit, maxDistance))
@@ -99,31 +109,26 @@ public class MenuGaze : MonoBehaviour
 
           
 
-            if (hitObj.CompareTag(UI) && !alreadySelected) // Maybe not 
+            if (hitObj.CompareTag(UI) && !alreadySelected) 
             {
                 _currentButton = hitObj.GetComponent<Button>();
                 select = true;
-                alreadySelected = true;
+
                 Debug.Log("HitUI");
-            }
-            else
-            {
+                return;
 
-                if (alreadySelected)
-                {
-                    select = false;
-                    _currentButton = null;
-                    indicatorTimer = maxIndicatorTimer;
-                    radialIndicatorUI.fillAmount = maxIndicatorTimer;
-                    radialIndicatorUI.enabled = false;
-                    alreadySelected = false;
-                    Debug.Log("DontHitUI");
-                }
-               
+
             }
 
+            
+            select = false;
+            _currentButton = null;
+            alreadySelected = false;
 
-          
+            Debug.Log("DontHitUI");
+
+
+
 
             Debug.Log("hit" + hit.collider.gameObject.name);
 

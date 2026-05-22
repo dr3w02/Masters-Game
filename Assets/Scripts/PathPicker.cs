@@ -99,7 +99,16 @@ public class PathPicker : MonoBehaviour
 
         //set inital postion to the first waypoint
         _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-        transform.position = _wayPoints.currentWaypoint.position;
+
+        if(_wayPoints.currentWaypoint != null)
+        {
+            transform.position = _wayPoints.currentWaypoint.position;
+        }
+        else
+        {
+            Debug.Log("Varible is missign!!!", _wayPoints.currentWaypoint);
+        }
+       
 
         //Set the next waypoint target
         _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
@@ -112,18 +121,14 @@ public class PathPicker : MonoBehaviour
         if(targetTag == "Pathes")
         {
             _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
+            Debug.Log("lost the npc picker!");
+
         }
-        //else
-        //{
-        //    Debug.LogWarning("NULLPATHES");
-        //    _npcPicker = GetComponent<NPCPicker>();
-        //    if (_npcPicker != null) _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
-        //}
+
 
         if (targetTag == "W_Pathes")
         {
-            //Debug.LogWarning("NULLPATHESWINDOW");
-            //_npcPicker = GetComponent<NPCPicker>();
+            Debug.Log("lost the npc picker");
 
             _npcWindow.StartCoroutine(_npcWindow.StartNPCPicker(this)); 
         }

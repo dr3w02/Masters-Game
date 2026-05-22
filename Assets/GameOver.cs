@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,8 +8,17 @@ public class GameOver : MonoBehaviour
 
     public void GoodEnding()
     {
-       
-        SceneManager.LoadScene(sceneName);
-      
+        StartCoroutine(WaitForFade());
     }
+
+    public IEnumerator WaitForFade()
+    {
+        Debug.Log("Waiting...");
+
+        yield return new WaitForSeconds(10f);
+
+        SceneManager.LoadScene(sceneName);
+
+    }
+  
 }

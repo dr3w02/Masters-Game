@@ -13,6 +13,7 @@ public class WayPointMover : MonoBehaviour
 
     private bool initialized = false;
 
+    
     public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
