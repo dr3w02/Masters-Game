@@ -87,6 +87,7 @@ public class WayPointMover : MonoBehaviour
 
     }
 
+    public FadeGhosts fadeGhosts;
     private void Movement()
     {
 
@@ -112,9 +113,9 @@ public class WayPointMover : MonoBehaviour
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
                 Debug.Log("EndOfPath");
-                
-                _npcPicker.EndOfPath();
-                gameObject.SetActive(false);
+                fadeGhosts.TriggerFade();
+                //_npcPicker.EndOfPath();
+                //gameObject.SetActive(false);
                 return;
             }
 

@@ -67,9 +67,12 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Distort_Speed: 1
+    - _EdgeWidtih: 0.01
     - _Emission_Strength: 1.05
     - _Enable_Texture: 1
+    - _Fade: 0
     - _Float: 0.509
+    - _NoiseScale: 30
     - _Opacity_Global: 1
     - _Opacity_On_Centre: 0
     - _Opacity_On_Side: 1
@@ -91,6 +94,7 @@ Material:
     - _Color_B: {r: 0, g: 0, b: 0, a: 0}
     - _Distort_Tile_XY: {r: 20, g: 20, b: 0, a: 0}
     - _Distortion_X_Y: {r: 8, g: 8, b: 0, a: 0}
+    - _EdgeColor: {r: 0.22352943, g: 0.23137257, b: 0.53333336, a: 0}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Offset_Tex_2: {r: 1, g: 1, b: 0, a: 0}

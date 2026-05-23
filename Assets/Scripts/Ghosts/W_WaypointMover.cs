@@ -14,6 +14,7 @@ public class W_WaypointMover : MonoBehaviour
 
     public bool sister;
 
+    public FadeGhosts _fadeGhosts;
     public void Initialize(WayPoints wayPoints, W_NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
@@ -113,14 +114,16 @@ public class W_WaypointMover : MonoBehaviour
 
                 if (sister)
                 {
-                    _npcPicker.SisterEndOfPath();
+                    _fadeGhosts.sister = true;
+                    _fadeGhosts.TriggerFade();
                 }
                 else
                 {
-                    _npcPicker.EndOfPath();
+                    _fadeGhosts.window = true;
+                    _fadeGhosts.TriggerFade();
                 }
 
-                gameObject.SetActive(false);
+               
                 return;
             }
 
@@ -156,7 +159,7 @@ public class W_WaypointMover : MonoBehaviour
         }
     }
 
-  
+
 }
 
 

@@ -13,10 +13,12 @@ public class SanityScore : MonoBehaviour
 
     
     
-    public string sceneName;
+ 
 
 
     public FadingObject effects;
+    public FadeScreen fade;
+
     public void Start()
     {
         
@@ -80,7 +82,7 @@ public class SanityScore : MonoBehaviour
 
         if(sanity <= 0)
         {
-            Time.timeScale = 0;
+            NPCS.SetActive(false);
             StartCoroutine(WaitForFade());
 
         }
@@ -89,14 +91,17 @@ public class SanityScore : MonoBehaviour
       
       
     }
+    public GameObject NPCS;
 
     public IEnumerator WaitForFade()
     {
         Debug.Log("Waiting...");
+        fade.FadeOut();
 
-        yield return new WaitForSeconds(10f);
-
-        SceneManager.LoadScene(sceneName);
+        yield return new WaitForSeconds(5f);
+        NPCS.SetActive(true);
+        SceneManager.LoadScene(4);
+        
 
     }
 

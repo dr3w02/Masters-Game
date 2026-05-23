@@ -2,16 +2,23 @@ using UnityEngine;
 
 public class FadeGhosts : MonoBehaviour
 {
-    // Drag your ghost's Mesh object here in the Inspector
-    public Renderer ghostRenderer;
+    public SkinnedMeshRenderer ghostRenderer;
     public float fadeSpeed = 0.5f;
 
-    private float fadeValue = 1f;
+    private float fadeValue = 0f;
     private bool shouldFade = false;
 
-    // Call this public function from your waypoint script when the ghost arrives
+    [SerializeField] private NPCPicker _npcPicker;
+
+    [SerializeField] private W_NPCPicker _windowNpcPicker;
+
+    public bool sister;
+    public bool window; 
+
+
     public void TriggerFade()
     {
+        Debug.Log("Fade Triggered");
         shouldFade = true;
     }
 
@@ -19,16 +26,38 @@ public class FadeGhosts : MonoBehaviour
     {
         if (shouldFade)
         {
-            // Drop the value down over time
-            fadeValue -= Time.deltaTime * fadeSpeed;
+           
+            fadeValue += Time.deltaTime * fadeSpeed;
+            fadeValue = Mathf.Clamp(fadeValue, 0f, 5f);
 
-            // Send that number to your shader property
             ghostRenderer.material.SetFloat("_Fade", fadeValue);
 
-            // Once it completely vanishes, delete the ghost
-            if (fadeValue <= 0f)
+
+            //Delete
+
+            if (fadeValue >= 5f)
             {
-              
+               
+                if (sister)
+                {
+                    sister = false;
+                    _windowNpcPicker.SisterEndOfPath();
+                    Debug.Log("Sisterendofpath");
+                }
+
+                if (window)
+                {
+                    window = false;
+                    _windowNpcPicker.EndOfPath();
+                    Debug.Log("Windowendofpath");
+                }
+                else
+                {
+                    _npcPicker.EndOfPath();
+
+                }
+
+
             }
         }
     }

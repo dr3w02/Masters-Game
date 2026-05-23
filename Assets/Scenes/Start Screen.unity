@@ -3216,6 +3216,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flame: {fileID: 514546276}
   isLit: 0
+--- !u!1 &374448195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 374448196}
+  m_Layer: 0
+  m_Name: Game TitleWhite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &374448196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374448195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &376024962
 GameObject:
   m_ObjectHideFlags: 0
@@ -22602,13 +22633,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nGrab - Make A Fist With Your Hands over or near the object.\n\nGrabable
-    Items \n\n\t- Lighter \n\t- Door \n\t- Papers \n\nThe Blue Ghosts Disapear whn
-    you look at them.\nThe White Ghost will also disapear at the window, dont look
-    at her or you'll lose your connection.\n\nRed Ghosts disapear when you shut the
-    door on them.\nThe White ghost will also disapear from the shut door dont close
-    it on her or keep it shut or you'll loose ur connection. \n\nGoal of The Game
-    KEEP UR CONNECTION STRONG TILL 8AM to contact your sister one last time.\n"
+  m_text: "Grab - Make A Fist With Your Hands over or near the object.\r\n\r\nGrabable
+    Items \r\n\r\n\t- Lighter \r\n\t- Door \r\n\t- Papers \r\n\r\nThe Blue Ghosts
+    disappear when you look at them.\r\n\r\nThe White Ghost will also disappear at
+    the window. Don't look at her, or you'll lose your connection.\r\n\r\nRed Ghosts
+    disappear when you shut the door on them.\r\n\r\nThe White ghost will also disappear
+    from the shut door, don't close it on her or keep it shut, or you'll loose ur
+    connection. \r\n\r\nThe goal of the game is to KEEP your CONNECTION STRONG TILL
+    8 AM to contact your sister one last time.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 04ced526d0d4b6d4cb4efce2683b1fd2, type: 2}
   m_sharedMaterial: {fileID: -5205571438606302200, guid: 04ced526d0d4b6d4cb4efce2683b1fd2, type: 2}
@@ -71745,3 +71777,4 @@ SceneRoots:
   - {fileID: 1934877236}
   - {fileID: 1116721785}
   - {fileID: 997931994}
+  - {fileID: 374448196}

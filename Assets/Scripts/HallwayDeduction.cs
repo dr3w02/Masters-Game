@@ -20,7 +20,7 @@ public class HallwayDeduction : MonoBehaviour
         if (other.CompareTag("H_NPC"))
         {
             Debug.Log("Done");
-            _npcPicker.EndOfPath();
+           // _npcPicker.EndOfPath();
         }
         else
         {

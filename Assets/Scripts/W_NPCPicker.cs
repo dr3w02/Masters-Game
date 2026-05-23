@@ -11,9 +11,6 @@ public class W_NPCPicker : MonoBehaviour
 
     public bool resetwayPointMover;
 
-  
-
-
     public npcStatistics chosen;
     public int randomIndex;
 
