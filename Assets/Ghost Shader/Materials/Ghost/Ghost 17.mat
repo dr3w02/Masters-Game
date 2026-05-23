@@ -68,7 +68,7 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _Distort_Speed: 2
     - _EdgeWidtih: 0.01
-    - _Emission_Strength: 0.2
+    - _Emission_Strength: 0.26
     - _Enable_Texture: 1
     - _Fade: 0
     - _Float: 0.509
@@ -82,7 +82,7 @@ Material:
     - _Speed: 1
     - _Text_2_Animation_X: 1.75
     - _Text_2_Animation_Y: 5.03
-    - _Texture_2_Opacity: 1
+    - _Texture_2_Opacity: 0.616
     - _Texture_Opacity: 1
     - _Texture_Opacity_Full: 0
     - _Texture_Strength: 1
@@ -90,17 +90,17 @@ Material:
     m_Colors:
     - _Color: {r: 0, g: 0.46740404, b: 2.670157, a: 0}
     - _Color_1: {r: 2.811218, g: 0, b: 2.9960785, a: 0}
-    - _Color_A: {r: 0, g: 0, b: 0, a: 0}
-    - _Color_B: {r: 4.7071548, g: 4.7071548, b: 4.7071548, a: 0}
+    - _Color_A: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 0}
+    - _Color_B: {r: 6.2844214, g: 6.2844214, b: 6.2844214, a: 0}
     - _Distort_Tile_XY: {r: 20, g: 20, b: 0, a: 0}
     - _Distortion_X_Y: {r: 25, g: 26.37, b: 0, a: 0}
-    - _EdgeColor: {r: 1, g: 1, b: 1, a: 0}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Offset_Tex_2: {r: 1, g: 1, b: 0, a: 0}
     - _Texture_1_Color: {r: 0.103773594, g: 0.08370417, b: 0.08370417, a: 0}
     - _Texture_2D_Color: {r: 0, g: 11.984314, b: 8.282353, a: 0}
-    - _Texture_2_Color: {r: 13.433962, g: 13.433962, b: 13.433962, a: 0}
+    - _Texture_2_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0}
     - _Tile_X_Y: {r: 15.14, g: 33.7, b: 0, a: 0}
     - _Tiling: {r: 1.97, g: 1, b: 0, a: 0}
     - _Tiling_Tex_2: {r: 2.42, g: 3.27, b: 0, a: 0}

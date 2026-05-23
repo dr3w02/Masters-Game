@@ -13,8 +13,9 @@ public class FadeGhosts : MonoBehaviour
     [SerializeField] private W_NPCPicker _windowNpcPicker;
 
     public bool sister;
-    public bool window; 
+    public bool window;
 
+    public AudioSource ghostChuckle;
 
     public void TriggerFade()
     {
@@ -37,9 +38,11 @@ public class FadeGhosts : MonoBehaviour
 
             if (fadeValue >= 5f)
             {
-               
+                ghostChuckle.Play();
+
                 if (sister)
                 {
+                  
                     sister = false;
                     _windowNpcPicker.SisterEndOfPath();
                     Debug.Log("Sisterendofpath");
@@ -47,12 +50,14 @@ public class FadeGhosts : MonoBehaviour
 
                 if (window)
                 {
+                    
                     window = false;
                     _windowNpcPicker.EndOfPath();
                     Debug.Log("Windowendofpath");
                 }
                 else
                 {
+                    
                     _npcPicker.EndOfPath();
 
                 }

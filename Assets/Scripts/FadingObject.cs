@@ -20,10 +20,12 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     public GameObject ghostAnim;
     public GameObject whiteChalk;
 
+    public GameObject particalEffect;
     public Animator GhostFade;
 
     private void Awake()
     {
+        particalEffect.SetActive(false);
         _position = transform.position;
 
         Materials.Clear();
@@ -69,7 +71,9 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 
     private IEnumerator FadeOutRoutine()
     {
-      
+        particalEffect.SetActive(true);
+
+
         float elapsed = 0f;
         SetIntensity(0f); 
 

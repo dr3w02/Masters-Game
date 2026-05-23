@@ -13,8 +13,9 @@ public class WayPointMover : MonoBehaviour
 
     private bool initialized = false;
 
+   
+  
 
-    public AudioSource ghostChuckle;
     public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
@@ -114,7 +115,7 @@ public class WayPointMover : MonoBehaviour
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
                 Debug.Log("EndOfPath");
-                ghostChuckle.Play();
+               
                 fadeGhosts.TriggerFade();
                 //_npcPicker.EndOfPath();
                 //gameObject.SetActive(false);

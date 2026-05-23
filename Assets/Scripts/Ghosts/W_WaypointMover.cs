@@ -16,7 +16,7 @@ public class W_WaypointMover : MonoBehaviour
 
     public FadeGhosts _fadeGhosts;
 
-    public AudioSource ghostChuckle;
+    
     public void Initialize(WayPoints wayPoints, W_NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
@@ -123,7 +123,7 @@ public class W_WaypointMover : MonoBehaviour
                 else
                 {
                     _fadeGhosts.window = true;
-                    ghostChuckle.Play();
+        
                     _fadeGhosts.TriggerFade();
                 }
 

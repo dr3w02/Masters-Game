@@ -19,6 +19,9 @@ public class SanityScore : MonoBehaviour
     public FadingObject effects;
     public FadeScreen fade;
 
+
+    public AudioSource imagePrompt;
+    public bool prompt;
     public void Start()
     {
         
@@ -65,6 +68,12 @@ public class SanityScore : MonoBehaviour
 
         if (sanity < 20)
         {
+            if (!prompt)
+            {
+                imagePrompt.Play();
+                prompt = true;
+            }
+        
             AudioManager.instance.PlaySFX("Breathing");
        
         }
@@ -82,6 +91,7 @@ public class SanityScore : MonoBehaviour
 
         if(sanity <= 0)
         {
+            prompt = false;
             NPCS.SetActive(false);
             StartCoroutine(WaitForFade());
 
