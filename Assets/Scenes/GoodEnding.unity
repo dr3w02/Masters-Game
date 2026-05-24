@@ -34183,6 +34183,7 @@ MonoBehaviour:
   fadeDuration: 5
   ghostAnim: {fileID: 0}
   whiteChalk: {fileID: 0}
+  particalEffect: {fileID: 0}
   GhostFade: {fileID: 0}
 --- !u!1 &609639036
 GameObject:

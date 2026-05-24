@@ -3,7 +3,7 @@ using UnityEngine;
 public class FadeGhosts : MonoBehaviour
 {
     public SkinnedMeshRenderer ghostRenderer;
-    public float fadeSpeed = 0.5f;
+    public float fadeSpeed = 2f;
 
     private float fadeValue = 0f;
     private bool shouldFade = false;
@@ -15,10 +15,15 @@ public class FadeGhosts : MonoBehaviour
     public bool sister;
     public bool window;
 
-    public AudioSource ghostChuckle;
+   
 
+    public void Start()
+    {
+        
+    }
     public void TriggerFade()
     {
+      
         Debug.Log("Fade Triggered");
         shouldFade = true;
     }
@@ -27,7 +32,8 @@ public class FadeGhosts : MonoBehaviour
     {
         if (shouldFade)
         {
-           
+
+
             fadeValue += Time.deltaTime * fadeSpeed;
             fadeValue = Mathf.Clamp(fadeValue, 0f, 5f);
 
@@ -38,13 +44,14 @@ public class FadeGhosts : MonoBehaviour
 
             if (fadeValue >= 5f)
             {
-                ghostChuckle.Play();
+               
 
                 if (sister)
                 {
                   
                     sister = false;
                     _windowNpcPicker.SisterEndOfPath();
+                   
                     Debug.Log("Sisterendofpath");
                 }
 
@@ -53,15 +60,24 @@ public class FadeGhosts : MonoBehaviour
                     
                     window = false;
                     _windowNpcPicker.EndOfPath();
+                    
                     Debug.Log("Windowendofpath");
                 }
                 else
                 {
                     
                     _npcPicker.EndOfPath();
+                    
 
                 }
 
+                fadeValue = 0f;
+
+             
+                ghostRenderer.material.SetFloat("_Fade", fadeValue);
+
+
+                shouldFade = false;
 
             }
         }

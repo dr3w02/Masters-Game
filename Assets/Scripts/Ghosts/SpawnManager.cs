@@ -103,6 +103,7 @@ public class SpawnManager : MonoBehaviour
     {
         hallwaySpawnDelay = newDelay;
         windowSpawnDelay = newDelay + 3f;
+
     }
 } 
    

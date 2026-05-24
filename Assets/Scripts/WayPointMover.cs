@@ -7,15 +7,16 @@ public class WayPointMover : MonoBehaviour
     [SerializeField] public WayPoints _wayPoints;
     [SerializeField] private NPCSTATS _npcStatsSource;
     [SerializeField] private PathPicker _pathPicker;
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed = 1.5f;
     [SerializeField] private float distanceThreshold = 0.1f;
     [SerializeField] private NPCPicker _npcPicker;
 
     private bool initialized = false;
 
-   
-  
 
+
+    public AudioSource ghostChuckle;
+    
     public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
@@ -38,6 +39,9 @@ public class WayPointMover : MonoBehaviour
 
 
 
+
+        ghostChuckle = GetComponent<AudioSource>();
+       
         ResetToStart();
 
         Debug.Log("gv.currentwaypoint");
@@ -110,12 +114,14 @@ public class WayPointMover : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) < distanceThreshold)
         {
-            
-            
+
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
                 Debug.Log("EndOfPath");
-               
+
+
+                ghostChuckle.Play();
+
                 fadeGhosts.TriggerFade();
                 //_npcPicker.EndOfPath();
                 //gameObject.SetActive(false);

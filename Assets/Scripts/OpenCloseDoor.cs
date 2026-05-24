@@ -14,7 +14,8 @@ public class OpenCloseDoor : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource doorWarning;
-    
+
+
 
     public void Start()
     {
@@ -32,9 +33,10 @@ public class OpenCloseDoor : MonoBehaviour
             Debug.LogError("animatorDoor is null!");
 
         }
-            
-
     }
+    
+
+
     public void ToggleDoor()
     {
         Debug.Log("Door Activated");
@@ -57,7 +59,8 @@ public class OpenCloseDoor : MonoBehaviour
         else
         {
            
-            AudioManager.instance.PlaySFX("DoorCreak");
+            AudioManager.instance.PlaySFX("DoorCreak"); 
+            AudioManager.instance.StopSFX("DoorBang");
             animatorDoor.SetBool("isOpen", false);
             animatorDoor.SetBool("isClosed", true);
             doorOpen = false;
