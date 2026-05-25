@@ -23,14 +23,16 @@ public class OpenCloseDoor : MonoBehaviour
 
         if (_sanity == null)
         {
-            _sanity = FindAnyObjectByType<SanityScore>();
-            Debug.LogError("no sanity script");
+            //_sanity = FindAnyObjectByType<SanityScore>();
+            //Debug.LogError("no sanity script");
+            //return;
         }
 
         if (animatorDoor == null)
         {
             animatorDoor = GetComponent<Animator>();
             Debug.LogError("animatorDoor is null!");
+            return;
 
         }
     }
