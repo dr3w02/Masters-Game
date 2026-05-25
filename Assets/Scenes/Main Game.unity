@@ -6970,6 +6970,7 @@ Transform:
   - {fileID: 1144522128}
   - {fileID: 359490717}
   - {fileID: 1594419477}
+  - {fileID: 1378691164}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &243244144 stripped
@@ -8247,7 +8248,7 @@ MonoBehaviour:
   _npcPicker: {fileID: 346157408}
   ghostEnded: 0
   fadeGhosts: {fileID: 388263418}
-  ghostChuckle: {fileID: 0}
+  ghostChuckle: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
 --- !u!54 &388263417
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8300,7 +8301,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388263413}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
@@ -42936,7 +42937,7 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
+  _pointableElement: {fileID: 747512454}
   _rigidbody: {fileID: 852122150}
   _physicsGrabbable: {fileID: 0}
   _resetGrabOnGrabsUpdated: 1
@@ -44221,7 +44222,7 @@ MonoBehaviour:
   _npcPicker: {fileID: 1937127584}
   sister: 1
   _fadeGhosts: {fileID: 864237794}
-  ghostChuckle: {fileID: 864237795}
+  ghostChuckle: {fileID: 8300000, guid: 51b91670e1af4b0478c2cf8561703734, type: 3}
 --- !u!114 &864237794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44247,7 +44248,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864237788}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 51b91670e1af4b0478c2cf8561703734, type: 3}
@@ -45014,7 +45015,7 @@ MonoBehaviour:
   - {fileID: 937280221}
   m_InteractionLayers:
     m_Bits: 1
-  m_DistanceCalculationMode: 1
+  m_DistanceCalculationMode: 0
   m_SelectMode: 0
   m_FocusMode: 1
   m_CustomReticle: {fileID: 0}
@@ -64923,7 +64924,7 @@ MonoBehaviour:
   _npcPicker: {fileID: 346157408}
   ghostEnded: 0
   fadeGhosts: {fileID: 1308679151}
-  ghostChuckle: {fileID: 0}
+  ghostChuckle: {fileID: 8300000, guid: 51b91670e1af4b0478c2cf8561703734, type: 3}
 --- !u!54 &1308679150
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -64976,7 +64977,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308679146}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 51b91670e1af4b0478c2cf8561703734, type: 3}
@@ -65513,6 +65514,135 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 888ce82c0af2ab0499d39c93fb0f4ce4, type: 3}
+--- !u!1 &1378691163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378691164}
+  - component: {fileID: 1378691165}
+  m_Layer: 0
+  m_Name: LookedAtGhosts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1378691164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378691163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 236572035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1378691165
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378691163}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 255147d37ea0a284f82498aacf0c3ae3, type: 3}
+  m_Resource: {fileID: 8300000, guid: 255147d37ea0a284f82498aacf0c3ae3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1382236667
 GameObject:
   m_ObjectHideFlags: 0
@@ -66121,7 +66251,7 @@ MonoBehaviour:
   _npcPicker: {fileID: 346157408}
   ghostEnded: 0
   fadeGhosts: {fileID: 1436119263}
-  ghostChuckle: {fileID: 0}
+  ghostChuckle: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
 --- !u!54 &1436119262
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -66174,7 +66304,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436119258}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
@@ -79629,7 +79759,7 @@ MonoBehaviour:
   _npcPicker: {fileID: 346157408}
   ghostEnded: 0
   fadeGhosts: {fileID: 1835190554}
-  ghostChuckle: {fileID: 1835190555}
+  ghostChuckle: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
 --- !u!54 &1835190553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79682,7 +79812,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835190549}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
@@ -80130,7 +80260,7 @@ MonoBehaviour:
   _npcPicker: {fileID: 1937127584}
   sister: 0
   _fadeGhosts: {fileID: 1898502440}
-  ghostChuckle: {fileID: 1898502441}
+  ghostChuckle: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
 --- !u!54 &1898502438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80199,7 +80329,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898502435}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
@@ -80652,6 +80782,7 @@ MonoBehaviour:
   delayBeforePick: 1.5
   windowWarning: {fileID: 0}
   prompted: 0
+  lookedAtGhostsAudio: {fileID: 1378691165}
   sisterSpawnState: {fileID: 1648857547}
 --- !u!82 &1937127585
 AudioSource:
@@ -88907,7 +89038,7 @@ MonoBehaviour:
   _npcPicker: {fileID: 1937127584}
   sister: 0
   _fadeGhosts: {fileID: 2139508832}
-  ghostChuckle: {fileID: 2139508833}
+  ghostChuckle: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
 --- !u!114 &2139508832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88933,7 +89064,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139508826}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: da563c89897278046aec9bad42631f29, type: 3}
