@@ -18,7 +18,7 @@ public class CandleManager : MonoBehaviour
     public bool isTurningOff = false;
     public SanityScore sanity;
 
-    public FadingObject fading;
+    public FadeScreen fading;
 
    
 

@@ -34143,48 +34143,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 601046662}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
 --- !u!4 &601046659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
   m_PrefabInstance: {fileID: 601046658}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &601046660 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -4780072770720950627, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-  m_PrefabInstance: {fileID: 601046658}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &601046661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-  m_PrefabInstance: {fileID: 601046658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &601046662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601046661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1012ddbf089d6c4db14f716e04c2ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Renderers:
-  - {fileID: 601046660}
-  _position: {x: 0, y: 0, z: 0}
-  Materials: []
-  InitialAlpha: 1
-  fadeDuration: 5
-  ghostAnim: {fileID: 0}
-  whiteChalk: {fileID: 0}
-  particalEffect: {fileID: 0}
-  GhostFade: {fileID: 0}
 --- !u!1 &609639036
 GameObject:
   m_ObjectHideFlags: 0
@@ -50698,7 +50663,6 @@ GameObject:
   - component: {fileID: 1386334363}
   - component: {fileID: 1386334362}
   - component: {fileID: 1386334361}
-  - component: {fileID: 1386334360}
   m_Layer: 0
   m_Name: DayLight
   m_TagString: Untagged
@@ -50706,50 +50670,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1386334360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386334359}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c788478fbfdba75488b35f9465f94e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _light: {fileID: 0}
-  _worldTime: {fileID: 0}
-  _gradient:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 0, g: 0.05450733, b: 0.122641504, a: 1}
-    key2: {r: 0.00057849905, g: 0.052520197, b: 0.122641504, a: 0}
-    key3: {r: 0.2783464, g: 0.33936146, b: 0.4245283, a: 0}
-    key4: {r: 0.42474803, g: 0.5768792, b: 0.75736475, a: 0}
-    key5: {r: 0.8679245, g: 0.8175759, b: 0.3725525, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 1349
-    ctime1: 26021
-    ctime2: 51850
-    ctime3: 56476
-    ctime4: 61680
-    ctime5: 65535
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 6
-    m_NumAlphaKeys: 2
 --- !u!114 &1386334361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57418,7 +57338,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1735169272}
-  - component: {fileID: 1735169274}
   - component: {fileID: 1735169273}
   m_Layer: 0
   m_Name: Candle Manager
@@ -57549,38 +57468,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1735169274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735169271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce4bbbb3b98aae42b867d6f2a1b3282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Candles: []
-  litCandles:
-  - {fileID: 1897087280}
-  - {fileID: 2036209583}
-  - {fileID: 1371078500}
-  - {fileID: 66465663}
-  - {fileID: 1326415746}
-  - {fileID: 2113771892}
-  - {fileID: 1292846234}
-  - {fileID: 1856037312}
-  - {fileID: 2136659976}
-  - {fileID: 1884864971}
-  turnOffDelay: 2
-  isTurningOff: 0
-  sanity: {fileID: 0}
-  fading: {fileID: 0}
-  gameStarted: 0
-  candlesAudio: {fileID: 1735169273}
-  prompted: 0
-  mainScene: 0
 --- !u!1 &1736528132
 GameObject:
   m_ObjectHideFlags: 0

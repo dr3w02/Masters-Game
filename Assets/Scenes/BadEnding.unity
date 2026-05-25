@@ -29833,7 +29833,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 512130455}
-  - component: {fileID: 512130458}
   - component: {fileID: 512130457}
   - component: {fileID: 512130456}
   m_Layer: 0
@@ -29907,25 +29906,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &512130458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512130454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wayPoints: {fileID: 0}
-  _npcStatsSource: {fileID: 0}
-  _pathPicker: {fileID: 0}
-  moveSpeed: 1.5
-  distanceThreshold: 0.1
-  _npcPicker: {fileID: 0}
-  fadeGhosts: {fileID: 0}
 --- !u!1 &518789479
 GameObject:
   m_ObjectHideFlags: 0
@@ -30191,7 +30171,6 @@ Transform:
   m_LocalScale: {x: 10.715399, y: 9.2088375, z: 9.208834}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 601046659}
   - {fileID: 2068783568}
   m_Father: {fileID: 755683380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35632,131 +35611,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 180785120e07d4647bc884f16564c7d5, type: 3}
   m_PrefabInstance: {fileID: 598590511}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &601046658
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 542271577}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.018537488
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.018659161
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.019560399
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.127
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0262
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0187
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7922461
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.6102018
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 75.208
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4780072770720950627, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4780072770720950627, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 4c60c2c363f32bc468b02bdc3342338c, type: 2}
-    - target: {fileID: 919132149155446097, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_Name
-      value: Paper Alive
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2040542448765327740, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 601046662}
-  m_SourcePrefab: {fileID: 100100000, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
---- !u!4 &601046659 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-  m_PrefabInstance: {fileID: 601046658}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &601046660 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -4780072770720950627, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-  m_PrefabInstance: {fileID: 601046658}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &601046661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cf6255eb369949469b5e80813c41ce4, type: 3}
-  m_PrefabInstance: {fileID: 601046658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &601046662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601046661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1012ddbf089d6c4db14f716e04c2ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Renderers:
-  - {fileID: 601046660}
-  _position: {x: 0, y: 0, z: 0}
-  Materials: []
-  InitialAlpha: 1
-  fadeDuration: 5
-  ghostAnim: {fileID: 0}
-  whiteChalk: {fileID: 0}
-  particalEffect: {fileID: 0}
-  GhostFade: {fileID: 0}
 --- !u!1 &615418970
 GameObject:
   m_ObjectHideFlags: 0
@@ -41810,7 +41664,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 738197931}
-  - component: {fileID: 738197934}
   - component: {fileID: 738197933}
   - component: {fileID: 738197932}
   m_Layer: 0
@@ -41884,25 +41737,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &738197934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 738197930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wayPoints: {fileID: 0}
-  _npcStatsSource: {fileID: 0}
-  _pathPicker: {fileID: 0}
-  moveSpeed: 1.5
-  distanceThreshold: 0.1
-  _npcPicker: {fileID: 0}
-  fadeGhosts: {fileID: 0}
 --- !u!1001 &749167942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42588,7 +42422,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 847511488}
-  - component: {fileID: 847511491}
   - component: {fileID: 847511490}
   - component: {fileID: 847511489}
   m_Layer: 0
@@ -42662,25 +42495,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &847511491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847511487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wayPoints: {fileID: 0}
-  _npcStatsSource: {fileID: 0}
-  _pathPicker: {fileID: 0}
-  moveSpeed: 1.5
-  distanceThreshold: 0.1
-  _npcPicker: {fileID: 0}
-  fadeGhosts: {fileID: 0}
 --- !u!1001 &858363463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48726,7 +48540,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1109895018}
-  - component: {fileID: 1109895017}
   - component: {fileID: 1109895016}
   - component: {fileID: 1109895015}
   - component: {fileID: 1109895019}
@@ -48786,25 +48599,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1109895017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109895014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wayPoints: {fileID: 0}
-  _npcStatsSource: {fileID: 0}
-  _pathPicker: {fileID: 0}
-  moveSpeed: 1.5
-  distanceThreshold: 0.1
-  _npcPicker: {fileID: 0}
-  fadeGhosts: {fileID: 0}
 --- !u!4 &1109895018
 Transform:
   m_ObjectHideFlags: 0
@@ -64781,7 +64575,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1821720727}
-  - component: {fileID: 1821720729}
   - component: {fileID: 1821720728}
   m_Layer: 0
   m_Name: Candle Manager
@@ -64912,38 +64705,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1821720729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821720726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cce4bbbb3b98aae42b867d6f2a1b3282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Candles: []
-  litCandles:
-  - {fileID: 617879739}
-  - {fileID: 355007024}
-  - {fileID: 527586622}
-  - {fileID: 79666436}
-  - {fileID: 1216596800}
-  - {fileID: 952882697}
-  - {fileID: 1806700220}
-  - {fileID: 648259291}
-  - {fileID: 753181770}
-  - {fileID: 334379337}
-  turnOffDelay: 2
-  isTurningOff: 0
-  sanity: {fileID: 0}
-  fading: {fileID: 0}
-  gameStarted: 0
-  candlesAudio: {fileID: 1821720728}
-  prompted: 0
-  mainScene: 0
 --- !u!1 &1822688485
 GameObject:
   m_ObjectHideFlags: 0
@@ -70127,7 +69888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1832498405
 Transform:
   m_ObjectHideFlags: 0
@@ -70220,7 +69981,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1865435660}
-  - component: {fileID: 1865435663}
   - component: {fileID: 1865435662}
   - component: {fileID: 1865435661}
   m_Layer: 0
@@ -70294,25 +70054,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1865435663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865435659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wayPoints: {fileID: 0}
-  _npcStatsSource: {fileID: 0}
-  _pathPicker: {fileID: 0}
-  moveSpeed: 1.5
-  distanceThreshold: 0.1
-  _npcPicker: {fileID: 0}
-  fadeGhosts: {fileID: 0}
 --- !u!1001 &1879591620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71857,7 +71598,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2077164830}
-  - component: {fileID: 2077164833}
   - component: {fileID: 2077164832}
   - component: {fileID: 2077164831}
   m_Layer: 0
@@ -71931,25 +71671,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2077164833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077164829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcb9a885b716bd46ad6b5b86c7685c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wayPoints: {fileID: 0}
-  _npcStatsSource: {fileID: 0}
-  _pathPicker: {fileID: 0}
-  moveSpeed: 1.5
-  distanceThreshold: 0.1
-  _npcPicker: {fileID: 0}
-  fadeGhosts: {fileID: 0}
 --- !u!1001 &2085892239
 PrefabInstance:
   m_ObjectHideFlags: 0
