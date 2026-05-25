@@ -32,7 +32,7 @@ public class FadeGhosts : MonoBehaviour
     {
         if (shouldFade)
         {
-
+            if (!shouldFade) return;
 
             fadeValue += Time.deltaTime * fadeSpeed;
             fadeValue = Mathf.Clamp(fadeValue, 0f, 5f);
@@ -55,7 +55,7 @@ public class FadeGhosts : MonoBehaviour
                     Debug.Log("Sisterendofpath");
                 }
 
-                if (window)
+                else if (window)
                 {
                     
                     window = false;

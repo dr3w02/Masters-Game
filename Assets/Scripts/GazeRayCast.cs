@@ -1,8 +1,5 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
-using System.Runtime.CompilerServices;
+
 
 public class GazeRayCast : MonoBehaviour
 {
@@ -15,24 +12,18 @@ public class GazeRayCast : MonoBehaviour
     RaycastHit hit;
 
     public float maxDistance = 300;
+
+
+    [SerializeField] private string DontLook = "SanityDecrease";
+    [SerializeField] private string DoLook = "SanityIncrease";
+    [SerializeField] private string WindowGhosts = "WindowGhosts";
+    [SerializeField] private string Laptop = "Laptop";
+
+    
     
 
-    [SerializeField]
-    private string DontLook = "SanityDecrease";
-    [SerializeField]
-    private string DoLook = "SanityIncrease";
 
-    [SerializeField]
-    private string WindowGhosts = "WindowGhosts";
-
-    [SerializeField]
-    private string Laptop = "Laptop";
-
-
-
-
-
-    [Header("StartLaptop")]
+    [Header("Laptop")]
     public bool lookingAtLaptop;
 
 
@@ -49,6 +40,8 @@ public class GazeRayCast : MonoBehaviour
         ray = new Ray(transform.position, transform.forward );
         Debug.DrawRay(transform.position, transform.forward * maxDistance, Color.cyan);
 
+  
+
         CheckForColliders();
 
       
@@ -56,12 +49,13 @@ public class GazeRayCast : MonoBehaviour
 
     public void CheckForColliders()
     {
-        
-    
-        if (Physics.Raycast(ray, out hit, maxDistance))
-        {
+        if (!Physics.Raycast(ray, out hit, maxDistance)) return;
 
-            var hitObj = hit.collider.gameObject;
+        var hitObj = hit.collider.gameObject;
+
+
+        if (Physics.Raycast(ray, out hit, maxDistance))///////////////////////////////////////////
+        {
 
             if (hitObj.CompareTag(DontLook))
             {
@@ -76,12 +70,13 @@ public class GazeRayCast : MonoBehaviour
                 Debug.Log("hit I" + hit.collider.gameObject.name);
             }
 
-           
+
 
             if (hitObj.CompareTag(WindowGhosts))
             {
+                Debug.Log("Gaze dismissed window ghost: " + hitObj.name);
                 _wNpcPicker.LookedAt();
-                Debug.Log("HitWindowGhosts");
+               
             }
 
 
@@ -104,6 +99,7 @@ public class GazeRayCast : MonoBehaviour
             {
                 //laptop.Pause();
             }
+
 
             Debug.Log("hit" + hit.collider.gameObject.name);
 

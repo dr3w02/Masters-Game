@@ -21,15 +21,6 @@ public class SpawnManager : MonoBehaviour
     [Header("Sister States")]
     public bool sisterGhostActive;
  
-
-
-    public void Awake()
-    {
-       
-        
-
-
-    }
     public void Start()
     {
         StartSpawning();
@@ -57,6 +48,7 @@ public class SpawnManager : MonoBehaviour
     
     public void StartWindowSpawnTimer()
     {
+        Debug.Log("New Window");
         StartCoroutine(WindowSpawn());
     }
 
@@ -65,8 +57,6 @@ public class SpawnManager : MonoBehaviour
         
         yield return new WaitForSeconds(hallwaySpawnDelay);
 
-
-        Debug.Log("Spawn");
 
         if (hallwayPathPicker != null)
         {
@@ -85,7 +75,7 @@ public class SpawnManager : MonoBehaviour
 
         yield return new WaitForSeconds(windowSpawnDelay);
 
-        if (hallwayPathPicker != null)
+        if (windowPathPicker != null)
         {
             windowPathPicker.PathChosen();
         }

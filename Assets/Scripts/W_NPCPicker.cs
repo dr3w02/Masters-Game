@@ -25,6 +25,8 @@ public class W_NPCPicker : MonoBehaviour
     public bool prompted;
     private int promptedtimes;
 
+    public AudioSource lookedAtGhostsAudio;
+
     [Header("SisterSpawned")]
     public SpawnManager sisterSpawnState;
    
@@ -173,6 +175,9 @@ public class W_NPCPicker : MonoBehaviour
             return;
         }
 
+        if (lookedAtGhostsAudio != null && chosen.ghostPrefab != null)
+            lookedAtGhostsAudio.Play();
+
         chosen.ghostPrefab.SetActive(false);
 
         if (chosen.sisterGhost)
@@ -181,6 +186,9 @@ public class W_NPCPicker : MonoBehaviour
         }
 
         chosen = null;
+
+        if (sisterSpawnState != null)
+            sisterSpawnState.StartWindowSpawnTimer();
     }
 
 }

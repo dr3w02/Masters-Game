@@ -13,10 +13,12 @@ public class WayPointMover : MonoBehaviour
 
     private bool initialized = false;
 
+    public bool ghostEnded;
+    public FadeGhosts fadeGhosts;
 
+    public AudioClip ghostChuckle;
+    private bool chucklePlayed = false;
 
-    public AudioSource ghostChuckle;
-    
     public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
@@ -40,7 +42,7 @@ public class WayPointMover : MonoBehaviour
 
 
 
-        ghostChuckle = GetComponent<AudioSource>();
+       
        
         ResetToStart();
 
@@ -56,7 +58,8 @@ public class WayPointMover : MonoBehaviour
 
     private void ResetToStart()
     {
-
+        ghostEnded = false;
+        chucklePlayed = false;
         // reset transform
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
@@ -66,7 +69,7 @@ public class WayPointMover : MonoBehaviour
 
         if (_wayPoints == null)
         {
-
+            Debug.LogWarning("waypointmovernull!");
             return;
         }
 
@@ -89,24 +92,15 @@ public class WayPointMover : MonoBehaviour
         Movement();
 
 
-
-
     }
-
-    public FadeGhosts fadeGhosts;
+    
     private void Movement()
     {
 
-        if (_wayPoints == null)
-        {
+        if (_wayPoints == null || _wayPoints.currentWaypoint == null || ghostEnded)
             return;
-        }
 
-        if (_wayPoints.currentWaypoint == null)
-        {
-
-            return;
-        }
+      
 
 
         transform.position = Vector3.MoveTowards(transform.position, _wayPoints.currentWaypoint.position, moveSpeed * Time.deltaTime);
@@ -114,36 +108,45 @@ public class WayPointMover : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) < distanceThreshold)
         {
-
+            // Reached the last waypoint
             if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
             {
-                Debug.Log("EndOfPath");
+                Debug.Log("WayPointMover: End of path reached.");
+                ghostEnded = true;
+
+                if (ghostChuckle != null)
+                    AudioSource.PlayClipAtPoint(ghostChuckle, transform.position);
 
 
-                ghostChuckle.Play();
+                if (fadeGhosts != null)
+                {
+                    fadeGhosts.TriggerFade();
+                }
 
-                fadeGhosts.TriggerFade();
-                //_npcPicker.EndOfPath();
-                //gameObject.SetActive(false);
+              
+                if (_npcPicker != null)
+                {
+                    _npcPicker.EndOfPath();
+                }
+                else
+                {
+                    Debug.LogWarning("WayPointMover: _npcPicker is null, cannot call EndOfPath!");
+                }
+
                 return;
             }
 
-
             Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-            
-
             _wayPoints.currentWaypoint = next;
-            Debug.Log("zz.checking paypoints" + next);
+
+            Debug.Log("Moving to waypoint: " + next);
 
             Transform upcoming = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-           
             if (upcoming != null)
             {
                 transform.LookAt(upcoming.position);
             }
-         
-
-
         }
     }
+
 }

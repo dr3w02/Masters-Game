@@ -11,13 +11,13 @@ public class W_WaypointMover : MonoBehaviour
     [SerializeField] private W_NPCPicker _npcPicker;
 
     private bool initialized = false;
+    private bool endHandled = false;
+
 
     public bool sister;
 
     public FadeGhosts _fadeGhosts;
-
-
-    public AudioSource ghostChuckle;
+    public AudioClip ghostChuckle;
   
     public void Initialize(WayPoints wayPoints, W_NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
@@ -32,9 +32,9 @@ public class W_WaypointMover : MonoBehaviour
     {
         
     
-        ghostChuckle = GetComponent<AudioSource>();
+        
        
-        Debug.Log("zz." + _wayPoints);
+        
 
         if (!initialized)
         {
@@ -46,7 +46,6 @@ public class W_WaypointMover : MonoBehaviour
 
         ResetToStart();
 
-        Debug.Log("gv.currentwaypoint");
     }
 
     private void OnDisable()
@@ -58,7 +57,7 @@ public class W_WaypointMover : MonoBehaviour
 
     private void ResetToStart()
     {
-
+        endHandled = false;
         // reset transform
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
@@ -66,17 +65,18 @@ public class W_WaypointMover : MonoBehaviour
 
         if (_wayPoints == null)
         {
-
+            Debug.LogWarning("_wayPoints is null in ResetToStart");
             return;
         }
 
 
         _wayPoints.currentWaypoint = _wayPoints.transform.GetChild(0);
-        Debug.Log("zz.checking paypoints" + _wayPoints.currentWaypoint);
+  
         transform.position = _wayPoints.currentWaypoint.position;
 
 
         Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+
         if (next != null)
         {
             transform.LookAt(next.position);
@@ -96,16 +96,8 @@ public class W_WaypointMover : MonoBehaviour
     private void Movement()
     {
 
-        if (_wayPoints == null)
-        {
+        if (_wayPoints == null || _wayPoints.currentWaypoint == null || endHandled)
             return;
-        }
-
-        if (_wayPoints.currentWaypoint == null)
-        {
-
-            return;
-        }
 
 
         transform.position = Vector3.MoveTowards(transform.position, _wayPoints.currentWaypoint.position, moveSpeed * Time.deltaTime);
@@ -119,23 +111,26 @@ public class W_WaypointMover : MonoBehaviour
             {
                 // reached the end!
 
+                endHandled = true;
 
-                ghostChuckle.Play();
+                if (ghostChuckle != null)
+                    AudioSource.PlayClipAtPoint(ghostChuckle, transform.position);
 
-                if (sister)
-                { 
-                    _fadeGhosts.sister = true;
-                    
+
+
+                if (_fadeGhosts != null)
+                {
+                    _fadeGhosts.sister = sister;
+                    _fadeGhosts.window = !sister;
                     _fadeGhosts.TriggerFade();
                 }
                 else
                 {
-                    _fadeGhosts.window = true;
-        
-                    _fadeGhosts.TriggerFade();
+                    Debug.LogWarning("W_WaypointMover: _fadeGhosts is null!");
                 }
 
-               
+
+
                 return;
             }
 
@@ -151,7 +146,7 @@ public class W_WaypointMover : MonoBehaviour
             _wayPoints.currentWaypoint = next;
 
             Transform upcoming = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-            Debug.Log("zz.checking paypoints" + next);
+
 
             if (upcoming != null)
             {

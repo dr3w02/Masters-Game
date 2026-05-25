@@ -65,8 +65,13 @@ public class SanityScore : MonoBehaviour
         float normalisedSanity = sanity / MaxSanity;
         effects.SetIntensity(normalisedSanity);
 
-       if(sanity <= 80)
+      
+
+        if (sanity < 20)
         {
+            
+        
+            AudioManager.instance.PlaySFX("Breathing");
             if (!prompt)
             {
                 imagePrompt.Play();
@@ -78,14 +83,7 @@ public class SanityScore : MonoBehaviour
                 imagePrompt.Pause();
 
             }
-        }
 
-        if (sanity < 20)
-        {
-            
-        
-            AudioManager.instance.PlaySFX("Breathing");
-       
         }
         else
         {
