@@ -121,6 +121,7 @@ public class W_WaypointMover : MonoBehaviour
 
 
                 ghostChuckle.Play();
+
                 if (sister)
                 { 
                     _fadeGhosts.sister = true;

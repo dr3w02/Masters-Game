@@ -21857,7 +21857,6 @@ GameObject:
   - component: {fileID: 621495570}
   - component: {fileID: 621495569}
   - component: {fileID: 621495568}
-  - component: {fileID: 621495567}
   - component: {fileID: 621495566}
   - component: {fileID: 621495565}
   - component: {fileID: 621495564}
@@ -22016,33 +22015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startPosition: {x: -0.221, y: -0.417, z: -0.183}
---- !u!114 &621495567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621495562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22aa3e1cf9e416848a08ebd20c57bcf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hapticOnActive:
-    intensity: 0.804
-    duration: 8.28
-  hapticHoverEntered:
-    intensity: 0.528
-    duration: 1.07
-  hapticHoverExited:
-    intensity: 0.298
-    duration: 2.71
-  hapticSelectEntered:
-    intensity: 0.986
-    duration: 1.24
-  hapticSelectExited:
-    intensity: 0.666
-    duration: 4.99
 --- !u!114 &621495568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73120,7 +73092,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067328931}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2067328935
 Camera:
   m_ObjectHideFlags: 0

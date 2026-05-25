@@ -126,6 +126,10 @@ public class CandleManager : MonoBehaviour
                     prompted = true;
                   
                 }
+                if (prompted)
+                {
+                    candlesAudio.Stop();
+                }
                
             }
             else

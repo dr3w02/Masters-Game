@@ -78,6 +78,11 @@ public class OpenCloseDoor : MonoBehaviour
     private IEnumerator SpawnRate()
     {
 
+        if (_npcStatsSource == null)
+        {
+            yield break; 
+        }
+
         AudioManager.instance.PlaySFX("DoorBang");
 
         yield return new WaitForSeconds(0.5f);
