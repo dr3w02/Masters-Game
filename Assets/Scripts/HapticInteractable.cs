@@ -13,6 +13,7 @@ public class Haptic
 
     public void TriggerHaptic(BaseInteractionEventArgs eventArgs)
     {
+        if (eventArgs == null) return;
         if (eventArgs.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
         {
             TriggerHaptic(controllerInteractor.xrController);
@@ -23,6 +24,8 @@ public class Haptic
 
     public void TriggerHaptic(XRBaseController controller)
     {
+        if (controller == null) return;
+
         if (intensity > 0)
             controller.SendHapticImpulse(intensity, duration);
     }
