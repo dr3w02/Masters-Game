@@ -26,7 +26,8 @@ public class GazeRayCast : MonoBehaviour
     [Header("Laptop")]
     public bool lookingAtLaptop;
 
-
+    public OVREyeGaze leftEye;
+    public OVREyeGaze rightEye;
 
     public void Start()
     {
@@ -37,14 +38,14 @@ public class GazeRayCast : MonoBehaviour
 
     public void Update()
     {
-        ray = new Ray(transform.position, transform.forward );
-        Debug.DrawRay(transform.position, transform.forward * maxDistance, Color.cyan);
+        Vector3 combinedDirection = (leftEye.transform.forward + rightEye.transform.forward).normalized;
+        Vector3 combinedPosition = (leftEye.transform.position + rightEye.transform.position) / 2f;
 
-  
+        ray = new Ray(combinedPosition, combinedDirection);
+        Debug.DrawRay(combinedPosition, combinedDirection * maxDistance, Color.cyan);
 
         CheckForColliders();
 
-      
     }
 
     public void CheckForColliders()
