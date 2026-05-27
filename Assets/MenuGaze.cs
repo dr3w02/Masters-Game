@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class MenuGaze : MonoBehaviour
 {
     Ray ray;
@@ -35,7 +37,12 @@ public class MenuGaze : MonoBehaviour
     [Header("Gaze")]
     public OVREyeGaze leftEye;
     public OVREyeGaze rightEye;
+    [SerializeField] private Transform centerEyeAnchor;
 
+
+    [Header("Negative moves the ray DOWN, positive moves it UP.")]
+    [Range(-0.5f, 0.5f)]
+    public float verticalOffset = -0.1f;
 
     public void Start()
     {
@@ -49,13 +56,14 @@ public class MenuGaze : MonoBehaviour
     {
 
         Vector3 combinedDirection = (leftEye.transform.forward + rightEye.transform.forward).normalized;
-        Vector3 combinedPosition = (leftEye.transform.position + rightEye.transform.position) / 2f;
+        Vector3 combinedPosition = centerEyeAnchor.position;
 
         ray = new Ray(combinedPosition, combinedDirection);
-        Debug.DrawRay(combinedPosition, combinedDirection * maxDistance, Color.grey);
 
-     
+        Debug.DrawRay(combinedPosition, combinedDirection * maxDistance, Color.cyan);
+
         CheckForColliders();
+
 
         if (select == true)
         {
@@ -98,42 +106,30 @@ public class MenuGaze : MonoBehaviour
  
     public void CheckForColliders()
     {
-     
 
 
-        if (Physics.Raycast(ray, out hit, maxDistance))
+
+        int layerMask = ~(1 << 2);
+
+        if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
         {
-
             var hitObj = hit.collider.gameObject;
 
-          
-
-            if (hitObj.CompareTag(UI) && !alreadySelected) 
+            if (hitObj.CompareTag(UI))
             {
-                _currentButton = hitObj.GetComponent<Button>();
-                select = true;
-
-                Debug.Log("HitUI");
+                if (!alreadySelected)
+                {
+                    _currentButton = hitObj.GetComponent<Button>();
+                    select = true;
+                }
                 return;
-
-
             }
-
-            
-            select = false;
-            _currentButton = null;
-            alreadySelected = false;
-
-            Debug.Log("DontHitUI");
-
-
-
-
-            Debug.Log("hit" + hit.collider.gameObject.name);
-
-
         }
 
+       
+        select = false;
+        _currentButton = null;
+        alreadySelected = false;
 
     }
 }

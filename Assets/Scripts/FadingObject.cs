@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 {
@@ -10,18 +11,17 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     public Vector3 _position;
     public List<Material> Materials = new List<Material>();
 
-  
+
     public float InitialAlpha = 1;
 
     public float fadeDuration = 5f;
 
 
-  
-    public GameObject ghostAnim;
+
     public GameObject whiteChalk;
 
     public GameObject particalEffect;
-    public Animator GhostFade;
+    public FadeScreen Fade;
 
     private void Awake()
     {
@@ -35,9 +35,9 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
             Materials.AddRange(renderer.materials);
         }
 
-        ghostAnim.SetActive(false);
 
-       
+        whiteChalk.SetActive(true);
+
     }
 
     public bool Equals(FadingObject other)
@@ -65,7 +65,7 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 
     public void FadeOut()
     {
-        GhostFade.Play("Fade");
+
         StartCoroutine(FadeOutRoutine());
     }
 
@@ -75,7 +75,7 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 
 
         float elapsed = 0f;
-        SetIntensity(0f); 
+        SetIntensity(0f);
 
         while (elapsed < fadeDuration)
         {
@@ -86,19 +86,24 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
             if (intensity >= 1f)
             {
                 whiteChalk.SetActive(false);
-                ghostAnim.SetActive(true);
+
             }
 
 
             yield return null;
         }
 
-       
-        
+
+
         SetIntensity(1f);
+
         whiteChalk.SetActive(false);
-        ghostAnim.SetActive(true);
 
 
+        Fade.FadeOut();
+
+        yield return new WaitForSeconds(5f);
+
+        SceneManager.LoadScene("Main Game");
     }
 }

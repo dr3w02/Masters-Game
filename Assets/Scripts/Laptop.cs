@@ -5,8 +5,7 @@ using JetBrains.Annotations;
 public class Laptop : MonoBehaviour
 {
 
-    [Header("Locking the camera to point")]
-    public XROrigin xrOrigin;
+  
     
     public GazeRayCast gaze;
 

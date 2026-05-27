@@ -47,6 +47,13 @@ public class W_NPCPicker : MonoBehaviour
 
     }
 
+    public void Update()
+    {
+        if (_sanityScore.sanity <= 0)
+        {
+            chosen.ghostPrefab.SetActive(false);
+        }
+    }
 
     public IEnumerator StartNPCPicker(PathPicker pathPicker)
     {
@@ -93,8 +100,18 @@ public class W_NPCPicker : MonoBehaviour
 
     }
 
+    IEnumerator WaitBeforeSister(float waitTime)
+    {
 
-   
+        yield return new WaitForSeconds(waitTime);
+        if (sisterSpawnState != null)
+        {
+            sisterSpawnState.sisterGhostActive = false;
+            sisterSpawnState.StartHallwaySpawnTimer();
+        }
+
+    }
+
     public void EndOfPath()
     {
 
@@ -127,7 +144,11 @@ public class W_NPCPicker : MonoBehaviour
 
         if (chosen.sisterGhost)
         {
-            sisterSpawnState.sisterGhostActive = false;
+            if (chosen.sisterGhost)
+            {
+                StartCoroutine(WaitBeforeSister(10f));
+                sisterSpawnState.sisterGhostActive = false;
+            }
         }
 
         if (sisterSpawnState != null)
@@ -156,7 +177,10 @@ public class W_NPCPicker : MonoBehaviour
 
         if (chosen.sisterGhost)
         {
-            sisterSpawnState.sisterGhostActive = false;
+            if (chosen.sisterGhost)
+            {
+                StartCoroutine(WaitBeforeSister(10f));
+            }
         }
 
         if (sisterSpawnState != null)
@@ -190,5 +214,7 @@ public class W_NPCPicker : MonoBehaviour
         if (sisterSpawnState != null)
             sisterSpawnState.StartWindowSpawnTimer();
     }
+
+
 
 }

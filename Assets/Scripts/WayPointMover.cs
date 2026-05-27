@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WayPointMover : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class WayPointMover : MonoBehaviour
     public AudioClip ghostChuckle;
     private bool chucklePlayed = false;
 
+    private int currentWaypointIndex = 0;
+
     public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         _wayPoints = wayPoints;
@@ -26,66 +29,61 @@ public class WayPointMover : MonoBehaviour
         _pathPicker = pathPicker;
         moveSpeed = ghostSpeed;
         initialized = true;
+        ResetToStart();
     }
 
     private void OnEnable()
     {
-
-        Debug.Log("zz." + _wayPoints);
-
-        if (!initialized)
+       
+        if (!initialized && _pathPicker != null)
         {
-
             _wayPoints = _pathPicker._wayPoints;
         }
 
+        
+        if (_wayPoints == null || _wayPoints.transform.childCount == 0)
+        {
+            Debug.Log("WayPointMover: Waiting for a path.");
+            return;
+        }
 
-
-
-       
-       
         ResetToStart();
 
-        Debug.Log("gv.currentwaypoint");
+
+        
+        Debug.Log("WayPointMover.currentwaypoint");
     }
 
     private void OnDisable()
     {
-        _wayPoints = null;
+        
         initialized = false;
     }
 
-
     private void ResetToStart()
     {
+
+        if (_wayPoints == null || _wayPoints.transform.childCount == 0)
+        {
+            return;
+        }
+
         ghostEnded = false;
         chucklePlayed = false;
-        // reset transform
+        currentWaypointIndex = 0;
+
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;
 
-        transform.rotation = _wayPoints.currentWaypoint.rotation;
-
-        if (_wayPoints == null)
-        {
-            Debug.LogWarning("waypointmovernull!");
-            return;
-        }
-
-
-        _wayPoints.currentWaypoint = _wayPoints.transform.GetChild(0);
-        Debug.Log("zz.checking paypoints" + _wayPoints.currentWaypoint);
-        transform.position = _wayPoints.currentWaypoint.position;
-
-
-        Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-        if (next != null)
-        {
-            transform.LookAt(next.position);
-
-        }
+        Transform firstWaypoint = _wayPoints.transform.GetChild(0);
+        transform.position = firstWaypoint.position;
+        transform.rotation = firstWaypoint.rotation;
     }
+
+
+    
+    
 
     private void Update()
     {
@@ -96,57 +94,73 @@ public class WayPointMover : MonoBehaviour
     
     private void Movement()
     {
-
-        if (_wayPoints == null || _wayPoints.currentWaypoint == null || ghostEnded)
+        if (_wayPoints == null || ghostEnded || currentWaypointIndex >= _wayPoints.transform.childCount)
             return;
 
-      
+        Transform targetWaypoint = _wayPoints.transform.GetChild(currentWaypointIndex);
+        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, moveSpeed * Time.deltaTime);
 
+        Vector3 direction = (targetWaypoint.position - transform.position).normalized;
 
-        transform.position = Vector3.MoveTowards(transform.position, _wayPoints.currentWaypoint.position, moveSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _wayPoints.currentWaypoint.rotation, 50f * Time.deltaTime);
+        direction.y = 0;
 
-        if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) < distanceThreshold)
+        if (direction != Vector3.zero)
         {
-            // Reached the last waypoint
-            if (_wayPoints.currentWaypoint.GetSiblingIndex() == _wayPoints.transform.childCount - 1)
+            
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 120f * Time.deltaTime); // Increased speed to 120f for snappier corners
+        }
+
+        if (Vector3.Distance(transform.position, targetWaypoint.position) < distanceThreshold)
+        {
+            if (currentWaypointIndex == _wayPoints.transform.childCount - 1)
             {
-                Debug.Log("WayPointMover: End of path reached.");
-                ghostEnded = true;
+                Debug.Log("EndOfPath.");
 
-                if (ghostChuckle != null)
+                if (ghostChuckle != null && !chucklePlayed)
+                {
+                    chucklePlayed = true;
                     AudioSource.PlayClipAtPoint(ghostChuckle, transform.position);
-
+                }
 
                 if (fadeGhosts != null)
                 {
                     fadeGhosts.TriggerFade();
-                }
 
-              
-                if (_npcPicker != null)
-                {
-                    _npcPicker.EndOfPath();
+                   
+                    StartCoroutine(WaitForFadeAndDespawn());
                 }
                 else
                 {
-                    Debug.LogWarning("WayPointMover: _npcPicker is null, cannot call EndOfPath!");
+                    
+                    if (_npcPicker != null) _npcPicker.EndOfPath();
                 }
+
+                ghostEnded = true;
+
+                
 
                 return;
             }
 
-            Transform next = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-            _wayPoints.currentWaypoint = next;
+           
+            currentWaypointIndex++;
+        }
 
-            Debug.Log("Moving to waypoint: " + next);
 
-            Transform upcoming = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
-            if (upcoming != null)
-            {
-                transform.LookAt(upcoming.position);
-            }
+    }
+    private IEnumerator WaitForFadeAndDespawn()
+    {
+        
+        yield return new WaitForSeconds(2f);
+
+       
+        if (_npcPicker != null)
+        {
+            _npcPicker.EndOfPath();
         }
     }
+
+
 
 }

@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 60852739}
   - component: {fileID: 60852741}
   - component: {fileID: 60852740}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.7948356, b: 0.6367924, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9339623, g: 0.6722766, b: 0.4978195, a: 1}
-    m_HighlightedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_HighlightedColor: {r: 0.92549026, g: 0.6666667, b: 0.49411768, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -37324,7 +37324,7 @@ Transform:
   m_GameObject: {fileID: 568906423}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.0031, y: -0.1, z: 0.0082}
+  m_LocalPosition: {x: -0.003, y: -0.222, z: 0.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37362,9 +37362,9 @@ Light:
   m_GameObject: {fileID: 568906423}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 0
+  m_Type: 2
   m_Color: {r: 1, g: 0.9664389, b: 0.7877358, a: 1}
-  m_Intensity: 2.21
+  m_Intensity: 3.26
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 103.58967
@@ -38722,7 +38722,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9339623, g: 0.6722766, b: 0.4978195, a: 1}
-    m_HighlightedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_HighlightedColor: {r: 0.92549026, g: 0.6666667, b: 0.49411768, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -51351,8 +51351,7 @@ GameObject:
   - component: {fileID: 971859245}
   - component: {fileID: 971859248}
   - component: {fileID: 971859247}
-  - component: {fileID: 971859246}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51379,23 +51378,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 632, y: 356}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &971859246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971859244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &971859247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88588,7 +88570,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9339623, g: 0.6722766, b: 0.4978195, a: 1}
-    m_HighlightedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_HighlightedColor: {r: 0.92549026, g: 0.6666667, b: 0.49411768, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -101429,6 +101411,8 @@ MonoBehaviour:
   radialIndicatorUI: {fileID: 1452202730}
   leftEye: {fileID: 1439623405}
   rightEye: {fileID: 1925207330}
+  centerEyeAnchor: {fileID: 1439623403}
+  verticalOffset: -0.1
 --- !u!1 &1442625373
 GameObject:
   m_ObjectHideFlags: 0
@@ -101605,7 +101589,7 @@ GameObject:
   - component: {fileID: 1452202729}
   - component: {fileID: 1452202731}
   - component: {fileID: 1452202730}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102924,7 +102908,7 @@ MonoBehaviour:
   back: {fileID: 1903359596}
   creditsText: {fileID: 2025982065}
   controlsText: {fileID: 811973387}
-  fade: {fileID: 0}
+  fade: {fileID: 715956545}
 --- !u!1 &1569938910
 GameObject:
   m_ObjectHideFlags: 0
@@ -103413,7 +103397,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9339623, g: 0.6722766, b: 0.4978195, a: 1}
-    m_HighlightedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_HighlightedColor: {r: 0.92549026, g: 0.6666667, b: 0.49411768, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -116514,7 +116498,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9339623, g: 0.6722766, b: 0.4978195, a: 1}
-    m_HighlightedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_HighlightedColor: {r: 0.92549026, g: 0.6666667, b: 0.49411768, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -121877,6 +121861,8 @@ MonoBehaviour:
   radialIndicatorUI: {fileID: 60852740}
   leftEye: {fileID: 1439623405}
   rightEye: {fileID: 1925207330}
+  centerEyeAnchor: {fileID: 1439623403}
+  verticalOffset: -0.1
 --- !u!1 &1932222602
 GameObject:
   m_ObjectHideFlags: 0
