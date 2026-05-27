@@ -28,6 +28,7 @@ public class GazeRayCast : MonoBehaviour
 
     public OVREyeGaze leftEye;
     public OVREyeGaze rightEye;
+    [SerializeField] private Transform centerEyeAnchor;
 
     public void Start()
     {
@@ -39,11 +40,14 @@ public class GazeRayCast : MonoBehaviour
     public void Update()
     {
         Vector3 combinedDirection = (leftEye.transform.forward + rightEye.transform.forward).normalized;
-        Vector3 combinedPosition = (leftEye.transform.position + rightEye.transform.position) / 2f;
+
+        Vector3 combinedPosition = centerEyeAnchor.position;
 
         ray = new Ray(combinedPosition, combinedDirection);
+
         Debug.DrawRay(combinedPosition, combinedDirection * maxDistance, Color.cyan);
 
+       
         CheckForColliders();
 
     }

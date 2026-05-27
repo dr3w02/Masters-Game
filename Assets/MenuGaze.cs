@@ -32,6 +32,11 @@ public class MenuGaze : MonoBehaviour
     [SerializeField] private Image radialIndicatorUI = null;
 
 
+    [Header("Gaze")]
+    public OVREyeGaze leftEye;
+    public OVREyeGaze rightEye;
+
+
     public void Start()
     {
         //indicatorTimer = waittime;
@@ -42,8 +47,14 @@ public class MenuGaze : MonoBehaviour
 
     public void Update()
     {
-   
 
+        Vector3 combinedDirection = (leftEye.transform.forward + rightEye.transform.forward).normalized;
+        Vector3 combinedPosition = (leftEye.transform.position + rightEye.transform.position) / 2f;
+
+        ray = new Ray(combinedPosition, combinedDirection);
+        Debug.DrawRay(combinedPosition, combinedDirection * maxDistance, Color.grey);
+
+     
         CheckForColliders();
 
         if (select == true)
@@ -79,16 +90,7 @@ public class MenuGaze : MonoBehaviour
 
             radialIndicatorUI.fillAmount = 0;
             radialIndicatorUI.enabled = false;
-            //indicatorTimer -= Time.deltaTime;
-            //    radialIndicatorUI.fillAmount = indicatorTimer;
-
-            //    if (indicatorTimer <= maxIndicatorTimer)
-            //    {
-            //        indicatorTimer = maxIndicatorTimer;
-            //        radialIndicatorUI.fillAmount = maxIndicatorTimer;
-            //        radialIndicatorUI.enabled = false;
-            //        select = false;
-            //    }
+     
             
 
         }
@@ -96,10 +98,7 @@ public class MenuGaze : MonoBehaviour
  
     public void CheckForColliders()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-
-        Debug.DrawRay(transform.position, transform.forward * maxDistance, Color.black);
+     
 
 
         if (Physics.Raycast(ray, out hit, maxDistance))
