@@ -8953,6 +8953,7 @@ MonoBehaviour:
   doorClosed: 0
   delayBeforePick: 1.5
   sisterSpawnState: {fileID: 1648857547}
+  isGhostActive: 0
 --- !u!114 &346157409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11498,6 +11499,7 @@ MonoBehaviour:
   _wNpcPicker: {fileID: 1937127584}
   laptop: {fileID: 0}
   maxDistance: 300
+  verticalOffset: -0.1
   DontLook: SanityDecrease
   DoLook: SanityIncrease
   WindowGhosts: WindowGhosts
@@ -11505,6 +11507,7 @@ MonoBehaviour:
   lookingAtLaptop: 0
   leftEye: {fileID: 536967125}
   rightEye: {fileID: 1460995215}
+  centerEyeAnchor: {fileID: 0}
 --- !u!114 &517269310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68318,6 +68321,7 @@ MonoBehaviour:
   _wNpcPicker: {fileID: 1937127584}
   laptop: {fileID: 0}
   maxDistance: 300
+  verticalOffset: -0.1
   DontLook: SanityDecrease
   DoLook: SanityIncrease
   WindowGhosts: WindowGhosts
@@ -68325,6 +68329,7 @@ MonoBehaviour:
   lookingAtLaptop: 0
   leftEye: {fileID: 536967125}
   rightEye: {fileID: 1460995215}
+  centerEyeAnchor: {fileID: 0}
 --- !u!114 &1294910987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69750,16 +69755,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351724867}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.24628554, z: -0, w: 0.96919733}
-  m_LocalPosition: {x: 0.64442265, y: -0.14724416, z: -2.7151706}
-  m_LocalScale: {x: 0.07936147, y: 0.18309268, z: 0.061793346}
+  m_LocalRotation: {x: -0, y: 0.64803004, z: -0, w: 0.7616148}
+  m_LocalPosition: {x: 0.73077, y: -0.8145, z: -1.1181}
+  m_LocalScale: {x: 0.06359327, y: 0.1467143, z: 0.04951573}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1847603566}
   - {fileID: 1277180398}
   - {fileID: 716682648}
   m_Father: {fileID: 118375663}
-  m_LocalEulerAnglesHint: {x: 0, y: -28.516, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 80.786, z: 0}
 --- !u!82 &1351724875
 AudioSource:
   m_ObjectHideFlags: 0
@@ -84371,10 +84376,9 @@ MonoBehaviour:
   Materials: []
   InitialAlpha: 1
   fadeDuration: 5
-  ghostAnim: {fileID: 504330427}
   whiteChalk: {fileID: 0}
   particalEffect: {fileID: 504330427}
-  GhostFade: {fileID: 0}
+  Fade: {fileID: 0}
 --- !u!1 &1697069624
 GameObject:
   m_ObjectHideFlags: 0
@@ -85770,6 +85774,7 @@ MonoBehaviour:
   _wNpcPicker: {fileID: 1937127584}
   laptop: {fileID: 0}
   maxDistance: 300
+  verticalOffset: -0.1
   DontLook: SanityDecrease
   DoLook: SanityIncrease
   WindowGhosts: WindowGhosts
@@ -85777,6 +85782,7 @@ MonoBehaviour:
   lookingAtLaptop: 0
   leftEye: {fileID: 536967125}
   rightEye: {fileID: 1460995215}
+  centerEyeAnchor: {fileID: 0}
 --- !u!114 &1837291329
 MonoBehaviour:
   m_ObjectHideFlags: 0
