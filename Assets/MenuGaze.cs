@@ -10,9 +10,9 @@ public class MenuGaze : MonoBehaviour
     RaycastHit hit;
 
     public float maxDistance = 300;
-   
 
-  
+
+
     [SerializeField]
     private string UI = "UI";
 
@@ -33,6 +33,7 @@ public class MenuGaze : MonoBehaviour
     [Header("UI Indicator")]
     [SerializeField] private Image radialIndicatorUI = null;
 
+    public GameObject Eyes;
 
     //[Header("Gaze")]
     //public OVREyeGaze leftEye;
@@ -40,46 +41,27 @@ public class MenuGaze : MonoBehaviour
     //[SerializeField] private Transform centerEyeAnchor;
 
 
-    
+
     Vector3 eyeposL, eyeposR;
     private OVRPlugin.EyeGazesState _currentEyeGazesState;
     public Transform leftEyeObj;
     public Transform rightEyeObj;
-    Transform headTransform;
-    private int layerMask;
+    public Transform headTransform;
+
 
     public void Start()
     {
         //indicatorTimer = waittime;
-       maxIndicatorTimer = waittime;
+        maxIndicatorTimer = waittime;
 
 
+        Eyes.SetActive(true);
     }
 
     public void Update()
     {
-        if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
-        {
-            OVRPlugin.EyeGazeState eyeGazeL = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Left];
-            OVRPlugin.EyeGazeState eyeGazeR = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Right];
 
-            if (eyeGazeR.IsValid && eyeGazeL.IsValid)
-            {
-                if (eyeGazeL.Confidence >= 0.5f && eyeGazeR.Confidence >= 0.5f)
-                {
-                    OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
-                    OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
-                    eyeposL = poseL.position;
-                    eyeposR = poseR.position;
-                    rightEyeObj.position = eyeposR;
-                    rightEyeObj.rotation = poseR.orientation;
-                    leftEyeObj.position = eyeposL;
-                    leftEyeObj.rotation = poseL.orientation;
-                    rightEyeObj.forward = rightEyeObj.forward;
-                    leftEyeObj.forward = leftEyeObj.forward;
-                }
-            }
-        }
+        CheckForColliders();
 
         if (select == true)
         {
@@ -98,6 +80,7 @@ public class MenuGaze : MonoBehaviour
 
                 if (_currentButton != null)
                 {
+                    Debug.LogWarning("Invoke" + gameObject.name);
                     _currentButton.onClick.Invoke();
                 }
 
@@ -114,41 +97,89 @@ public class MenuGaze : MonoBehaviour
 
             radialIndicatorUI.fillAmount = 0;
             radialIndicatorUI.enabled = false;
-
-
-
         }
+
+        if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
+        {
+            OVRPlugin.EyeGazeState eyeGazeL = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Left];
+            OVRPlugin.EyeGazeState eyeGazeR = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Right];
+
+            if (eyeGazeR.IsValid && eyeGazeL.IsValid)
+            {
+                if (eyeGazeL.Confidence >= 0.5f && eyeGazeR.Confidence >= 0.5f)
+                {
+                    OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
+                    OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
+                    eyeposL = headTransform.TransformPoint(poseL.position);
+                    eyeposR = headTransform.TransformPoint(poseR.position);
+                    rightEyeObj.position = eyeposR;
+                    rightEyeObj.rotation = poseR.orientation;
+                    leftEyeObj.position = eyeposL;
+                    leftEyeObj.rotation = poseL.orientation;
+                    rightEyeObj.forward = headTransform.TransformDirection(rightEyeObj.forward);
+                    leftEyeObj.forward = headTransform.TransformDirection(leftEyeObj.forward);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Not Valid");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No Tracking");
+        }
+
+
+
+
     }
 
-        
+
 
 
     public void CheckForColliders()
     {
-        Debug.DrawRay(gazeray.origin, gazeray.direction * maxDistance, Color.black);
-        gazeray.origin = eyeposL + 0.5f * (eyeposR - eyeposL);
-        gazeray.direction = 0.5f * (leftEyeObj.forward + rightEyeObj.forward);
-        if (Physics.Raycast(gazeray, out hit, 100f, layerMask))
+
+
+
+        RaycastHit hit;
+
+        Ray ray = new Ray(transform.position, transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red);
+
+        if (Physics.Raycast(ray, out hit, 4000f))
         {
-            var hitObj = hit.collider.gameObject;
-
-            if (hitObj.CompareTag(UI))
+            var selection = hit.transform;
+            if (selection.CompareTag("UI"))
             {
-                if (!alreadySelected)
+                if (_currentButton != selection.GetComponent<Button>())
                 {
-                    _currentButton = hitObj.GetComponent<Button>();
-                    select = true;
-                }
-                return;
-            }
 
-       
+                    var selectionRenderer = selection.GetComponent<Renderer>();
+
+                    // if (selectionRenderer != null)
+                    // {
+                    Debug.Log("hit something");
+                    //selectionRenderer.material = highlightMaterial;
+
+                    _currentButton = selection.GetComponent<Button>();
+                    select = true;
+                    indicatorTimer = 0;
+                }
+            }
+            else
+            {
+                select = false;
+                _currentButton = null;
+            }
+        }
+        else
+        {
+            select = false;
+            _currentButton = null;
         }
 
-
-        select = false;
-        _currentButton = null;
-        alreadySelected = false;
 
     }
 }

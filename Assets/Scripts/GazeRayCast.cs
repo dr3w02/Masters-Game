@@ -7,17 +7,12 @@ public class GazeRayCast : MonoBehaviour
     public W_NPCPicker _wNpcPicker;
     public Laptop laptop;
 
-    Ray ray;
+    Ray gazeray;
 
     RaycastHit hit;
 
     public float maxDistance = 300;
 
-
-    
-    [Header("Negative moves the ray DOWN, positive moves it UP.")]
-    [Range(-0.5f, 0.5f)]
-    public float verticalOffset = -0.1f;
 
 
     [SerializeField] private string DontLook = "SanityDecrease";
@@ -30,9 +25,11 @@ public class GazeRayCast : MonoBehaviour
     [Header("Laptop")]
     public bool lookingAtLaptop;
 
-    public OVREyeGaze leftEye;
-    public OVREyeGaze rightEye;
-    [SerializeField] private Transform centerEyeAnchor;
+    Vector3 eyeposL, eyeposR;
+    private OVRPlugin.EyeGazesState _currentEyeGazesState;
+    public Transform leftEyeObj;
+    public Transform rightEyeObj;
+    public Transform headTransform;
 
 
     public void Start()
@@ -44,34 +41,49 @@ public class GazeRayCast : MonoBehaviour
 
     public void Update()
     {
-        Vector3 combinedDirection = (leftEye.transform.forward + rightEye.transform.forward).normalized;
-
-        
-        combinedDirection.y += verticalOffset;
-        combinedDirection = combinedDirection.normalized;
-
-        Vector3 combinedPosition = centerEyeAnchor.position;
-
-        ray = new Ray(combinedPosition, combinedDirection);
-
-    
-        Debug.DrawRay(combinedPosition, combinedDirection * maxDistance, Color.cyan);
 
         CheckForColliders();
 
-;
+        if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
+        {
+            OVRPlugin.EyeGazeState eyeGazeL = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Left];
+            OVRPlugin.EyeGazeState eyeGazeR = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Right];
 
+            if (eyeGazeR.IsValid && eyeGazeL.IsValid)
+            {
+                if (eyeGazeL.Confidence >= 0.5f && eyeGazeR.Confidence >= 0.5f)
+                {
+                    OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
+                    OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
+                    eyeposL = headTransform.TransformPoint(poseL.position);
+                    eyeposR = headTransform.TransformPoint(poseR.position);
+                    rightEyeObj.position = eyeposR;
+                    rightEyeObj.rotation = poseR.orientation;
+                    leftEyeObj.position = eyeposL;
+                    leftEyeObj.rotation = poseL.orientation;
+                    rightEyeObj.forward = headTransform.TransformDirection(rightEyeObj.forward);
+                    leftEyeObj.forward = headTransform.TransformDirection(leftEyeObj.forward);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Not Valid");
+        }
     }
+      
 
     public void CheckForColliders()
     {
-        if (!Physics.Raycast(ray, out hit, maxDistance)) return;
 
-        var hitObj = hit.collider.gameObject;
+        RaycastHit hit;
 
+        Ray ray = new Ray(transform.position, transform.forward);
+        Debug.DrawRay(ray.origin, ray.direction, Color.magenta);
 
-        if (Physics.Raycast(ray, out hit, maxDistance))///////////////////////////////////////////
+        if (Physics.Raycast(ray, out hit, 4000f))
         {
+            var hitObj = hit.collider.gameObject;
 
             if (hitObj.CompareTag(DontLook))
             {

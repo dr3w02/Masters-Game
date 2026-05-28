@@ -111,7 +111,14 @@ public class NPCPicker : MonoBehaviour
             {
                 sisterSpawnState.sisterGhostActive = true;
             }
-          
+
+            WayPointMover mover = chosen.ghostPrefab.GetComponent<WayPointMover>();
+
+            if (mover != null)
+            {
+               
+                mover.Initialize(pathPicker._wayPoints, this, (int)chosen.ghostSpeed, pathPicker);
+            }
 
             chosen.ghostPrefab.SetActive(true);
 

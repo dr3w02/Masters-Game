@@ -5972,9 +5972,9 @@ MonoBehaviour:
   WindowGhosts: WindowGhosts
   Laptop: Laptop
   lookingAtLaptop: 0
-  leftEye: {fileID: 1994547612}
-  rightEye: {fileID: 544030133}
-  centerEyeAnchor: {fileID: 1376815416}
+  leftEyeObj: {fileID: 0}
+  rightEyeObj: {fileID: 0}
+  headTransform: {fileID: 0}
 --- !u!114 &70987348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55421,6 +55421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1439910648}
+  - component: {fileID: 1439910649}
   m_Layer: 0
   m_Name: -----Player-------
   m_TagString: Untagged
@@ -55444,6 +55445,19 @@ Transform:
   - {fileID: 434464620}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439910649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439910647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a94e6120151b6469584c43cb462047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myVector3: {x: 0, y: 0, z: 0}
 --- !u!1 &1448070506
 GameObject:
   m_ObjectHideFlags: 0
@@ -61567,9 +61581,9 @@ MonoBehaviour:
   WindowGhosts: WindowGhosts
   Laptop: Laptop
   lookingAtLaptop: 0
-  leftEye: {fileID: 1994547612}
-  rightEye: {fileID: 544030133}
-  centerEyeAnchor: {fileID: 1376815416}
+  leftEyeObj: {fileID: 0}
+  rightEyeObj: {fileID: 0}
+  headTransform: {fileID: 0}
 --- !u!114 &1645222514
 MonoBehaviour:
   m_ObjectHideFlags: 0

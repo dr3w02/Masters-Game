@@ -29,6 +29,7 @@ public class WayPointMover : MonoBehaviour
         _pathPicker = pathPicker;
         moveSpeed = ghostSpeed;
         initialized = true;
+
         ResetToStart();
     }
 
@@ -87,6 +88,7 @@ public class WayPointMover : MonoBehaviour
 
     private void Update()
     {
+        if (!initialized) return;
         Movement();
 
 

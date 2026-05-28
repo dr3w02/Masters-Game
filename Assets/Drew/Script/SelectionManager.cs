@@ -25,42 +25,6 @@ public class SelectionManager : MonoBehaviour
 
         RaycastHit hit;
 
-        //var ray = Camera.main.ScreenPointToRay(Input.mousePosition); ////change this
-      
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 4000f))
-        //{
-            
-        //    var selection = hit.transform;
-        //    if (selection.CompareTag(selectableTag))
-        //    {
-        //        var selectionRenderer = selection.GetComponent<Renderer>();
-
-        //        if (selectionRenderer != null)
-        //        {
-        //            //selectionRenderer.material = highlightMaterial;
-        //            Debug.Log("hit something");
-        //            ghost.SetActive (true);
-        //        }
-
-        //        _selection = selection;
-        //    }
-
-        //}
-        //else
-        //{
-            
-        //    if (_selection != null)
-        //    {
-        //        Debug.Log("hit nothing");
-        //        ghost.SetActive(false);
-        //        //var selectionRenderer = _selection.GetComponent<Renderer>();
-        //        //selectionRenderer.material = defaultMaterial;
-        //        _selection = null;
-
-        //    }
-
-        //}
-
         Ray ray = new Ray(transform.position, transform.forward);
 
         if (Physics.Raycast(ray, out hit, 4000f))

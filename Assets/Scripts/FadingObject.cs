@@ -23,6 +23,7 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
     public GameObject particalEffect;
     public FadeScreen Fade;
 
+    public GameObject ghosts;
     private void Awake()
     {
         particalEffect.SetActive(false);
@@ -71,8 +72,10 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
 
     private IEnumerator FadeOutRoutine()
     {
+        
         particalEffect.SetActive(true);
 
+        ghosts.SetActive(true);
 
         float elapsed = 0f;
         SetIntensity(0f);
@@ -103,6 +106,7 @@ public class FadingObject : MonoBehaviour, IEquatable<FadingObject>
         Fade.FadeOut();
 
         yield return new WaitForSeconds(5f);
+        ghosts.SetActive(false);
 
         SceneManager.LoadScene("Main Game");
     }
