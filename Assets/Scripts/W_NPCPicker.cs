@@ -179,7 +179,7 @@ public class W_NPCPicker : MonoBehaviour
         {
             if (chosen.sisterGhost)
             {
-                StartCoroutine(WaitBeforeSister(10f));
+                StartCoroutine(WaitBeforeSister(2f));
             }
         }
 

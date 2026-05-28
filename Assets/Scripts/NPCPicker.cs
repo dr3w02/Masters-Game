@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 
@@ -31,15 +32,14 @@ public class NPCPicker : MonoBehaviour
 
     public void Awake()
     {
-        _npcStatsSource = GetComponent<NPCSTATS>();
-        _sanityScore = FindFirstObjectByType<SanityScore>();
-
-        sisterSpawnState = FindFirstObjectByType<SpawnManager>();
+        if (_npcStatsSource == null) _npcStatsSource = GetComponent<NPCSTATS>();
+        if (_sanityScore == null) _sanityScore = FindFirstObjectByType<SanityScore>();
+        if (sisterSpawnState == null) sisterSpawnState = FindFirstObjectByType<SpawnManager>();
 
     }
     private void Start()
     {
-        NPCSTATS stats = FindFirstObjectByType<NPCSTATS>();
+      
 
     }
      public void Update()
@@ -95,11 +95,19 @@ public class NPCPicker : MonoBehaviour
 
             if (temporaryChosen.sisterGhost && sisterSpawnState.sisterGhostActive)
             {
+                Debug.Log("Sister is active");
 
-                pathPicker.PathChosen();
-                Debug.Log("URDONEhallway");
-                isGhostActive = false;
-                yield break;
+                var validGhosts = hallwayGhosts.Where(g => !g.sisterGhost).ToList();
+                if (validGhosts.Count > 0)
+                {
+                    temporaryChosen = validGhosts[Random.Range(0, validGhosts.Count)];
+                }
+                else
+                {
+                    
+                    isGhostActive = false;
+                    yield break;
+                }
             }
 
             lastPickedIndex = index;
@@ -164,12 +172,15 @@ public class NPCPicker : MonoBehaviour
 
         if (chosen.sisterGhost)
         {
-            StartCoroutine(WaitBeforeSister(10f));
+            chosen.ghostPrefab.SetActive(false);
+            StartCoroutine(WaitBeforeSister(2f));
         }
-        if (sisterSpawnState != null)
-        {
-            sisterSpawnState.StartHallwaySpawnTimer();
-        }
+        chosen = null;
+        isGhostActive = false;
+        //if (sisterSpawnState != null)
+        //{
+        //    sisterSpawnState.StartHallwaySpawnTimer();
+        //}
 
     }
 }

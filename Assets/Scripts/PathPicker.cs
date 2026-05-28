@@ -55,8 +55,16 @@ public class PathPicker : MonoBehaviour
 
             Debug.Log("NotAcessable"); 
         }
-      
-    
+
+        if (!string.IsNullOrEmpty(targetTag))
+        {
+            GameObject[] allPathes = GameObject.FindGameObjectsWithTag(targetTag);
+            H_Pathes.AddRange(allPathes);
+        }
+        else
+        {
+            Debug.LogError("Target Tag is empty on " + gameObject.name);
+        }
 
     }
 
@@ -114,6 +122,21 @@ public class PathPicker : MonoBehaviour
         _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
 
         transform.LookAt(_wayPoints.currentWaypoint);
+
+        _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
+
+        if (_wayPoints.currentWaypoint != null)
+        {
+            // Only look if the waypoint is not in the exact same spot
+            if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) > 0.1f)
+            {
+                transform.LookAt(_wayPoints.currentWaypoint);
+            }
+        }
+        else
+        {
+            Debug.LogError("Next waypoint is missing! Cannot LookAt.");
+        }
 
         recentlyUsedPathes.Add(H_Pathes[randomPath]); //when the path is over put pack on list
         H_Pathes.Remove(H_Pathes[randomPath]);

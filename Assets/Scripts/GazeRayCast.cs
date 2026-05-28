@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+
 public class GazeRayCast : MonoBehaviour
 {
     public SanityScore _sanity;
@@ -29,19 +30,23 @@ public class GazeRayCast : MonoBehaviour
     private OVRPlugin.EyeGazesState _currentEyeGazesState;
     public Transform leftEyeObj;
     public Transform rightEyeObj;
-    public Transform headTransform;
+
 
 
     public void Start()
     {
         _sanity = FindAnyObjectByType<SanityScore>();
         _wNpcPicker = FindAnyObjectByType<W_NPCPicker>();
-    
+
+        if (!OVRPermissionsRequester.IsPermissionGranted(OVRPermissionsRequester.Permission.EyeTracking))
+        {
+            OVRPermissionsRequester.Request(new[] { OVRPermissionsRequester.Permission.EyeTracking });
+        }
+
     }
 
     public void Update()
     {
-
         CheckForColliders();
 
         if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
@@ -55,35 +60,48 @@ public class GazeRayCast : MonoBehaviour
                 {
                     OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
                     OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
-                    eyeposL = headTransform.TransformPoint(poseL.position);
-                    eyeposR = headTransform.TransformPoint(poseR.position);
-                    rightEyeObj.position = eyeposR;
-                    rightEyeObj.rotation = poseR.orientation;
-                    leftEyeObj.position = eyeposL;
-                    leftEyeObj.rotation = poseL.orientation;
-                    rightEyeObj.forward = headTransform.TransformDirection(rightEyeObj.forward);
-                    leftEyeObj.forward = headTransform.TransformDirection(leftEyeObj.forward);
+
+                   
+                    if (leftEyeObj != null)
+                    {
+                        leftEyeObj.localRotation = poseL.orientation;
+                        leftEyeObj.localPosition = poseL.position;
+                    }
+
+                    if (rightEyeObj != null)
+                    {
+                        rightEyeObj.localRotation = poseR.orientation;
+                        rightEyeObj.localPosition = poseR.position;
+                    }
                 }
+                else
+                {
+                    Debug.LogWarning("Eye Gaze tracking confidence too low!");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Eye tracking state data is invalid.");
             }
         }
         else
         {
-            Debug.LogWarning("Not Valid");
+            Debug.LogWarning("No Eye Tracking State found. Check OVRManager project permissions!");
         }
     }
-      
 
     public void CheckForColliders()
     {
 
+
         RaycastHit hit;
-
         Ray ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction, Color.magenta);
+        Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
 
-        if (Physics.Raycast(ray, out hit, 4000f))
+        if (Physics.Raycast(ray, out hit, maxDistance))
         {
             var hitObj = hit.collider.gameObject;
+            Debug.Log("hit " + hitObj.name);
 
             if (hitObj.CompareTag(DontLook))
             {

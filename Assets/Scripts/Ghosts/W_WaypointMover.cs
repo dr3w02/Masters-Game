@@ -115,7 +115,7 @@ public class W_WaypointMover : MonoBehaviour
 
                 if (ghostChuckle != null)
                     AudioSource.PlayClipAtPoint(ghostChuckle, transform.position);
-
+                
 
 
                 if (_fadeGhosts != null)
@@ -126,7 +126,7 @@ public class W_WaypointMover : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("W_WaypointMover: _fadeGhosts is null!");
+                    Debug.LogWarning("fadeGhosts is null!");
                 }
 
 
@@ -155,6 +155,7 @@ public class W_WaypointMover : MonoBehaviour
             else
             {
                 transform.LookAt(_wayPoints.currentWaypoint.position);
+                Debug.Log("moving2");
             }
 
            

@@ -33,15 +33,15 @@ public class NPCSTATS : MonoBehaviour
    
     void Start()
     {
-        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 0.5f, 15, Poltergeist,false);
-        _npcHallwayGhost2 = new npcStatistics("Residual", 0.5f,  5, Residual, false);
-        _npcHallwayGhost3 = new npcStatistics("Spirit", 0.5f, 10, Spirit, false);
-        _npcHallwaySister = new npcStatistics("H_Sister", 1, +5, H_Sister, true);
+        _npcHallwayGhost1 = new npcStatistics("Poltergeist", 1.5f, 15, Poltergeist,false);
+        _npcHallwayGhost2 = new npcStatistics("Residual", 1.5f,  5, Residual, false);
+        _npcHallwayGhost3 = new npcStatistics("Spirit", 1.5f, 10, Spirit, false);
+        _npcHallwaySister = new npcStatistics("H_Sister", 1.5f, +5, H_Sister, true);
 
         // Window
         _npcWindowGhost1 = new npcStatistics("Mimic", 0.5f, 5, Mimic, false);
         _npcWindowGhost2 = new npcStatistics("Demon", 0.5f, 20, Demon, false);
-        _npcWindowSister = new npcStatistics("W_Sister", 1, +2, W_Sister, true); // make this gradiual the longer they look 
+        _npcWindowSister = new npcStatistics("W_Sister", 0.5f, +2, W_Sister, true); // make this gradiual the longer they look 
 
 
         hallwayGhosts.Add(_npcHallwayGhost1);

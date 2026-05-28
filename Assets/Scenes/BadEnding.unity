@@ -8707,7 +8707,6 @@ MonoBehaviour:
   lookingAtLaptop: 0
   leftEyeObj: {fileID: 0}
   rightEyeObj: {fileID: 0}
-  headTransform: {fileID: 0}
 --- !u!114 &354491360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24870,7 +24869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a94e6120151b6469584c43cb462047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myVector3: {x: 0, y: 0, z: 0}
+  spawnPoint: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &457789800
 GameObject:
   m_ObjectHideFlags: 0
@@ -75521,7 +75521,6 @@ MonoBehaviour:
   lookingAtLaptop: 0
   leftEyeObj: {fileID: 0}
   rightEyeObj: {fileID: 0}
-  headTransform: {fileID: 0}
 --- !u!114 &1892159081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76406,9 +76405,9 @@ Light:
   m_GameObject: {fileID: 1951168194}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 0
+  m_Type: 2
   m_Color: {r: 1, g: 0.9664389, b: 0.7877358, a: 1}
-  m_Intensity: 5.35
+  m_Intensity: 0.04
   m_Range: 8.54
   m_SpotAngle: 179
   m_InnerSpotAngle: 103.58967
@@ -76471,7 +76470,7 @@ Transform:
   m_GameObject: {fileID: 1951168194}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: -0.7071069}
-  m_LocalPosition: {x: -0.120673455, y: 2.6548955, z: -0.01349473}
+  m_LocalPosition: {x: -0.120673455, y: 2.477, z: -0.013}
   m_LocalScale: {x: 1.1826999, y: 1.1826999, z: 1.1826999}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -35,10 +35,6 @@ public class MenuGaze : MonoBehaviour
 
     public GameObject Eyes;
 
-    //[Header("Gaze")]
-    //public OVREyeGaze leftEye;
-    //public OVREyeGaze rightEye;
-    //[SerializeField] private Transform centerEyeAnchor;
 
 
 
@@ -46,7 +42,10 @@ public class MenuGaze : MonoBehaviour
     private OVRPlugin.EyeGazesState _currentEyeGazesState;
     public Transform leftEyeObj;
     public Transform rightEyeObj;
-    public Transform headTransform;
+
+
+    public Transform reticleCircle;
+    public float fixedDistance = 2.0f;
 
 
     public void Start()
@@ -54,6 +53,14 @@ public class MenuGaze : MonoBehaviour
         //indicatorTimer = waittime;
         maxIndicatorTimer = waittime;
 
+        if (!OVRPermissionsRequester.IsPermissionGranted(OVRPermissionsRequester.Permission.EyeTracking))
+        {
+            OVRPermissionsRequester.Request(new[] { OVRPermissionsRequester.Permission.EyeTracking });
+        }
+        else
+        {
+            Debug.LogWarning("NO EYETRACKING!");
+        }
 
         Eyes.SetActive(true);
     }
@@ -110,26 +117,42 @@ public class MenuGaze : MonoBehaviour
                 {
                     OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
                     OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
-                    eyeposL = headTransform.TransformPoint(poseL.position);
-                    eyeposR = headTransform.TransformPoint(poseR.position);
-                    rightEyeObj.position = eyeposR;
-                    rightEyeObj.rotation = poseR.orientation;
-                    leftEyeObj.position = eyeposL;
-                    leftEyeObj.rotation = poseL.orientation;
-                    rightEyeObj.forward = headTransform.TransformDirection(rightEyeObj.forward);
-                    leftEyeObj.forward = headTransform.TransformDirection(leftEyeObj.forward);
+
+                    if (leftEyeObj != null)
+                    {
+                        leftEyeObj.localRotation = poseL.orientation;
+                        leftEyeObj.localPosition = poseL.position;
+                    }
+
+                    if (rightEyeObj != null)
+                    {
+                        rightEyeObj.localRotation = poseR.orientation;
+                        rightEyeObj.localPosition = poseR.position;
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Low Tracking Confidence");
                 }
             }
             else
             {
-                Debug.LogWarning("Not Valid");
+                Debug.LogWarning("Eye Gazes Not Valid");
             }
         }
         else
         {
-            Debug.LogWarning("No Tracking");
+            Debug.LogWarning("No Eye Tracking State Found from Plugin");
         }
 
+        if (reticleCircle != null)
+        {
+            Ray ray = new Ray(transform.position, transform.forward);
+
+            reticleCircle.position = ray.origin + (ray.direction * fixedDistance);
+
+            reticleCircle.rotation = transform.rotation;
+        }
 
 
 

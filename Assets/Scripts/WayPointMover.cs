@@ -24,64 +24,40 @@ public class WayPointMover : MonoBehaviour
 
     public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
+        if (wayPoints == null || wayPoints.transform.childCount == 0)
+        {
+           
+            return;
+        }
+
         _wayPoints = wayPoints;
         _npcPicker = npcPicker;
-        _pathPicker = pathPicker;
         moveSpeed = ghostSpeed;
-        initialized = true;
 
-        ResetToStart();
-    }
-
-    private void OnEnable()
-    {
        
-        if (!initialized && _pathPicker != null)
-        {
-            _wayPoints = _pathPicker._wayPoints;
-        }
-
-        
-        if (_wayPoints == null || _wayPoints.transform.childCount == 0)
-        {
-            Debug.Log("WayPointMover: Waiting for a path.");
-            return;
-        }
-
-        ResetToStart();
-
-
-        
-        Debug.Log("WayPointMover.currentwaypoint");
-    }
-
-    private void OnDisable()
-    {
-        
-        initialized = false;
-    }
-
-    private void ResetToStart()
-    {
-
-        if (_wayPoints == null || _wayPoints.transform.childCount == 0)
-        {
-            return;
-        }
-
         ghostEnded = false;
         chucklePlayed = false;
         currentWaypointIndex = 0;
 
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
-        transform.localScale = Vector3.one;
-
+       
         Transform firstWaypoint = _wayPoints.transform.GetChild(0);
         transform.position = firstWaypoint.position;
         transform.rotation = firstWaypoint.rotation;
+
+        initialized = true;
+
     }
 
+   
+
+    private void OnDisable()
+    {
+        _wayPoints = null;
+        initialized = false;
+        ghostEnded = false;
+    }
+
+   
 
     
     

@@ -5974,7 +5974,6 @@ MonoBehaviour:
   lookingAtLaptop: 0
   leftEyeObj: {fileID: 0}
   rightEyeObj: {fileID: 0}
-  headTransform: {fileID: 0}
 --- !u!114 &70987348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55457,7 +55456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a94e6120151b6469584c43cb462047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myVector3: {x: 0, y: 0, z: 0}
+  spawnPoint: {fileID: 0}
+  xrOrigin: {fileID: 0}
 --- !u!1 &1448070506
 GameObject:
   m_ObjectHideFlags: 0
@@ -61583,7 +61583,6 @@ MonoBehaviour:
   lookingAtLaptop: 0
   leftEyeObj: {fileID: 0}
   rightEyeObj: {fileID: 0}
-  headTransform: {fileID: 0}
 --- !u!114 &1645222514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74668,7 +74667,7 @@ Transform:
   m_GameObject: {fileID: 1929346741}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.0031, y: -0.1, z: 0.0082}
+  m_LocalPosition: {x: -0.003, y: -0.208, z: 0.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74706,9 +74705,9 @@ Light:
   m_GameObject: {fileID: 1929346741}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 0
+  m_Type: 2
   m_Color: {r: 1, g: 0.9664389, b: 0.7877358, a: 1}
-  m_Intensity: 2.21
+  m_Intensity: 0.69
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 103.58967
