@@ -18,6 +18,7 @@ public class WayPointMover : MonoBehaviour
     public FadeGhosts fadeGhosts;
 
     public AudioClip ghostChuckle;
+   
     private bool chucklePlayed = false;
 
     private int currentWaypointIndex = 0;
@@ -45,8 +46,9 @@ public class WayPointMover : MonoBehaviour
         transform.rotation = firstWaypoint.rotation;
 
         initialized = true;
+     
 
-    }
+}
 
    
 

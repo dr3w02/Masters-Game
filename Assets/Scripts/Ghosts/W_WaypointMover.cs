@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class W_WaypointMover : MonoBehaviour
 { 
@@ -18,6 +19,7 @@ public class W_WaypointMover : MonoBehaviour
 
     public FadeGhosts _fadeGhosts;
     public AudioClip ghostChuckle;
+    
   
     public void Initialize(WayPoints wayPoints, W_NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
@@ -30,11 +32,12 @@ public class W_WaypointMover : MonoBehaviour
 
     private void OnEnable()
     {
-        
-    
-        
+
+   
        
-        
+
+
+
 
         if (!initialized)
         {

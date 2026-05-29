@@ -53,14 +53,16 @@ public class MenuGaze : MonoBehaviour
         //indicatorTimer = waittime;
         maxIndicatorTimer = waittime;
 
-        if (!OVRPermissionsRequester.IsPermissionGranted(OVRPermissionsRequester.Permission.EyeTracking))
-        {
-            OVRPermissionsRequester.Request(new[] { OVRPermissionsRequester.Permission.EyeTracking });
-        }
-        else
-        {
-            Debug.LogWarning("NO EYETRACKING!");
-        }
+        //if (!OVRPermissionsRequester.IsPermissionGranted(OVRPermissionsRequester.Permission.EyeTracking))
+        //{
+        //    OVRPermissionsRequester.Request(new[] { OVRPermissionsRequester.Permission.EyeTracking });
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("NO EYETRACKING!");
+        //}
+
+        OVRPlugin.StartEyeTracking();
 
         Eyes.SetActive(true);
     }
@@ -106,44 +108,46 @@ public class MenuGaze : MonoBehaviour
             radialIndicatorUI.enabled = false;
         }
 
-        if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
-        {
-            OVRPlugin.EyeGazeState eyeGazeL = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Left];
-            OVRPlugin.EyeGazeState eyeGazeR = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Right];
+        Debug.LogWarning($"tracking:{OVRPlugin.eyeTrackingEnabled} ,  supported:{OVRPlugin.eyeTrackingSupported}");
+            
+        //if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
+        //{
+        //    OVRPlugin.EyeGazeState eyeGazeL = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Left];
+        //    OVRPlugin.EyeGazeState eyeGazeR = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Right];
 
-            if (eyeGazeR.IsValid && eyeGazeL.IsValid)
-            {
-                if (eyeGazeL.Confidence >= 0.5f && eyeGazeR.Confidence >= 0.5f)
-                {
-                    OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
-                    OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
+        //    if (eyeGazeR.IsValid && eyeGazeL.IsValid)
+        //    {
+        //        if (eyeGazeL.Confidence >= 0.5f && eyeGazeR.Confidence >= 0.5f)
+        //        {
+        //            OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
+        //            OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
 
-                    if (leftEyeObj != null)
-                    {
-                        leftEyeObj.localRotation = poseL.orientation;
-                        leftEyeObj.localPosition = poseL.position;
-                    }
+        //            if (leftEyeObj != null)
+        //            {
+        //                leftEyeObj.localRotation = poseL.orientation;
+        //                leftEyeObj.localPosition = poseL.position;
+        //            }
 
-                    if (rightEyeObj != null)
-                    {
-                        rightEyeObj.localRotation = poseR.orientation;
-                        rightEyeObj.localPosition = poseR.position;
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("Low Tracking Confidence");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Eye Gazes Not Valid");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No Eye Tracking State Found from Plugin");
-        }
+        //            if (rightEyeObj != null)
+        //            {
+        //                rightEyeObj.localRotation = poseR.orientation;
+        //                rightEyeObj.localPosition = poseR.position;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Debug.LogWarning("Low Tracking Confidence");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.LogWarning("Eye Gazes Not Valid");
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("No Eye Tracking State Found from Plugin");
+        //}
 
         if (reticleCircle != null)
         {

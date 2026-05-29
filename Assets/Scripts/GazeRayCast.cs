@@ -31,10 +31,13 @@ public class GazeRayCast : MonoBehaviour
     public Transform leftEyeObj;
     public Transform rightEyeObj;
 
+    public Transform gaze;
 
 
     public void Start()
     {
+        OVRPlugin.StartEyeTracking();
+
         _sanity = FindAnyObjectByType<SanityScore>();
         _wNpcPicker = FindAnyObjectByType<W_NPCPicker>();
 
@@ -47,10 +50,24 @@ public class GazeRayCast : MonoBehaviour
 
     public void Update()
     {
-        CheckForColliders();
+
+        if (OVRPlugin.eyeTrackingEnabled)
+        {
+            Debug.LogWarning("Eye tracking enabled");
+        }
+        else
+        {
+            Debug.LogError("Eye tracking no enabled");
+            OVRPlugin.StartEyeTracking();
+        }
+
+
+
 
         if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
         {
+
+            Debug.LogError("Hello");
             OVRPlugin.EyeGazeState eyeGazeL = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Left];
             OVRPlugin.EyeGazeState eyeGazeR = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Right];
 
@@ -61,7 +78,7 @@ public class GazeRayCast : MonoBehaviour
                     OVRPose poseL = eyeGazeL.Pose.ToOVRPose();
                     OVRPose poseR = eyeGazeR.Pose.ToOVRPose();
 
-                   
+
                     if (leftEyeObj != null)
                     {
                         leftEyeObj.localRotation = poseL.orientation;
@@ -73,6 +90,9 @@ public class GazeRayCast : MonoBehaviour
                         rightEyeObj.localRotation = poseR.orientation;
                         rightEyeObj.localPosition = poseR.position;
                     }
+
+                    gaze.localRotation = poseR.orientation;
+                    gaze.localPosition = poseR.position;
                 }
                 else
                 {
@@ -88,6 +108,8 @@ public class GazeRayCast : MonoBehaviour
         {
             Debug.LogWarning("No Eye Tracking State found. Check OVRManager project permissions!");
         }
+
+        CheckForColliders();
     }
 
     public void CheckForColliders()

@@ -87,16 +87,20 @@ public class OpenCloseDoor : MonoBehaviour
 
         yield return new WaitForSeconds(0.8f);
 
-        var hallwayGhosts = _npcStatsSource.hallwayGhosts;
+        //var hallwayGhosts = _npcStatsSource.hallwayGhosts;
 
-        foreach (var ghost in hallwayGhosts)
+        //foreach (var ghost in hallwayGhosts)
+        //{
+        //    if (ghost.ghostPrefab != null)
+        //    {
+        //        ghost.ghostPrefab.SetActive(false);
+        //    }
+        //}
+
+        if (_npcPicker != null)
         {
-            if (ghost.ghostPrefab != null)
-            {
-                ghost.ghostPrefab.SetActive(false);
-            }
+            _npcPicker.EndOfPath();
         }
-
 
         yield return new WaitForSeconds(doorClosedAllowed);
 
@@ -117,13 +121,13 @@ public class OpenCloseDoor : MonoBehaviour
         {
            
             _sanity.sanityDecrease = false;
-
+            
             StopCoroutine(SpawnRate());
         }
         
 
     }
-
+    public SpawnManager spawn;
     public void SetDoorClosed(float newDelay)
     {
         doorClosedAllowed = newDelay;

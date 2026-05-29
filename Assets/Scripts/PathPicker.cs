@@ -105,7 +105,7 @@ public class PathPicker : MonoBehaviour
             return;
         }
 
-        //set inital postion to the first waypoint
+     
         _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
 
         if(_wayPoints.currentWaypoint != null)
@@ -118,7 +118,7 @@ public class PathPicker : MonoBehaviour
         }
        
 
-        //Set the next waypoint target
+
         _wayPoints.currentWaypoint = _wayPoints.GetNextWaypoint(_wayPoints.currentWaypoint);
 
         transform.LookAt(_wayPoints.currentWaypoint);
@@ -127,7 +127,7 @@ public class PathPicker : MonoBehaviour
 
         if (_wayPoints.currentWaypoint != null)
         {
-            // Only look if the waypoint is not in the exact same spot
+           
             if (Vector3.Distance(transform.position, _wayPoints.currentWaypoint.position) > 0.1f)
             {
                 transform.LookAt(_wayPoints.currentWaypoint);
@@ -138,7 +138,7 @@ public class PathPicker : MonoBehaviour
             Debug.LogError("Next waypoint is missing! Cannot LookAt.");
         }
 
-        recentlyUsedPathes.Add(H_Pathes[randomPath]); //when the path is over put pack on list
+        recentlyUsedPathes.Add(H_Pathes[randomPath]);
         H_Pathes.Remove(H_Pathes[randomPath]);
 
         if(targetTag == "Pathes")
