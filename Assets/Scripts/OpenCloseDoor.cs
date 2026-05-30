@@ -16,6 +16,8 @@ public class OpenCloseDoor : MonoBehaviour
     public AudioSource doorWarning;
 
 
+    public CandleManager _candleManager;
+
 
     public void Start()
     {
@@ -66,6 +68,7 @@ public class OpenCloseDoor : MonoBehaviour
             animatorDoor.SetBool("isOpen", false);
             animatorDoor.SetBool("isClosed", true);
             doorOpen = false;
+            _candleManager.doorClosed = true;
 
             StartCoroutine(SpawnRate());
 

@@ -19,6 +19,7 @@ public class CandleLighting : MonoBehaviour
     {
         candleManager = FindAnyObjectByType<CandleManager>();
 
+
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -50,6 +50,7 @@ public class MenuGaze : MonoBehaviour
 
     public void Start()
     {
+        alreadySelected = false;
         //indicatorTimer = waittime;
         maxIndicatorTimer = waittime;
 
