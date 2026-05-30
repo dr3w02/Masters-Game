@@ -48,16 +48,17 @@ public class NPCPicker : MonoBehaviour
         {
             chosen.ghostPrefab.SetActive(false);
             isGhostActive = false;
+            chosen = null;
         }
     }
    
 
     public IEnumerator StartNPCPicker(PathPicker pathPicker)
     {
-
+        Debug.Log("isGhostActive = " + isGhostActive);
         if (isGhostActive)
         {
-            Debug.Log(" A ghost is already active.");
+            Debug.Log("NoSpawn1");
             yield break;
         }
 
@@ -72,7 +73,9 @@ public class NPCPicker : MonoBehaviour
         if (hallwayGhosts == null || hallwayGhosts.Count == 0)
         {
             isGhostActive = false;
+            Debug.Log("NoSpawn");
             yield break;
+           
         }
 
         chosen = null;
@@ -95,8 +98,7 @@ public class NPCPicker : MonoBehaviour
 
             if (temporaryChosen.sisterGhost && sisterSpawnState.sisterGhostActive)
             {
-                Debug.Log("Sister is active");
-
+             
                 var validGhosts = hallwayGhosts.Where(g => !g.sisterGhost).ToList();
                 if (validGhosts.Count > 0)
                 {
@@ -104,7 +106,8 @@ public class NPCPicker : MonoBehaviour
                 }
                 else
                 {
-                    
+                    Debug.Log("No valid ghosts available.");
+                    Debug.Log("NoSpawn2");
                     isGhostActive = false;
                     yield break;
                 }
@@ -113,8 +116,7 @@ public class NPCPicker : MonoBehaviour
             lastPickedIndex = index;
             chosen = temporaryChosen;
 
-            Debug.Log("Picked ghost: " + chosen.ghostType);
-
+  
             if (chosen.sisterGhost)
             {
                 sisterSpawnState.sisterGhostActive = true;
@@ -128,19 +130,19 @@ public class NPCPicker : MonoBehaviour
                 mover.Initialize(pathPicker._wayPoints, this, (int)chosen.ghostSpeed, pathPicker);
             }
 
+
             chosen.ghostPrefab.SetActive(true);
 
         }
        
 
-        Debug.Log("NPCpICKED");
-        //Spawn ghost and move along path 
+      
     }
 
     IEnumerator WaitBeforeSister(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-
+        Debug.Log("NoSpawn3");
         if (sisterSpawnState != null)
         {
             sisterSpawnState.sisterGhostActive = false;
@@ -153,14 +155,14 @@ public class NPCPicker : MonoBehaviour
 
     public void EndOfPath() //maybe this should be here 
     {
-        Debug.Log("eNDoFDpATH");
+        Debug.Log("EndOfPath: HallwayGhostEnded");
+        Debug.Log("EndOfPath:isGhostActive = " + isGhostActive);
         if (chosen == null)
         {
             return;
         }
 
       
-
         if (chosen.ghostPrefab != null)
         {
             chosen.ghostPrefab.SetActive(false);
@@ -175,8 +177,7 @@ public class NPCPicker : MonoBehaviour
             chosen.ghostPrefab.SetActive(false);
             StartCoroutine(WaitBeforeSister(2f));
         }
-        chosen = null;
-        isGhostActive = false;
+       
        
 
     }

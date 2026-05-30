@@ -41,20 +41,20 @@ public class SpawnManager : MonoBehaviour
 
     public void StartHallwaySpawnTimer()
     {
-        Debug.Log("New hallway");
+    
         StartCoroutine(HallwaySpawn());
     }
 
     
     public void StartWindowSpawnTimer()
     {
-        Debug.Log("New Window");
+      
         StartCoroutine(WindowSpawn());
     }
 
     public IEnumerator HallwaySpawn()
     {
-        
+        Debug.Log("NoSpawn6");
         yield return new WaitForSeconds(hallwaySpawnDelay);
 
 
@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("CannotPickHallway");
+            
         }
 
         
@@ -72,7 +72,7 @@ public class SpawnManager : MonoBehaviour
     }
     public IEnumerator WindowSpawn()
     {
-
+        Debug.Log("NoSpawn7");
         yield return new WaitForSeconds(windowSpawnDelay);
 
         if (windowPathPicker != null)
@@ -81,7 +81,6 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("CannotPickWindow");
         }
 
 

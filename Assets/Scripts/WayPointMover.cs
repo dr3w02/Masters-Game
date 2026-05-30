@@ -57,6 +57,7 @@ public class WayPointMover : MonoBehaviour
         _wayPoints = null;
         initialized = false;
         ghostEnded = false;
+
     }
 
    
@@ -100,6 +101,8 @@ public class WayPointMover : MonoBehaviour
                 if (ghostChuckle != null && !chucklePlayed)
                 {
                     chucklePlayed = true;
+
+                    _npcPicker.isGhostActive = false;
                     AudioSource.PlayClipAtPoint(ghostChuckle, transform.position);
                 }
 

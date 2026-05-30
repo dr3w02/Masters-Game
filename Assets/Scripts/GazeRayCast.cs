@@ -53,11 +53,11 @@ public class GazeRayCast : MonoBehaviour
 
         if (OVRPlugin.eyeTrackingEnabled)
         {
-            Debug.LogWarning("Eye tracking enabled");
+           
         }
         else
         {
-            Debug.LogError("Eye tracking no enabled");
+          
             OVRPlugin.StartEyeTracking();
         }
 
@@ -67,7 +67,6 @@ public class GazeRayCast : MonoBehaviour
         if (OVRPlugin.GetEyeGazesState(OVRPlugin.Step.Render, -1, ref _currentEyeGazesState))
         {
 
-            Debug.LogError("Hello");
             OVRPlugin.EyeGazeState eyeGazeL = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Left];
             OVRPlugin.EyeGazeState eyeGazeR = _currentEyeGazesState.EyeGazes[(int)OVRPlugin.Eye.Right];
 
@@ -96,17 +95,17 @@ public class GazeRayCast : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("Eye Gaze tracking confidence too low!");
+                   
                 }
             }
             else
             {
-                Debug.LogWarning("Eye tracking state data is invalid.");
+             
             }
         }
         else
         {
-            Debug.LogWarning("No Eye Tracking State found. Check OVRManager project permissions!");
+         
         }
 
         CheckForColliders();
@@ -123,26 +122,26 @@ public class GazeRayCast : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
             var hitObj = hit.collider.gameObject;
-            Debug.Log("hit " + hitObj.name);
+       
 
             if (hitObj.CompareTag(DontLook))
             {
                 _sanity.DecreaseSanity();
-                Debug.Log("hit D" + hit.collider.gameObject.name);
+              
 
             }
 
             if (hitObj.CompareTag(DoLook))
             {
                 _sanity.IncreaseSanity();
-                Debug.Log("hit I" + hit.collider.gameObject.name);
+            
             }
 
 
 
             if (hitObj.CompareTag(WindowGhosts))
             {
-                Debug.Log("Gaze dismissed window ghost: " + hitObj.name);
+              
                 _wNpcPicker.LookedAt();
                
             }
@@ -150,7 +149,7 @@ public class GazeRayCast : MonoBehaviour
 
             if (hitObj.CompareTag(Laptop))
             {
-                Debug.Log("Look at Laptop!");
+               
 
                 if (!lookingAtLaptop)
                 {
@@ -169,7 +168,7 @@ public class GazeRayCast : MonoBehaviour
             }
 
 
-            Debug.Log("hit" + hit.collider.gameObject.name);
+     
 
 
         }

@@ -27,6 +27,7 @@ public class SanityScore : MonoBehaviour
     {
         
         Time.timeScale = 1;
+        sanity = 100;
     }
     public void setMaxSanity(float maxSanity)
     {

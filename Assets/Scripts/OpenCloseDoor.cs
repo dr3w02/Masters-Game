@@ -19,8 +19,14 @@ public class OpenCloseDoor : MonoBehaviour
     public CandleManager _candleManager;
 
 
+    public bool prompted;
+
+
+    public SpawnManager spawn;
+
     public void Start()
     {
+        prompted = false;
         doorWarning = FindAnyObjectByType<AudioSource>();
 
         if (_sanity == null)
@@ -38,37 +44,44 @@ public class OpenCloseDoor : MonoBehaviour
 
         }
     }
-    
 
+    public void Starter()
+    {
+        AudioManager.instance.PlaySFX("DoorCreak");
+        animatorDoor.SetBool("isOpen", false);
+        animatorDoor.SetBool("isClosed", true);
+        _candleManager.doorClosed = true;
+        this.enabled = false;
+    }
 
     public void ToggleDoor()
     {
         Debug.Log("Door Activated");
 
-    
+
 
         if (!doorOpen)
         {
-            
+
             AudioManager.instance.PlaySFX("DoorCreak");
-           
+
             animatorDoor.SetBool("isOpen", true);
             animatorDoor.SetBool("isClosed", false);
             doorOpen = true;
             Debug.Log("DoorOpen");
             Debug.Log("DoorClosed");
-           
+
 
         }
         else
         {
-           
-            AudioManager.instance.PlaySFX("DoorCreak"); 
+
+            AudioManager.instance.PlaySFX("DoorCreak");
             AudioManager.instance.StopSFX("DoorBang");
             animatorDoor.SetBool("isOpen", false);
             animatorDoor.SetBool("isClosed", true);
             doorOpen = false;
-            _candleManager.doorClosed = true;
+            
 
             StartCoroutine(SpawnRate());
 
@@ -81,24 +94,15 @@ public class OpenCloseDoor : MonoBehaviour
     private IEnumerator SpawnRate()
     {
 
-        if (_npcStatsSource == null)
-        {
-            yield break; 
-        }
+        //if (_npcStatsSource == null)
+        //{
+        //    yield break;
+        //}
 
         AudioManager.instance.PlaySFX("DoorBang");
 
         yield return new WaitForSeconds(0.8f);
 
-        //var hallwayGhosts = _npcStatsSource.hallwayGhosts;
-
-        //foreach (var ghost in hallwayGhosts)
-        //{
-        //    if (ghost.ghostPrefab != null)
-        //    {
-        //        ghost.ghostPrefab.SetActive(false);
-        //    }
-        //}
 
         if (_npcPicker != null)
         {
@@ -109,36 +113,26 @@ public class OpenCloseDoor : MonoBehaviour
 
         AudioManager.instance.StopSFX("DoorBang");
 
-        if (!doorOpen)
+        if (!prompted)
         {
+
             doorWarning.Play();
+            prompted = true;
+
+
         }
-      
-        if (doorOpen == false)
-        {
-            _sanity.sanityDecrease = true;
-            StartCoroutine(SpawnRate());
-            
-        }
-        else
-        {
-           
-            _sanity.sanityDecrease = false;
-            
-            StopCoroutine(SpawnRate());
-        }
-        
 
     }
-    public SpawnManager spawn;
+
     public void SetDoorClosed(float newDelay)
     {
         doorClosedAllowed = newDelay;
     }
+}
+
 
 
 
    
     
 
-}

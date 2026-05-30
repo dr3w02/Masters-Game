@@ -53,7 +53,6 @@ public class PathPicker : MonoBehaviour
         if (_wayPoints == null)
         {
 
-            Debug.Log("NotAcessable"); 
         }
 
         if (!string.IsNullOrEmpty(targetTag))
@@ -63,7 +62,7 @@ public class PathPicker : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Target Tag is empty on " + gameObject.name);
+         
         }
 
     }
@@ -101,7 +100,7 @@ public class PathPicker : MonoBehaviour
 
         if (_wayPoints == null)
         {
-            Debug.LogError("No WayPoints on: " + H_Pathes[randomPath].name);
+       
             return;
         }
 
@@ -114,7 +113,7 @@ public class PathPicker : MonoBehaviour
         }
         else
         {
-            Debug.Log("Varible is missign!!!", _wayPoints.currentWaypoint);
+            
         }
        
 
@@ -135,7 +134,7 @@ public class PathPicker : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Next waypoint is missing! Cannot LookAt.");
+            
         }
 
         recentlyUsedPathes.Add(H_Pathes[randomPath]);
@@ -144,14 +143,13 @@ public class PathPicker : MonoBehaviour
         if(targetTag == "Pathes")
         {
             _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
-            Debug.Log("lost the npc picker!");
-
+           
         }
 
 
         if (targetTag == "W_Pathes")
         {
-            Debug.Log("lost the npc picker");
+            
 
             _npcWindow.StartCoroutine(_npcWindow.StartNPCPicker(this)); 
         }
