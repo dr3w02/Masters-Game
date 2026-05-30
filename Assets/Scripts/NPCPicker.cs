@@ -177,10 +177,7 @@ public class NPCPicker : MonoBehaviour
         }
         chosen = null;
         isGhostActive = false;
-        //if (sisterSpawnState != null)
-        //{
-        //    sisterSpawnState.StartHallwaySpawnTimer();
-        //}
+       
 
     }
 }
