@@ -82799,7 +82799,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.16631623, z: -0, w: 0.9860725}
   m_LocalPosition: {x: 0.64, y: -0.6374, z: -2.5}
-  m_LocalScale: {x: 0.0661, y: 0.0661, z: 0.0661}
+  m_LocalScale: {x: 0.04865987, y: 0.04865987, z: 0.04865987}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1907624584}

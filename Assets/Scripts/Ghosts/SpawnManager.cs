@@ -20,7 +20,12 @@ public class SpawnManager : MonoBehaviour
 
     [Header("Sister States")]
     public bool sisterGhostActive;
- 
+
+
+    private bool hallwaySpawning = false;
+    private bool windowSpawning = false;
+
+
     public void Start()
     {
         StartSpawning();
@@ -39,42 +44,26 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    public void StartHallwaySpawnTimer()
-    {
-    
-        StartCoroutine(HallwaySpawn());
-    }
 
     
     public void StartWindowSpawnTimer()
     {
+        if (!windowSpawning)
+        {
+            windowSpawning = true;
+            StartCoroutine(WindowSpawn());
+           
+        }
       
-        StartCoroutine(WindowSpawn());
+      
     }
 
-    public IEnumerator HallwaySpawn()
-    {
-        Debug.Log("NoSpawn6");
-        yield return new WaitForSeconds(hallwaySpawnDelay);
 
-
-        if (hallwayPathPicker != null)
-        {
-            hallwayPathPicker.PathChosen();
-        }
-        else
-        {
-            
-        }
-
-        
-       
-    }
     public IEnumerator WindowSpawn()
     {
         Debug.Log("NoSpawn7");
         yield return new WaitForSeconds(windowSpawnDelay);
-
+        windowSpawning = false;
         if (windowPathPicker != null)
         {
             windowPathPicker.PathChosen();
@@ -86,6 +75,30 @@ public class SpawnManager : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// /////////////////////////////////////////
+    /// </summary>
+    public void StartHallwaySpawnTimer()
+    {
+        if (!hallwaySpawning)
+        {
+            hallwaySpawning = true;
+            StartCoroutine(HallwaySpawn());
+        }
+     
+    }
+
+    public IEnumerator HallwaySpawn()
+    {
+        yield return new WaitForSeconds(hallwaySpawnDelay);
+        hallwaySpawning = false;
+        if (hallwayPathPicker != null)
+            hallwayPathPicker.PathChosen();
+    }
+
+
+    
 
 
     public void SetSpawnDelay(float newDelay)

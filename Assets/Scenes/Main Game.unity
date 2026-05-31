@@ -9480,6 +9480,7 @@ GameObject:
   - component: {fileID: 346157410}
   - component: {fileID: 346157408}
   - component: {fileID: 346157409}
+  - component: {fileID: 346157411}
   m_Layer: 0
   m_Name: ------GhostManager------
   m_TagString: Untagged
@@ -9531,8 +9532,10 @@ MonoBehaviour:
   isPickingActive: 1
   doorClosed: 0
   delayBeforePick: 1.5
-  sisterSpawnState: {fileID: 1648857547}
+  SpawnState: {fileID: 1648857547}
   isGhostActive: 0
+  prompted: 0
+  doorWarning: {fileID: 0}
 --- !u!114 &346157409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9573,6 +9576,103 @@ MonoBehaviour:
   targetTag: Pathes
   H_Pathes: []
   recentlyUsedPathes: []
+--- !u!82 &346157411
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346157406}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e9ca8a86015ce134eb0967328b4c10fd, type: 3}
+  m_Resource: {fileID: 8300000, guid: e9ca8a86015ce134eb0967328b4c10fd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &347487554
 GameObject:
   m_ObjectHideFlags: 0
@@ -84342,7 +84442,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.203
+    m_Strength: 0.18
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.45
@@ -92717,8 +92817,8 @@ Transform:
   m_GameObject: {fileID: 1887271342}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.16631623, z: -0, w: 0.9860725}
-  m_LocalPosition: {x: 0.64, y: -0.6374, z: -2.5}
-  m_LocalScale: {x: 0.06609934, y: 0.06609934, z: 0.06609934}
+  m_LocalPosition: {x: 0.64, y: -0.6428, z: -2.5}
+  m_LocalScale: {x: 0.042729918, y: 0.042729918, z: 0.042729918}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4444900547757211387}
@@ -101298,8 +101398,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a394ab8585ef01048af7376f00481367, type: 3}
-  m_Resource: {fileID: 8300000, guid: a394ab8585ef01048af7376f00481367, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7a136745ddbeaaf4b8caeac7913c9c38, type: 3}
+  m_Resource: {fileID: 8300000, guid: 7a136745ddbeaaf4b8caeac7913c9c38, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -101403,7 +101503,7 @@ MonoBehaviour:
   doorOpen: 1
   doorClosedAllowed: 3
   _npcStatsSource: {fileID: 346157409}
-  doorWarning: {fileID: 2068949687}
+  doorWarning: {fileID: 0}
   _candleManager: {fileID: 0}
   prompted: 0
   spawn: {fileID: 1648857547}

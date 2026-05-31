@@ -65,9 +65,9 @@ public class FadeGhosts : MonoBehaviour
                 }
                 else
                 {
-                    
+
                     _npcPicker.EndOfPath();
-                    
+
 
                 }
 

@@ -50,20 +50,6 @@ public class PathPicker : MonoBehaviour
     {
      
 
-        if (_wayPoints == null)
-        {
-
-        }
-
-        if (!string.IsNullOrEmpty(targetTag))
-        {
-            GameObject[] allPathes = GameObject.FindGameObjectsWithTag(targetTag);
-            H_Pathes.AddRange(allPathes);
-        }
-        else
-        {
-         
-        }
 
     }
 
@@ -142,6 +128,7 @@ public class PathPicker : MonoBehaviour
 
         if(targetTag == "Pathes")
         {
+           
             _npcPicker.StartCoroutine(_npcPicker.StartNPCPicker(this));
            
         }
@@ -149,8 +136,8 @@ public class PathPicker : MonoBehaviour
 
         if (targetTag == "W_Pathes")
         {
-            
 
+            
             _npcWindow.StartCoroutine(_npcWindow.StartNPCPicker(this)); 
         }
       

@@ -23,6 +23,7 @@ public class WayPointMover : MonoBehaviour
 
     private int currentWaypointIndex = 0;
 
+    private bool fadeTriggered = false;
     public void Initialize(WayPoints wayPoints, NPCPicker npcPicker, int ghostSpeed, PathPicker pathPicker)
     {
         if (wayPoints == null || wayPoints.transform.childCount == 0)
@@ -34,8 +35,8 @@ public class WayPointMover : MonoBehaviour
         _wayPoints = wayPoints;
         _npcPicker = npcPicker;
         moveSpeed = ghostSpeed;
+        fadeTriggered = false;
 
-       
         ghostEnded = false;
         chucklePlayed = false;
         currentWaypointIndex = 0;
@@ -54,10 +55,15 @@ public class WayPointMover : MonoBehaviour
 
     private void OnDisable()
     {
+        if (initialized && !ghostEnded && _npcPicker != null)
+        {
+            _npcPicker.isGhostActive = false;
+            
+        }
         _wayPoints = null;
         initialized = false;
+        fadeTriggered = false;
         ghostEnded = false;
-
     }
 
    
@@ -96,32 +102,31 @@ public class WayPointMover : MonoBehaviour
         {
             if (currentWaypointIndex == _wayPoints.transform.childCount - 1)
             {
-                Debug.Log("EndOfPath.");
+                ghostEnded = true;
+                Debug.Log("EndOfPath waypointmoved theghoist made it .");
 
                 if (ghostChuckle != null && !chucklePlayed)
                 {
+                    Debug.Log("EndOfPath1");
                     chucklePlayed = true;
-
-                    _npcPicker.isGhostActive = false;
+                  
                     AudioSource.PlayClipAtPoint(ghostChuckle, transform.position);
                 }
 
-                if (fadeGhosts != null)
-                {
-                    fadeGhosts.TriggerFade();
 
+
+                if (fadeGhosts != null && !fadeTriggered)
+                {
+                    Debug.Log("EndOfPath2");
+                    fadeTriggered = true;
+                    fadeGhosts.TriggerFade();
                    
-                    StartCoroutine(WaitForFadeAndDespawn());
                 }
                 else
                 {
-                    
-                    if (_npcPicker != null) _npcPicker.EndOfPath();
+                    Debug.Log("EndOfPath3");
+                 
                 }
-
-                ghostEnded = true;
-
-                
 
                 return;
             }
@@ -132,18 +137,6 @@ public class WayPointMover : MonoBehaviour
 
 
     }
-    private IEnumerator WaitForFadeAndDespawn()
-    {
-        
-        yield return new WaitForSeconds(2f);
-
-       
-        if (_npcPicker != null)
-        {
-            _npcPicker.EndOfPath();
-        }
-    }
-
-
+   
 
 }

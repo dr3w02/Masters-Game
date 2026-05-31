@@ -20,7 +20,7 @@ public class OpenCloseDoor : MonoBehaviour
 
 
     public bool prompted;
-
+  
 
     public SpawnManager spawn;
 
@@ -104,10 +104,8 @@ public class OpenCloseDoor : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
 
 
-        if (_npcPicker != null)
-        {
-            _npcPicker.EndOfPath();
-        }
+            _npcPicker.EndOfPath(false);
+    
 
         yield return new WaitForSeconds(doorClosedAllowed);
 

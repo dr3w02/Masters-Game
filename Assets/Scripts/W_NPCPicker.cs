@@ -38,7 +38,7 @@ public class W_NPCPicker : MonoBehaviour
         windowWarning = GetComponent<AudioSource>();
 
         sisterSpawnState = FindFirstObjectByType<SpawnManager>();
-
+        windowWarning.GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -107,7 +107,7 @@ public class W_NPCPicker : MonoBehaviour
         if (sisterSpawnState != null)
         {
             sisterSpawnState.sisterGhostActive = false;
-            sisterSpawnState.StartHallwaySpawnTimer();
+            sisterSpawnState.StartWindowSpawnTimer();
         }
 
     }
