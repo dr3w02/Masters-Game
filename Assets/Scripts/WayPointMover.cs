@@ -103,11 +103,11 @@ public class WayPointMover : MonoBehaviour
             if (currentWaypointIndex == _wayPoints.transform.childCount - 1)
             {
                 ghostEnded = true;
-                Debug.Log("EndOfPath waypointmoved theghoist made it .");
+            
 
                 if (ghostChuckle != null && !chucklePlayed)
                 {
-                    Debug.Log("EndOfPath1");
+                  
                     chucklePlayed = true;
                   
                     AudioSource.PlayClipAtPoint(ghostChuckle, transform.position);
@@ -117,14 +117,13 @@ public class WayPointMover : MonoBehaviour
 
                 if (fadeGhosts != null && !fadeTriggered)
                 {
-                    Debug.Log("EndOfPath2");
+                   
                     fadeTriggered = true;
                     fadeGhosts.TriggerFade();
                    
                 }
                 else
                 {
-                    Debug.Log("EndOfPath3");
                  
                 }
 

@@ -26,7 +26,7 @@ public class PlayerControllerKey : MonoBehaviour
     }
     public void OnClick(InputAction.CallbackContext context)
     {
-        Debug.Log("clicked");
+       
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

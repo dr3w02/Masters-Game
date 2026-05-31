@@ -68,7 +68,7 @@ public class CandleManager : MonoBehaviour
 
             }
          
-            Debug.Log("all candles lit!");
+
 
         }
 

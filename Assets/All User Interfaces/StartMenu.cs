@@ -57,7 +57,7 @@ public class StartMenu : MonoBehaviour
     public void ExitUI()
     {
         Application.Quit();
-        Debug.Log("Game Quit");
+      
     }
     public void GoToNextScene()
     {
@@ -66,7 +66,7 @@ public class StartMenu : MonoBehaviour
 
     public IEnumerator WaitForFade()
     {
-        Debug.Log("Waiting...");
+        
        
         yield return new WaitForSeconds(10f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

@@ -68,7 +68,7 @@ public class W_WaypointMover : MonoBehaviour
 
         if (_wayPoints == null)
         {
-            Debug.LogWarning("_wayPoints is null in ResetToStart");
+            
             return;
         }
 
@@ -129,7 +129,7 @@ public class W_WaypointMover : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning("fadeGhosts is null!");
+               
                 }
 
 
@@ -158,7 +158,7 @@ public class W_WaypointMover : MonoBehaviour
             else
             {
                 transform.LookAt(_wayPoints.currentWaypoint.position);
-                Debug.Log("moving2");
+
             }
 
            

@@ -36,7 +36,7 @@ public class SelectionManager : MonoBehaviour
 
                // if (selectionRenderer != null)
                // {
-                    Debug.Log("hit something");
+            
                 //selectionRenderer.material = highlightMaterial;
 
                 ghost.SetActive(false);
@@ -57,8 +57,6 @@ public class SelectionManager : MonoBehaviour
 
             if (_selection != null)
             {
-                Debug.Log("hit nothing");
-            
                 //var selectionRenderer = _selection.GetComponent<Renderer>();
                 //selectionRenderer.material = defaultMaterial;
                 _selection = null;

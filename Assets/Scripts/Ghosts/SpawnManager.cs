@@ -61,7 +61,7 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator WindowSpawn()
     {
-        Debug.Log("NoSpawn7");
+     
         yield return new WaitForSeconds(windowSpawnDelay);
         windowSpawning = false;
         if (windowPathPicker != null)

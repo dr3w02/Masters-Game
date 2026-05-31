@@ -126,7 +126,7 @@ public class W_NPCPicker : MonoBehaviour
         }
 
      
-        Debug.Log("End Of Path");
+    
         _sanityScore.sanity -= 5;
 
         promptedtimes += 1;
@@ -172,7 +172,7 @@ public class W_NPCPicker : MonoBehaviour
             chosen.ghostPrefab.SetActive(false);
         }
 
-        Debug.Log("End Of Path");
+       
         _sanityScore.sanity += 5;
 
         if (chosen.sisterGhost)

@@ -56,8 +56,7 @@ public class OpenCloseDoor : MonoBehaviour
 
     public void ToggleDoor()
     {
-        Debug.Log("Door Activated");
-
+       
 
 
         if (!doorOpen)
@@ -68,8 +67,7 @@ public class OpenCloseDoor : MonoBehaviour
             animatorDoor.SetBool("isOpen", true);
             animatorDoor.SetBool("isClosed", false);
             doorOpen = true;
-            Debug.Log("DoorOpen");
-            Debug.Log("DoorClosed");
+         
 
 
         }

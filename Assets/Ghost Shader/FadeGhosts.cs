@@ -15,16 +15,11 @@ public class FadeGhosts : MonoBehaviour
     public bool sister;
     public bool window;
 
-   
-
-    public void Start()
-    {
-        
-    }
+  
     public void TriggerFade()
     {
       
-        Debug.Log("Fade Triggered");
+      
         shouldFade = true;
     }
 
@@ -52,7 +47,6 @@ public class FadeGhosts : MonoBehaviour
                     sister = false;
                     _windowNpcPicker.SisterEndOfPath();
                    
-                    Debug.Log("Sisterendofpath");
                 }
 
                 else if (window)
@@ -61,7 +55,7 @@ public class FadeGhosts : MonoBehaviour
                     window = false;
                     _windowNpcPicker.EndOfPath();
                     
-                    Debug.Log("Windowendofpath");
+                
                 }
                 else
                 {

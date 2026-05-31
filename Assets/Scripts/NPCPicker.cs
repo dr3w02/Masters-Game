@@ -68,10 +68,10 @@ public class NPCPicker : MonoBehaviour
 
     public IEnumerator StartNPCPicker(PathPicker pathPicker)
     {
-        Debug.Log("isGhostActive = " + isGhostActive);
+        
         if (isGhostActive)
         {
-            Debug.Log("NoSpawn1");
+           
             yield break;
         }
 
@@ -86,7 +86,7 @@ public class NPCPicker : MonoBehaviour
         if (hallwayGhosts == null || hallwayGhosts.Count == 0)
         {
             isGhostActive = false;
-            Debug.Log("NoSpawn");
+            
             yield break;
            
         }
@@ -118,8 +118,7 @@ public class NPCPicker : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("No valid ghosts available.");
-                    Debug.Log("NoSpawn2");
+                   
                     isGhostActive = false;
                     yield break;
                 }
@@ -154,7 +153,7 @@ public class NPCPicker : MonoBehaviour
     IEnumerator WaitBeforeSister(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        Debug.Log("NoSpawn3");
+    
         if (SpawnState != null)
         {
             SpawnState.sisterGhostActive = false;
@@ -168,13 +167,13 @@ public class NPCPicker : MonoBehaviour
     public void EndOfPath(bool deductSanity = true)
     {
         isGhostActive=false;
-        Debug.Log("EndOfPath: called");
+      
         if (chosen == null)
         {
-            Debug.Log("EndOfPath: chosen is null, bailing");
+           
             return;
         }
-        Debug.Log("EndOfPath: chosen = " + chosen);
+ 
 
         if (chosen.ghostPrefab != null)
         {
@@ -196,19 +195,18 @@ public class NPCPicker : MonoBehaviour
 
         if (chosen.sisterGhost)
         {
-            Debug.Log("EndOfPath: sister ghost, starting WaitBeforeSister");
+           
             StartCoroutine(WaitBeforeSister(2f));
         }
         else
         {
             if (SpawnState != null)
             {
-                Debug.Log("EndOfPath: starting timer");
                 SpawnState.StartHallwaySpawnTimer();
             }
             else
             {
-                Debug.Log("EndOfPath: SpawnState is null!");
+               
             }
 
         }
@@ -228,16 +226,16 @@ public class NPCPicker : MonoBehaviour
 
     public IEnumerator WaitForFadeAndDespawn()
     {
-        Debug.Log("WaitForFadeAndDespawn: started");
+       
         yield return new WaitForSeconds(2f);
-        Debug.Log("WaitForFadeAndDespawn: calling EndOfPath");
+      
         EndOfPath();
        
 
         if (SpawnState != null)
             SpawnState.StartHallwaySpawnTimer();
-        else
-            Debug.Log("WaitForFadeAndDespawn: SpawnState still null!");
+     
+        
     }
 }
 

@@ -16,7 +16,7 @@ public class FadeScreen : MonoBehaviour
         if (fadeOnStart)
         {
             FadeIn();
-            Debug.Log("FADE AT START");
+        
         }
            
         

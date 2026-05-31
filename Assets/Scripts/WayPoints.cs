@@ -13,11 +13,6 @@ public class WayPoints : MonoBehaviour
     public Transform currentWaypoint;
     
 
-    public void Start()
-    {
-        
-    }
-
     private void OnDrawGizmos()
     {
        

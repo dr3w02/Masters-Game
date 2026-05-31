@@ -89,7 +89,7 @@ public class MenuGaze : MonoBehaviour
 
                     if (_currentButton != null)
                     {
-                        Debug.LogWarning("Invoke" + gameObject.name);
+                      
                         _currentButton.onClick.Invoke();
                     }
 
@@ -108,7 +108,7 @@ public class MenuGaze : MonoBehaviour
                 radialIndicatorUI.enabled = false;
             }
 
-            Debug.LogWarning($"tracking:{OVRPlugin.eyeTrackingEnabled} ,  supported:{OVRPlugin.eyeTrackingSupported}");
+         
 
 
 
@@ -141,7 +141,7 @@ public class MenuGaze : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
-            Debug.Log("hit something" + hit);
+          
             var selection = hit.transform;
                 if (selection.CompareTag(UI))
                 {
@@ -151,7 +151,7 @@ public class MenuGaze : MonoBehaviour
                         var selectionRenderer = selection.GetComponent<Renderer>();
 
                        
-                        Debug.Log("hit something");
+                      
                        
 
                         _currentButton = selection.GetComponent<Button>();

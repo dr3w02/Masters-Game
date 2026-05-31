@@ -10,13 +10,6 @@ public class WindowSpawnManager : MonoBehaviour
     public float windowspawnDelay;
     public bool spawning;
 
-    public void Awake()
-    {
-
-       
-
-
-    }
     public void Start()
     {
         windowspawnDelay = 30;

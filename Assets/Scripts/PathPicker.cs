@@ -46,14 +46,6 @@ public class PathPicker : MonoBehaviour
     }
 
   
-    public void Start()
-    {
-     
-
-
-    }
-
-  
 
     // picks the path out of the allowed pathes to pick and move it to another list where it cant be picked twice ALL WORKS 
     public void PathChosen()

@@ -42,18 +42,18 @@ public class UIRayCast : MonoBehaviour
             if (hitObj.CompareTag(DontLook))
             {
                 _sanity.DecreaseSanity();
-                Debug.Log("hit D" + hit.collider.gameObject.name);
+               
 
             }
 
             if (hitObj.CompareTag(DoLook))
             {
                 _sanity.IncreaseSanity();
-                Debug.Log("hit I" + hit.collider.gameObject.name);
+                
             }
 
 
-            Debug.Log("hit" + hit.collider.gameObject.name);
+         
         }
     }
 }
