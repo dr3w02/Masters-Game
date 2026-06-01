@@ -11,14 +11,19 @@ public class SpawnPoint : MonoBehaviour
 
     public void Respawn()
     {
-        xrOrigin.transform.position = spawnPoint.position;
-        xrOrigin.transform.rotation = spawnPoint.rotation;
+        xrOrigin.transform.position = spawnPoint.transform.position;
+        xrOrigin.transform.rotation = spawnPoint.transform.rotation;
+
     }
 
     public void Start()
     {
+        if (xrOrigin == null) return;
+
         xrOrigin.transform.position = spawnPoint.position;
-        xrOrigin.transform.rotation = spawnPoint.rotation;
+        xrOrigin.transform.rotation = spawnPoint.transform.rotation;
+
+
     }
 
 }

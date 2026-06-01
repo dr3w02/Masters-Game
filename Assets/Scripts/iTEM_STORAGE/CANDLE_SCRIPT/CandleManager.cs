@@ -33,6 +33,7 @@ public class CandleManager : MonoBehaviour
     {
         gameStarted = false;
         doorClosed = false;
+     
 
         candlesAudio = FindAnyObjectByType<AudioSource>();
         //move this
@@ -51,6 +52,15 @@ public class CandleManager : MonoBehaviour
 
     }
 
+    public void Update()
+    {
+
+        if (!mainScene)
+        {
+            CheckAllLit();
+
+        }
+    }
 
     public void CheckAllLit()
     {
@@ -63,6 +73,7 @@ public class CandleManager : MonoBehaviour
                     fading.FadeOut();
 
                     gameStarted = true;
+                    mainScene = true;
                 }
                
 

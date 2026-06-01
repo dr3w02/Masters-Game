@@ -13,6 +13,7 @@ public class Laptop : MonoBehaviour
 
     public GameObject lighter;
     public Animator anim;
+    public GameObject video;
 
     public void Start()
     {
@@ -21,14 +22,20 @@ public class Laptop : MonoBehaviour
 
     public void Play()
     {
+        video.SetActive(true);
         anim.SetBool("PlayAnim", true);
         
+    }
+    public void Spawn()
+    {
+        lighter.SetActive(true);
     }
 
     public void EndAnim()
     {
+        video.SetActive(false);
         anim.SetBool("PlayAnim", false);
-        lighter.SetActive(true);
+       
         //lockedHead = false;
         
     }

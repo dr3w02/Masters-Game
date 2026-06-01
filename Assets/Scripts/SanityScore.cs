@@ -22,6 +22,7 @@ public class SanityScore : MonoBehaviour
 
     public AudioSource imagePrompt;
     public bool prompt;
+    public CandleManager Candle;
 
     public void Start()
     {
@@ -102,6 +103,7 @@ public class SanityScore : MonoBehaviour
         {
             prompt = false;
             NPCS.SetActive(false);
+            Candle.mainScene = false;
             StartCoroutine(WaitForFade());
 
         }
